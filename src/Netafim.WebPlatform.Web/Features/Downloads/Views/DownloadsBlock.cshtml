@@ -1,0 +1,20 @@
+﻿@using Castle.Core.Internal;
+@using EPiServer.Core
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@model Netafim.WebPlatform.Web.Features.Downloads.Models.DownloadsViewModel
+
+@using (Html.BeginComponent("Netafim.Web.DownloadsBlock", htmlAttributes: new { @class = "download-list gtm-downloads" }))
+{
+    <img src="@(!ContentReference.IsNullOrEmpty(Model.Block.Icon)?Url.ImageUrl(Model.Block, m => Model.Block.Icon):string.Empty)" alt="@Model.Block.Title" @Html.EditAttributes(x => x.Block.Icon)>
+    <h3 @Html.EditAttributes(x => x.Block.Title)>@Model.Block.Title</h3>
+    if (!Model.Items.IsNullOrEmpty())
+    {
+        <ul @Html.EditAttributes(x => x.Items)>
+            @foreach (var item in Model.Items)
+            {
+                <li><a href="@Url.ContentUrl(item.ContentLink)" class="download-item" data-title="@item.Name">@item.Name<span>(@item.Type, @item.Size)</span></a></li>
+            }
+        </ul>
+    }
+}

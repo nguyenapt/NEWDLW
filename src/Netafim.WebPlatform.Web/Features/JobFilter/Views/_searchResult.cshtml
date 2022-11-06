@@ -1,0 +1,38 @@
+﻿@using Netafim.WebPlatform.Web.Features.JobFilter
+@using Netafim.WebPlatform.Web.Features.JobDetails
+@using Netafim.WebPlatform.Web.Infrastructure.Epi.Shell.ViewModels
+@model PaginableBlockViewModel<JobFilterBlock, JobDetailsPage>
+
+@{
+    var jobRepository = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<IJobRepository>();
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-container">
+            <div class="table-header">
+                <span>@Html.Translate(() => Netafim.WebPlatform.Web.Features.JobFilter.Labels.Position)</span>
+                <span>@Html.Translate(() => Netafim.WebPlatform.Web.Features.JobFilter.Labels.Department)</span>
+                <span>@Html.Translate(() => Netafim.WebPlatform.Web.Features.JobFilter.Labels.Location)</span>
+            </div>
+            @if (Model.Result != null)
+            {
+                foreach (var job in Model.Result)
+                {
+                    var department = jobRepository.GetDepartment(job.Department);
+
+                    <div class="table-row">
+                        <a href="@Url.ContentUrl(job.ContentLink)" class="general-btn">@job.Position</a>
+                        <span>@job.Location</span>
+
+                        @if (department != null)
+                        {
+                            <span>@department.DepartmentName</span>
+                        }
+
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

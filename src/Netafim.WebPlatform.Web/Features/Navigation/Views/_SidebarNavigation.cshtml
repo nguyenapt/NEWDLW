@@ -1,0 +1,59 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Features.Navigation
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.Navigation.ViewModels
+@using Castle.Core.Internal
+
+@model IEnumerable<SidebarNavigationItemModel>
+@using (Html.BeginComponent("Netafim.Web.SidebarNavigation"))
+{
+    <div class="sidebar-wrapper">
+        <div class="sidebar-navigation">
+            <a href="javascript:void(0);" class="sidebar-nav-menu">
+                <span class="bar" id="bar1"></span>
+                <span class="bar" id="bar2"></span>
+                <span class="bar" id="bar3"></span>
+                <span class="menu-text">@Html.Translate(() => Labels.SidebarMenu)</span>
+            </a>
+            <div class="menu-container">
+                @if (!Model.IsNullOrEmpty())
+                {
+                    <ul class="menu-list">
+                        @foreach (var navItem in Model)
+                        {
+                            <li class="menu-item @(navItem.IsActive?"selected":string.Empty)">
+                                @if (navItem.HasTemplate)
+                                {
+                                    <a class="item-link" href="@Url.ContentUrl(navItem.Link)">@navItem.Title</a>
+                                }
+                                else
+                                {
+                                    <span class="item-text">@navItem.Title</span>
+                                }
+
+                                @if (!navItem.Children.IsNullOrEmpty())
+                                {
+                                    <ul class="sub-menu-list @(navItem.IsActive?"show-sub-nav":string.Empty)">
+                                        @foreach (var childNav in navItem.Children)
+                                        {
+                                            <li class="sub-menu-item">
+                                                @if (childNav.HasTemplate)
+                                                {
+                                                    <a class="sub-item-link" href="@Url.ContentUrl(childNav.Link)">@childNav.Title</a>
+                                                }
+                                                else
+                                                {
+                                                    <span class="sub-item-text">@childNav.Title</span>}
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                }
+
+            </div>
+        </div>
+    </div>
+}

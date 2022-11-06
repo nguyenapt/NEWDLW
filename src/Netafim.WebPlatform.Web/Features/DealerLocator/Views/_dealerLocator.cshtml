@@ -1,0 +1,66 @@
+﻿@using Netafim.WebPlatform.Web.Features.DealerLocator
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.Core
+@using Netafim.WebPlatform.Web.Features._Shared.ViewModels
+
+@model DealerLocatorBlock
+
+@using (Html.BeginComponent("Netafim.Web.DealerLocator", new
+{
+        searchDealersUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("Search"),
+        blockId = ((IContent)Model).ContentLink.ID,
+        contactFormLabel = Html.Translate(() => Labels.ContactForm).ToString(),
+        directionsLabel = Html.Translate(() => Labels.Direction).ToString(),
+        websiteLabel = Html.Translate(() => Labels.Website).ToString()
+}))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m)" @Html.RenderAnchor(m => m) data-action="dealer">
+        @Html.RenderWatermark(m => m)
+        @Html.RenderFloatingNavigationText(m => m)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h1>@Html.PropertyFor(m => m.Title)</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-3">
+                    <label for="search-dealer">@Html.Translate(() => Labels.SearchBoxTitle)</label>
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-9">
+                    <div class="search-dealer">
+                        <input id="search-dealer" type="text" placeholder="@Html.Translate(() => Labels.SearchBoxPlaceHold)">
+                        <button type="submit" id="btnSearchDealer">@Html.Translate(() => Labels.SearchButtonText)</button>
+                    </div>
+                    <p class="use-current-location">@Html.Translate(() => Labels.Or) <a href="javascript:void(0);">@Html.Translate(() => Labels.UsCurrentLocationText)</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="map-heading">
+                        <h2 class="search-summary" data-dealers="@Html.Translate(() => Labels.Dealers)"></h2>
+                        <a href="javascript:void(0);" class="toggle-dealer-map map-on" data-text-hide="@Html.Translate(() => Labels.HideMap)" data-text-show="@Html.Translate(() => Labels.ShowMap)">
+                            <img alt="" @Html.EditAttributes(m => m.ShowHideMapIcon) src="@Url.ImageUrl(Model, m => Model.ShowHideMapIcon)"><span>@Html.Translate(() => Labels.HideMap)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map-wrapper">
+            <div class="map-content show-dealer-map" id="netafim-dealer-map"></div>
+        </div>
+        <div class="dealer-accordion"></div>
+    </section>
+}
+
+<!-- Generate contact form overlay -->
+@if (Model.ContactForm != null)
+{
+    @Html.Partial("_overlay", new OverlayViewModel("dealer-locator-contact-form")
+    {
+        Forms = Model.ContactForm
+    })
+}

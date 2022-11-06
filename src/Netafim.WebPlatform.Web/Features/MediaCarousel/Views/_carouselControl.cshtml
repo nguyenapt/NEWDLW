@@ -1,0 +1,31 @@
+﻿@using EPiServer.Editor
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.MediaCarousel
+@model MediaCarouselContainerBlock
+
+<div class="carousel-controller">
+    <a href="javascript:void(0)" class="btn-carousel-prev"></a>
+    <a href="javascript:void(0)" class="btn-carousel-next"></a>
+</div>
+@if (!PageEditing.PageIsInEditMode)
+{
+    <div class="carousel-navigation">
+        <div class="sliding-dots">
+            <div href="javascript:void(0)" class="sliding-item">
+                <div class="sliding-item-content">
+                    <div class="carousel-extra"></div>
+                </div>
+            </div>
+            @foreach (var item in Model.Items.GetFilteredItemsContent<IMediaCarousel>())
+            {
+                <div class="carousel-dot gtm-carousel" data-id="gtm-carousel" data-name="@(item.Title)">
+                    <span>
+                        <div class="carousel-thumbnail">
+                            <img alt="@(item.Title)" src="@Url.ImageUrl(item, m => item.Image)">
+                        </div>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+}

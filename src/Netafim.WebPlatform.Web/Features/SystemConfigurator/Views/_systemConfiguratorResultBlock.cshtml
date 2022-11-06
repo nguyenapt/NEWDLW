@@ -1,0 +1,165 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.Core
+@using EPiServer.ServiceLocation
+@using Netafim.WebPlatform.Web.Core.Templates
+@using EPiServer
+
+@model Netafim.WebPlatform.Web.Features.SystemConfigurator.ViewModels.SystemConfiguratorResultViewModel
+
+@{
+    var clientSettings = string.Format(Html.Translate(() => Labels.ClientSettingFormat).ToString(), Model.ClientName + string.Empty);
+
+    ContentReference solutionReference = Model.Result != null && Model.Result.Solution != null && Model.Result.Solution.ContentPage != null ? Model.Result.Solution.ContentPage : null;
+
+    var solution = solutionReference != null ? ServiceLocator.Current.GetInstance<IContentLoader>().Get<SolutionPage>(solutionReference) : null;
+
+    var image = solution != null ? solution.Thumnbail : null;
+
+    var summary = Html.Translate(() => Labels.SolutionUserSummaryFormat);
+
+    var solutionSummary = string.Format(summary.ToString(), Model.ClientName);
+
+    var previousUrl = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : string.Empty;
+}
+
+
+<section class="component boxed-mode" data-action="systemconfigutatorresult">
+    <div class="bg-text">@Html.Translate(() => Labels.ResultPageBackground)</div>
+    <div class="vertical-text">@Html.Translate(() => Labels.ResultPageVerticalText)</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner">
+                    <h2 class="toggle-expand expand"> @clientSettings </h2>
+                    <a href="@previousUrl" class="general-blue-btn stay-with-heading">@Html.Translate(() => Labels.ChangeSettings)</a>
+                </div>
+                <div class="setting-summary white-bg has-shadow-desktop show-summary">
+
+                    @for (int i = 0; i < Model.Settings.Count; i++)
+                    {
+                        var step = i + 1;
+                        <div class="summary-col">
+                            <h2><strong>@step</strong>@Model.Settings[i].Name</h2>
+                            <ul>
+
+                                @foreach (var setting in Model.Settings[i])
+                                {
+                                    if (!string.IsNullOrWhiteSpace(setting.Name) && !string.IsNullOrWhiteSpace(setting.Value))
+                                    {
+                                        <li><span>@setting.Name</span>@setting.Value</li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (Model.Messages != null && Model.Messages.Any())
+{
+    <section class="component boxed-mode gray-bg" data-action="systemconfigutatorresult">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="agronomy-tip container-fluid white-bg">
+                        @foreach (var m in Model.Messages)
+                        {
+                            <div class="row row-eq-height">
+                                <div class="agronomy-col-right">
+                                    <p>@m</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@if (Model != null && Model.Result != null)
+{
+    <section class="component boxed-mode gray-bg" data-action="systemconfigutatorresult">
+        <div class="bg-text">@Html.Translate(() => Labels.IrrigationBackground)</div>
+        <div class="vertical-text">@Html.Translate(() => Labels.IrrigationVerticalText)</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>@solutionSummary</h2>
+                    </div>
+                    <!-- Call-to-action bar -->
+                    <div class="cta-bar white-bg has-shadow">
+                        <a class="cta-bar-more" href="#request-dealer">@Html.Translate(() => Labels.RequestMoreInfo)</a>
+                        <a class="cta-bar-download" href="javascript:window.print()">@Html.Translate(() => Labels.DownLoad)</a>
+                        <a class="cta-bar-share" href="javascript:void(0);" data-open="popup-overlay" data-popup-id="cta-bar-social">@Html.Translate(() => Labels.Share)</a>
+                        <a class="cta-bar-print" href="javascript:window.print()">@Html.Translate(() => Labels.Print)</a>
+                    </div>
+                    <!-- Map of the solution -->
+                    <div class="solution-map">
+                        <img alt="" src="@Url.CropImageUrl(image, 1140, 610)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.PropertyFor(x => solution.Content)
+                </div>
+            </div>
+
+            <!-- List of the products -->
+            @if (Model.Result != null && Model.Result.Products != null)
+            {
+                @Html.Partial("~/Features/SystemConfigurator/Views/_products.cshtml", Model.Result.Products)
+            }
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- Call-to-action bar -->
+                    <div class="cta-bar white-bg has-shadow">
+                        <a class="cta-bar-more" href="#request-dealer">@Html.Translate(() => Labels.RequestMoreInfo)</a>
+                        <a class="cta-bar-download" href="javascript:window.print()">@Html.Translate(() => Labels.DownLoad)</a>
+                        <a class="cta-bar-share" href="javascript:void(0);" data-open="popup-overlay" data-popup-id="cta-bar-social">@Html.Translate(() => Labels.Share)</a>
+                        <a class="cta-bar-print" href="javascript:window.print()">@Html.Translate(() => Labels.Print)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social sharing popup -->
+    <div class="popup-overlay cta-bar-social" data-popup-id="cta-bar-social">
+        <div class="popup-container">
+            <a href="javascript:void(0);" class="btn-close"></a>
+            <div class="container-fluid popup-inner">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>@Html.Translate(() => Labels.SocialSharing)</h2>
+                        <div class="shareaholic-share-buttons">
+                            <div class="shareaholic-canvas" data-app="share_buttons" data-app-id="27935881"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Netafim contacts -->
+@if (Model != null && Model.Result != null && Model.Result.Contacts != null)
+{
+    @Html.Partial("~/Features/SystemConfigurator/Views/_contacts.cshtml", Model.Result.Contacts)
+}
+
+<!-- Dealer info -->
+@if (Model != null && Model.Result != null && Model.Result.Dealers != null)
+{
+    @Html.Partial("~/Features/SystemConfigurator/Views/_dealers.cshtml", Model.Result.Dealers)
+}

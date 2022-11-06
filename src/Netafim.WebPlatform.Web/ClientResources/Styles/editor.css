@@ -1,0 +1,24 @@
+h2
+{
+    EditMenuName: Heading 2;
+}
+h3
+{
+    EditMenuName: Heading 3;
+}
+
+.general-btn {
+    EditMenuName: General Button Link;
+}
+
+.list-with-icon {
+    EditMenuName: List items with icon
+}
+
+.rich-text-list {
+    EditMenuName: List items with green bullet
+}
+
+.small-bullet-list {
+    EditMenuName: List items with small bullet
+}

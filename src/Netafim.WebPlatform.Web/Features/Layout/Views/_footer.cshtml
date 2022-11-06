@@ -1,0 +1,71 @@
+﻿@using Netafim.WebPlatform.Web.Features.Layout;
+@using Netafim.WebPlatform.Web.Core.Extensions;
+@using EPiServer.Core;
+@model FooterViewModel
+
+<footer data-action="footer" data-parallax="@Html.Translate(() => Labels.Netafim)">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 footer-secondary-nav">
+                <ul>
+                    @if (Model.ContactUs != null)
+                    {
+                        <li><a href="@Url.ContentUrl(Model.ContactUs)">@Html.Translate(() => Labels.ContactUs)</a></li>
+                    }
+
+                    @if (Model.Carreer != null)
+                    {
+                        <li><a href="@Url.ContentUrl(Model.Carreer)">@Html.Translate(() => Labels.Carreers)</a></li>
+                    }
+
+                    <li><a data-open="popup-overlay" @Html.RenderPopupIdAttribute("language-selection") href="javascript:void(0);" class="has-arrow">@Html.Translate(() => Labels.NtfGlobal)</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12 footer-logo">
+                <a href="@Url.ContentUrl(ContentReference.StartPage)">
+
+                    @if (!ContentReference.IsNullOrEmpty(Model.Logo))
+                    {
+                        <img src="@Url.ContentUrl(Model.Logo) " class="white-logo" alt="hero-logo" @Html.EditAttributes(x => x.Logo) />
+                    }
+
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-3 footer-primary-nav">
+
+                @if (Model.InternalLeadings != null && Model.InternalLeadings.Any())
+                {
+                    <ul>
+                        @foreach (var link in Model.InternalLeadings)
+                        {
+                            <li><a href="@link.Url" @link.LinkUrl.LinkTarget()>@link.Text</a></li>
+                        }
+                    </ul>
+                }
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 footer-social">
+                <span>@Html.Translate(() => Labels.JoinConversation)</span><br>
+                @{ Html.RenderPartial("_socials", Model.Socials); }
+            </div>
+        </div>
+    </div>
+
+    @if (Model.SubFooter != null && Model.SubFooter.Any())
+    {
+        <div class="row">
+            <div class="col-sm-12 footer-privacy">
+                @foreach (var link in Model.SubFooter)
+                {
+                    var spearate = Model.SubFooter.Last() == link ? "" : "|";
+                    <a href="@link.Url" @link.LinkUrl.LinkTarget()>@link.Text</a><span>@spearate</span>
+                }
+            </div>
+        </div>
+    }
+
+</footer>

@@ -1,0 +1,28 @@
+﻿@using Netafim.WebPlatform.Web.Features.Navigation.ViewModels
+@using Castle.Core.Internal
+@using Dlw.EpiBase.Content.Infrastructure.Extensions.SelectMany
+
+@model MainNavigationItemModel
+
+<div class="sub-item-container">
+    <a class="btn-back back-to-l1" href="javascript:void(0);" data-href="@Url.ContentUrl(Model.Link)">@Model.Title.ToLineBreakString()</a>
+
+    @if (Model.HasDoormat)
+    {
+        <ul class="">
+            @foreach (var item in Model.DoormatItems)
+            {
+                if (!item.IsLeaf)
+                {
+                    <li class="sub-section"><h4>@item.Title</h4></li>
+                }
+                foreach (var leafNode in item.Leaves)
+                {
+                    <li class="l2">
+                        <a class="a2" href="@Url.ContentUrl(leafNode.Link)">@leafNode.Title</a>
+                    </li>                  
+                }                
+            }
+        </ul>
+    }
+</div>

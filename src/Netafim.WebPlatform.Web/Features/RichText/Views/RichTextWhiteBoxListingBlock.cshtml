@@ -1,0 +1,9 @@
+﻿@using Netafim.WebPlatform.Web.Features.RichText.Models
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Web.Routing
+
+@model RichTextComponentViewModel<RichTextWhiteBoxListingBlock>
+
+<div class="box-white">
+    @Html.PropertyFor(m => m.Block.Items)
+</div>

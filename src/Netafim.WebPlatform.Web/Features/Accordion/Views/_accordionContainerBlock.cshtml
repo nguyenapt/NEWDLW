@@ -1,0 +1,32 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Web.Mvc.Html
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model Netafim.WebPlatform.Web.Features.Accordion.AccordionContainerBlock
+
+@using (Html.BeginComponent("Netafim.Web.Accordion"))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m)" @Html.RenderAnchor(m => m)>
+        @Html.RenderWatermark(m => m)
+        @Html.RenderFloatingNavigationText(m => m)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        @if (!string.IsNullOrEmpty(Model.Title))
+                        {
+                            <h2>@Html.PropertyFor(m => m.Title)</h2>
+                        }
+                        <div class="accordion-container has-shadow-desktop">
+                            <div class="accordion-inner">
+                                <ul>
+                                    @Html.PropertyFor(m => m.Items)
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

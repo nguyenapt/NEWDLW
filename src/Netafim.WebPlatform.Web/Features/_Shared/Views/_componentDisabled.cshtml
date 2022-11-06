@@ -1,0 +1,16 @@
+﻿@model Netafim.WebPlatform.Web.Features._Shared.ViewModels.DisabledComponentViewModel
+
+<section class="component">
+    @if (Model.Content != null)
+    {
+        <h2>Component '@Model.Content.Name' will be disabled when published!</h2>
+    }
+    else
+    {
+        <h1>Component will be disabled when published!</h1>
+    }
+    
+    <p>
+        Reason: @Model.Reason
+    </p>
+</section>

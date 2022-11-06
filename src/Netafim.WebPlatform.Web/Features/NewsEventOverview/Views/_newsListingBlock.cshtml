@@ -1,0 +1,60 @@
+﻿@using Netafim.WebPlatform.Web.Features.NewsEventOverview
+@using EPiServer.Core;
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using newsEventOverview = Netafim.WebPlatform.Web.Features.NewsEventOverview
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Castle.Core.Internal
+@using EPiServer.Globalization
+
+@model NewsListingViewModel
+
+@using (Html.BeginComponent("Netafim.Web.NewsListing"))  
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m.CurrentBlock)" @Html.RenderAnchor(m => m.CurrentBlock)>
+        @Html.RenderWatermark(m => m.CurrentBlock)
+        @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>@Model.CurrentBlock.Title</h2>
+                        @if (!ContentReference.IsNullOrEmpty(Model.CurrentBlock.NewsOverviewPage))
+                        {
+                            <a href="@Url.ContentUrl(Model.CurrentBlock.NewsOverviewPage)" class="general-btn stay-with-heading">@Html.Translate(() => Labels.MoreNews)</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            @if (!Model.AllNews.IsNullOrEmpty())
+            {
+                var rows = Model.AllNews.Chunk(3);
+                foreach (var row in rows)
+                {
+                    <div class="row row-eq-height">
+                        @foreach (var newsPage in row)
+                        {
+                            <div class="col-sm-4 col-same-height">
+                                <div class="image-arrow">
+                                    <img alt="@newsPage.Name" src="@Url.CropImageUrl(newsPage.Image, 620, 452)">
+                                    <div class="event-time">
+                                        <div class="event-time-date">@newsPage.NewsDate.Day</div>
+                                        <div class="event-time-month">
+                                            <p>@newsPage.NewsDate.ToString("MMMM", ContentLanguage.PreferredCulture)</p>
+                                            <p>@newsPage.NewsDate.Year</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>@Html.PropertyFor(x => newsPage.Title)</h3>
+                                <a class="general-btn stay-at-bottom" href="@Url.ContentUrl(newsPage.ContentLink)">
+                                    @Html.Translate(() => newsEventOverview.Labels.ReadMore)
+                                </a>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+    </section>
+}

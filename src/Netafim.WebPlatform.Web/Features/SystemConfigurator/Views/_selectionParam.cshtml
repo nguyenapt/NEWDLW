@@ -1,0 +1,40 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator.ViewModels
+@using System.Linq
+
+@model ParameterViewModel
+
+@if (Model != null && Model.Any())
+{
+    <div class="FormChoice-group">
+
+        @RenderRadio(Model.First(), true)
+
+        @foreach (var item in Model.Skip(1))
+        {
+            @RenderRadio(item)
+        }
+
+    </div>
+}
+
+@helper RenderRadio(ConfiguratorParameterViewModel item, bool check = false)
+ {
+        if (item != null)
+        {
+            var radioId = Model.Name + "_" + item.Id;
+            <div class="FormChoice">
+
+                @if (check)
+                {
+                    <input type="radio" value="@item.Id" id="@radioId" name="@Model.Name" checked>
+                }
+                else
+                {
+                    <input type="radio" value="@item.Id" id="@radioId" name="@Model.Name" >
+                }
+
+                <label class="" for="@radioId">@item.Name</label>
+            </div>
+        }
+}
+

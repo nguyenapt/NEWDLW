@@ -1,0 +1,30 @@
+@using EPiServer.Core
+@using Netafim.WebPlatform.Web.Features.Breadsrumbs
+
+@helper TemplateForLink(BreadcrumbsItem breadCrumbItem)
+{
+    @Html.PageLink(breadCrumbItem.Page)
+}
+@helper TemplateForText(BreadcrumbsItem breadCrumbItem)
+{
+    @breadCrumbItem.Page.PageName
+}
+@helper TemplateForActiveItem(BreadcrumbsItem breadCrumbItem)
+{
+    <span>@breadCrumbItem.Page.PageName</span>
+}
+<section class="component boxed-mode">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 breadcrumb">
+                @{
+                    var dictTemplates = new Dictionary<BreadcrumbItemType, Func<BreadcrumbsItem, HelperResult>>();
+                    dictTemplates.Add(BreadcrumbItemType.CurrentItem, TemplateForActiveItem);
+                    dictTemplates.Add(BreadcrumbItemType.NormalLinkItem, TemplateForLink);
+                    dictTemplates.Add(BreadcrumbItemType.NormalTextItem, TemplateForText);
+                }
+                @Html.Breadscrumbs(ContentReference.StartPage, dictTemplates, includeRoot: true, requireVisibleInMenu: false, requirePageTemplate: true)
+            </div>
+        </div>
+    </div>
+</section>

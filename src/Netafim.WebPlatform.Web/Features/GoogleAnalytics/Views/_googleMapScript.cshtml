@@ -1,0 +1,6 @@
+﻿@model string
+
+@if (!string.IsNullOrWhiteSpace(Model))
+{
+    <script src="@string.Format("https://maps.googleapis.com/maps/api/js?v=3&key={0}&libraries=places,addressList", Model)"></script>
+}

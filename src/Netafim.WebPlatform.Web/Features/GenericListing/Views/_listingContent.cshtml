@@ -1,0 +1,62 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.GenericListing
+@model GenericListingViewModel
+
+@using (Html.BeginComponent("Netafim.Web.GenericListing"))
+{
+    <section class="component boxed-mode" @Html.RenderAnchor(m => m.Block)>
+        @Html.RenderWatermark(m => m.Block)
+        @Html.RenderFloatingNavigationText(m => m.Block)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <div class="filter-heading">
+                            <div class="view-mode">
+                                <h3 class="result-counter"><span>@Model.TotalItems</span> @Html.Translate(() => Labels.ResultFoundMessage)</h3>
+                                <a href="javascript:void(0)" class="grid-mode"></a>
+                                <a href="javascript:void(0)" class="list-mode selected-view-mode"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.HasResult())
+            {
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="crop-overview-list list-view">
+
+                            @foreach (var iPreviewable in Model.Result)
+                            {
+                                <li class="crop-overview-item">
+                                    <div class="crop-thumbnail">
+                                        <a href="@Url.ContentUrl(iPreviewable.ContentLink)">
+                                            
+                                            @if (iPreviewable.Thumnbail != null)
+                                            {
+                                                <img src="@Url.CropImageUrl(iPreviewable.Thumnbail, 240, 240)" alt="@iPreviewable.Title">
+                                            }
+
+                                            <span>@iPreviewable.Title</span>
+                                        </a>
+                                    </div>
+                                    <div class="crop-overview-content">
+                                        <h3>@iPreviewable.Title</h3>
+                                        @iPreviewable.Description
+                                        <a href="@Url.ContentUrl(iPreviewable.ContentLink)" class="general-btn">@Html.Translate(() => Labels.LearnMore)</a>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </section>
+
+}

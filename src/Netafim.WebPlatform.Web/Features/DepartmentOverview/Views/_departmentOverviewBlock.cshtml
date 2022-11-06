@@ -1,0 +1,20 @@
+﻿@using Netafim.WebPlatform.Web.Features.DepartmentOverview
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model DepartmentOverviewViewModel
+
+@{ 
+    var href = !string.IsNullOrWhiteSpace(Model.FilterAnchorId) ? string.Format("#{0}", Model.FilterAnchorId) : "javascript:void(0)";
+}
+
+<div class="col-sm-6 col-same-height">
+    <div class="image-arrow">
+        <img src="@Url.ImageUrl(Model.CurrentBlock, m => Model.CurrentBlock.Thumbnail)" alt="@Model.CurrentBlock.Title" />
+    </div>
+    <h3>@Html.PropertyFor(m => m.CurrentBlock.Title)</h3>
+    <div class="with-quote-icon">
+        <img alt="@Model.CurrentBlock.Title" src="@Url.ImageUrl(Model.CurrentBlock, m => Model.CurrentBlock.Icon)">
+        <p>@Html.PropertyFor(m => m.CurrentBlock.Description)</p>
+    </div>
+    <a class="general-btn stay-at-bottom btn-filter-department" href="@href" data-department="@Model.CurrentBlock.Department">@Html.Translate(() => Labels.ReadMore)</a>
+</div>

@@ -1,0 +1,49 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Extensions
+@using EPiServer.Editor
+@using Netafim.WebPlatform.Web.Features.Accordion
+@model FAQItemBlock
+
+@if (PageEditing.PageIsInEditMode)
+{
+    <section class="component boxed-mode">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <div class="accordion-container has-shadow-desktop">
+                            <div class="accordion-inner">
+                                <ul>
+                                    @_renderFaq(Model, "accordion-active")
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    @_renderFaq(Model, string.Empty)
+}
+
+@helper _renderFaq(FAQItemBlock model, string activeCssInEditMode)
+{
+    <li class="accordion-item @activeCssInEditMode">
+        @if (!string.IsNullOrWhiteSpace(model.Question.ToTextString()))
+        {
+            <div class="accordion-item-title">
+                @Html.PropertyFor(m => m.Question)
+            </div>
+        }
+        @if (!string.IsNullOrWhiteSpace(model.Answer.ToTextString()))
+        {
+            <div class="accordion-item-content">
+                <div class="accordion-item-content-heading">
+                    @Html.PropertyFor(m => m.Answer)
+                </div>
+            </div>
+        }
+    </li>
+}

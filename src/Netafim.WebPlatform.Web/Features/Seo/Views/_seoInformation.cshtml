@@ -1,0 +1,38 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Seo
+@model Netafim.WebPlatform.Web.Features.Seo.SeoModel
+
+    @{
+        var seoInformation = Content as ISeoInformation;
+        if (seoInformation != null)
+        {
+            if (!string.IsNullOrWhiteSpace(seoInformation.SeoDescription))
+            {
+                <meta name="description" content="@seoInformation.SeoDescription">
+            }
+
+            if (!string.IsNullOrWhiteSpace(seoInformation.SeoKeywords))
+            {
+                <meta name="keywords" content="@seoInformation.SeoKeywords">
+            }
+
+            @*
+                // when re-enabled, check some configuration if country is launched,
+                // not just some page published by accident
+                
+                @Html.AlternateLinks()
+
+                if (seoInformation.AlternateLinks != null)
+                {
+                    foreach (var link in seoInformation.AlternateLinks)
+                    {
+                        <link rel="alternate" hreflang="@link.Culture" href="@link.Url" />
+                    }
+                }
+            *@
+        }
+
+        if (!Model.CurrentLanguageIsReleased)
+        {
+            <meta name="robots" content="noindex, nofollow">
+        }
+    }

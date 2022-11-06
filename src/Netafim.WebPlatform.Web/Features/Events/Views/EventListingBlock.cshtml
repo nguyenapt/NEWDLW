@@ -1,0 +1,58 @@
+﻿@using Castle.Core.Internal
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.Events
+@using EPiServer.Core
+@model EventListingModel
+
+<section class="component gray-bg boxed-mode" @Html.RenderAnchor(m => m.Block)>
+    @Html.RenderWatermark(m => m.Block)
+    @Html.RenderFloatingNavigationText(m => m.Block)
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner page-title">
+                    @if (!ContentReference.IsNullOrEmpty(Model.Block.EventsOverviewPage))
+                    {
+                        <h2>@Html.PropertyFor(x => x.Block.Title)</h2>
+                        <a href="@Url.ContentUrl(Model.Block.EventsOverviewPage)" class="general-btn stay-with-heading">@Html.Translate(() => Labels.MoreEvent)</a>
+                    }
+                    else
+                    {
+                        <h1>@Html.PropertyFor(x => x.Block.Title)</h1>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (!Model.Events.IsNullOrEmpty())
+        {
+            var rows = Model.Events.Chunk<EventPage>(Model.ItemsEachRow);
+            var columnCss = Html.RenderBootstrapSpan(ScreenSize.Small, Model.ItemsEachRow);
+            foreach (var row in rows)
+            {
+                <div class="row row-eq-height">
+                    @foreach (var eventItem in row)
+                    {
+                        var eventTitle = !string.IsNullOrEmpty(eventItem.Title) ? eventItem.Title : eventItem.Name;
+                        <div class="@columnCss">
+                            <div class="event-box">
+                                <div class="event-img">
+                                    <img alt="@eventTitle" src="@Url.ImageUrl(eventItem, m => eventItem.Image)">
+                                </div>
+                                <div class="event-title">
+                                    <h3>@eventTitle</h3>
+                                </div>
+                                <div class="event-info">
+                                    <p>@Html.ToDateRangeString(eventItem.From, eventItem.To)</p>
+                                    <p>@eventItem.Location</p>
+                                </div>
+                                <div class="event-link">
+                                    <a href="@Url.ContentUrl(eventItem.EventLink)" @eventItem.EventLink.LinkTarget() class="general-btn">@eventItem.LinkText</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</section>

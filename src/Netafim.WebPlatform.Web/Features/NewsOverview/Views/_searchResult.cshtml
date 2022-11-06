@@ -1,0 +1,37 @@
+﻿@using Netafim.WebPlatform.Web.Features.NewsOverview
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Castle.Core.Internal
+@using Netafim.WebPlatform.Web.Infrastructure.Epi.Shell.ViewModels
+@using EPiServer.Globalization
+
+@model PaginableBlockViewModel<NewsOverviewBlock, NewsPage>
+<div class="accordion-item-content">
+    <div class="container-fluid news-overview">
+        @if (!Model.Result.IsNullOrEmpty())
+        {
+            var rows = Model.Result.Chunk(3);
+            foreach (var row in rows)
+            {
+                <div class="row row-eq-height">
+                    @foreach (var newsPage in row)
+                    {
+                        <div class="col-sm-4 col-same-height">
+                            <div class="image-container">
+                                <img alt="@newsPage.Name" src="@Url.CropImageUrl(newsPage.Image, 620, 452)">
+                            </div>
+                            <div class="event-time-date">@newsPage.NewsDate.ToString("MMMM dd, yyyy", ContentLanguage.PreferredCulture)</div>
+                            <h3>@newsPage.Title</h3>
+                            <a href="@Url.ContentUrl(newsPage.ContentLink)" class="general-btn stay-at-bottom">@Html.Translate(() => Labels.Readmore)</a>
+                        </div>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <p class="no-data">
+                @Html.Translate(() => Labels.NoResult)
+            </p>
+        }
+    </div>
+</div>

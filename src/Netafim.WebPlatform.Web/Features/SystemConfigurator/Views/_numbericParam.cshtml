@@ -1,0 +1,18 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator.ViewModels
+@using System.Linq
+
+@model ParameterViewModel
+
+@if (Model != null && Model.Any())
+{
+    <div class="FormNumber">
+
+        @foreach (var item in Model.OfType<NumbericParameterViewModel>())
+        {
+            <input name="@Model.Name" type="number" min="@item.Min" step="@item.Step" max="@item.Max" placeholder="@item.Name">
+            <a class="number-up" href="javascript:void(0);">+</a>
+            <a class="number-down" href="javascript:void(0);">-</a>
+        }
+
+    </div>
+}

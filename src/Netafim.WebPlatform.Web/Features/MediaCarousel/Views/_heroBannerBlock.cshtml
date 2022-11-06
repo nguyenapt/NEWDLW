@@ -1,0 +1,79 @@
+﻿@using EPiServer.Editor
+@using Netafim.WebPlatform.Web.Features.MediaCarousel
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model HeroBannerBlock
+
+@if (PageEditing.PageIsInEditMode)
+{
+    <section class="component hero-banner">
+        @_heroBannerPartialView(Model)
+    </section>
+}
+else
+{
+    @_heroBannerPartialView(Model)
+}
+
+@helper _heroBannerPartialView(HeroBannerBlock model)
+{
+    var carouselItemAttr = model.Video != null ? string.Format("data-show-text-onplay={0} data-video-auto-play={1}", model.ShowContentWhilePlaying.ToString().ToLower(), model.OnAutoPlay.ToString().ToLower()) : string.Empty;
+    <div class="media-carousel-item" @carouselItemAttr>
+       @_renderVideo(model)
+        <div class="media-description">
+            <div class="media-description-inner">
+                @if (model.Title != null)
+                {
+                    <h1>@Html.PropertyFor(m => m.Title)</h1>
+                }
+
+                <div class="media-description-content">
+                    @if (model.TextUp != null)
+                    {
+                        <div class="line-up">@Html.PropertyFor(m => m.TextUp)</div>
+                    }
+                    @{
+                        var hasSlash = Model.DisableBlueSlash ? string.Empty : "has-slash";
+                        <div class="line-down @hasSlash">@Html.PropertyFor(m => m.TextDown)</div>
+                    }
+
+                </div>
+
+                @if (model.Link != null && !string.IsNullOrEmpty(Model.LinkText))
+                {
+                    <a class="netafim-btn" @Html.UrlContent(m => m)>@Html.PropertyFor(m => m.LinkText)</a>
+                }
+            </div>
+        </div>
+        @if (Model.Quote != null)
+        {
+            <div class="carousel-extra-content">
+                @Html.PropertyFor(m => m.Quote)
+            </div>
+        }
+    </div>
+}
+
+@helper _renderVideo(IVideoComponent model)
+{
+    var hasVideo = model.Video != null;
+    var videoAttribute = model.OnAutoPlay ? "preload=metadata loop autoplay=autoplay muted onloadedmetadata=this.muted=true" : "preload=none";
+    var style = PageEditing.PageIsInEditMode ? "height:100%;" : string.Empty;
+    var editMode = PageEditing.PageIsInEditMode ? "display: block;" : "";
+    <div class="media-container" style="@style">
+        @if (!PageEditing.PageIsInEditMode)
+        {
+            <div class="banner-bg" style="background-image: url(@Url.CropImageUrl(Model.Image, 1440, 930))" @Html.EditAttributes(m => m.Image)>
+                @if (hasVideo)
+                {
+                    <video src="@Url.ContentUrl(model.Video)" type="video/mp4" poster="@Url.ImageUrl(model, m => model.Image)" @videoAttribute @Html.EditAttributes(m => m.Video)></video>
+                }
+            </div>
+        }
+        <img class="banner-img" alt="banner" src="@Url.CropImageUrl(Model.Image, 1440, 930)" @Html.EditAttributes(m => m.Image) style="@editMode">
+        @if (hasVideo)
+        {
+            <a class="video-control-play-hero" href="javascript:void(0)"></a>
+        }
+    </div>
+}

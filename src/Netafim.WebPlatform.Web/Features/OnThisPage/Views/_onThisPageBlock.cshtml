@@ -1,0 +1,33 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions
+@model Netafim.WebPlatform.Web.Features.OnThisPage.OnThisPageViewModel
+
+<section class="component boxed-mode @Html.RenderBackgroundColor(m=>m.CurrentBlock)" @Html.RenderAnchor(m => m.CurrentBlock)>
+    @Html.RenderWatermark(m => m.CurrentBlock)
+    @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner">
+                    <h2>@Html.PropertyFor(m => m.CurrentBlock.Title)</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="on-this-page has-shadow">
+                    <h3>@Html.PropertyFor(m => m.CurrentBlock.SubTitle)</h3>
+                    <ul class="link-list">
+                        @foreach (var component in Model.Components)
+                        {
+                            <li>
+                                <a href="#@(component.AnchorId)">
+                                    @component.ComponentName
+                                </a>
+                            </li>
+                         }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

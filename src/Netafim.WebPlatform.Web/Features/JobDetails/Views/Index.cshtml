@@ -1,0 +1,81 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.JobDetails
+@using Netafim.WebPlatform.Web.Features._Shared.ViewModels
+@using Netafim.WebPlatform.Web.Features.JobFilter
+
+
+
+@model JobDetailsPage
+
+@Html.PropertyFor(x => x.BannerArea)
+@Html.Action("Index", "Breadcrumbs")
+
+@{
+    var jobRepository = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<IJobRepository>();
+}
+
+<!-- job header -->
+<section class="component boxed-mode gray-bg">
+    @Html.RenderWatermark(Model.Watermark, Model.OnParallaxEffect)
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner job-header">
+                    @if (!string.IsNullOrEmpty(Model.Title))
+                    {
+                        <h1>@Html.PropertyFor(m => m.Title)</h1>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Country))
+                    {
+                        <h3>@Model.Country.ToCountryName()</h3>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-7 col-lg-8">
+                @if (Model.Introduction != null)
+                {
+                    @Html.PropertyFor(m => m.Introduction)
+                }
+
+                @if (Model.JobApplicationForm != null)
+                {
+                    <a href="javascript:void(0);" data-open='popup-overlay' @Html.RenderPopupIdAttribute("application-form") class="general-blue-btn">@Html.Translate(() => Netafim.WebPlatform.Web.Features.JobDetails.Labels.CtaApplyNow)</a>
+                }
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-4">
+                <div class="job-info">
+                    <ul>
+                        @{
+                            var department = jobRepository.GetDepartment(Model.Department);
+                        }
+
+                        @Html.RenderJobInformation("Location", Model.Location.ToCountryName())
+
+                        @if (department != null)
+                        {
+                            @Html.RenderJobInformation("Department", department.DepartmentName)
+                        }
+
+                        @Html.RenderJobInformation("Posting date", Model.Postingdate)
+                        @Html.RenderJobInformation("End date", Model.EndDate)
+                        @Html.RenderJobInformation("Job Schedule", Model.JobSchedule)
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- job components -->
+@Html.PropertyFor(x => x.Content)
+
+<!-- Generate job application form overlay -->
+@if (Model.JobApplicationForm != null)
+{
+    @Html.Partial("_overlay", new OverlayViewModel("application-form")
+    {
+        Forms = Model.JobApplicationForm
+    })
+}

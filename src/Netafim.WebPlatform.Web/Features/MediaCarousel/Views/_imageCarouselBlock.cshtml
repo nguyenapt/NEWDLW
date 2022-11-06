@@ -1,0 +1,40 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Editor
+@using Netafim.WebPlatform.Web.Core.Templates
+@using Netafim.WebPlatform.Web.Features.MediaCarousel
+@model MediaCarouselViewModel
+
+
+@if (PageEditing.PageIsInEditMode)
+{
+    using (Html.BeginComponent("Netafim.Web.MediaCarousel"))
+    {
+        <section class="component fullwidth-mode">
+            <div class="container-fluid no-gutter">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="media-carousel-wrapper">
+                            @_imageCarouselView(Model.CarouselItem)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+else
+{
+    @_imageCarouselView(Model.CarouselItem)
+}
+
+@helper _imageCarouselView(IMediaCarousel model)
+{
+    <div class="media-carousel-item">
+        <div class="media-carousel-bg">
+            <div class="fluid-img">
+                <img alt="@(model.Title)" src="@Url.ImageUrlWithCarouselMode(Model.CurrentBlock, model)" @Html.EditAttributes(m => m.CarouselItem.Image)>
+            </div>
+        </div>
+        @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "MediaCarousel", "_mediaCarouselContent"), model)
+    </div>
+}

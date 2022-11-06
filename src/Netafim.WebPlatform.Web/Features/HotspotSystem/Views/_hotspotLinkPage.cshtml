@@ -1,0 +1,37 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Features.HotspotSystem
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model HotspotLinkPage
+
+@using (Html.BeginComponent("Netafim.Web.HotspotSystem"))
+{
+    <section class="component fullwidth-mode" @Html.RenderAnchor(m => m)>
+        <div class="container-fluid">
+            <div class="row">
+                @if (Model.HasImage)
+                {
+                    <div class="clickable-image">
+                        <img class="clickable-image-bg" alt="" src="@Url.ContentUrl(Model.Image)" data-width="@Model.ImageWidth" data-height="@Model.ImageHeight" @Html.EditAttributes(m => m.Image)>
+
+                        @if (Model.Title != null || Model.SubTitle != null)
+                        {
+                            <div class="clickable-image-heading">
+                                <h2>@Html.PropertyFor(m => m.Title)</h2>
+                                <h3>@Html.PropertyFor(m => m.SubTitle)</h3>
+                            </div>
+                        }
+
+                        @foreach (var node in Model.GetHotspotNodes<HotspotLinkNodePage>())
+                        {
+                            <a class="hotspot-link gtm-hotspot" id="@node.ToHotspotNodeId("hpLink")" href="@Url.ContentUrl(node.Link)" data-x="@node.CoordinatesX" data-y="@node.CoordinatesY" @Html.EditAttributes(m => node.Link) data-id="@node.NodeName">
+                                <img alt="" src="@Url.ImageUrl(Model, m => Model.HotspotIcon)" @Html.EditAttributes(m => m.HotspotIcon)>
+                                <span>@Html.PropertyFor(m => node.NodeName)</span>
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

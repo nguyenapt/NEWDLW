@@ -1,0 +1,12 @@
+﻿@using Netafim.WebPlatform.Web.Features.Weather
+
+@model FloatingWeatherViewModel
+
+@{ 
+    var top = string.Format("top:{0}px", Model.CurrentBlock.PaddingTop);
+}
+
+<div class="floating-weather" style="@top;">
+    <img class="weather-icon" alt="Sunny" src="http://via.placeholder.com/26x26/FFFFFF/007AFF">
+    <p>@Model.Temperature<sup>o</sup></p>
+</div>

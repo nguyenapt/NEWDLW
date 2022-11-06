@@ -1,0 +1,33 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Features.ProductFamilyQuickLink
+@model ProductFamilyQuickLinkModel
+
+@using (Html.BeginComponent("Netafim.Web.ProductFamilyQuickLink"))
+{
+    <section class="component boxed-mode gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="quick-link">
+                        @if (!string.IsNullOrEmpty(Model.Title))
+                        {
+                            <h3>@Html.PropertyFor(m => m.Title)</h3>
+                        }
+                        <div class="FormSelection">
+                            @if (Model.Items != null && Model.Items.Any())
+                            {
+                                <select>
+                                    <option value="">@Html.Translate(() => Labels.QuickLinkPlaceholder)</option>
+                                    @foreach (var productFamily in Model.Items)
+                                    {
+                                        <option value="@productFamily.Link">@productFamily.Text</option>
+                                    }
+                                </select>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

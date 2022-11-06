@@ -1,0 +1,31 @@
+﻿@using Netafim.WebPlatform.Web.Features.OfficeLocator;
+@using Dlw.EpiBase.Content.Infrastructure.Web;
+
+@using (Html.BeginComponent("Netafim.Web.OfficeLocator", new
+{
+    searchOfficesUrl = Url.Action("SearchOffices")
+}))
+{
+    <section class="component gray-bg fullwidth-mode" data-action="genericblock">
+        <div class="netafim-worldwide">
+            <div class="map-filter">
+                <span class="map-filter-title">@Html.Translate(() => Labels.SearchTitle)</span>
+                <div id="netafim-map-filter">
+                    <input id="search-location" type="text" placeholder="@Html.Translate(() => Labels.AllCountries)">
+                    <a href="javascript:void(0)" id="btn-clear-search" title="@Html.Translate(() => Labels.ClearSearch)"></a>
+                </div>
+                <div class="netafim-map-result">
+
+                </div>
+
+                <div class="no-result-wrapper" style="display:none">
+                    <!-- If there is no result -->
+                    <div class="address-box">
+                        <h3>@Html.Translate(() => Labels.NoResult)</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="netafim-map"></div>
+        </div>
+    </section>
+}

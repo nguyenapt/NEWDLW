@@ -1,0 +1,24 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Extensions.SelectMany
+@using Netafim.WebPlatform.Web.Core.Extensions;
+@model Netafim.WebPlatform.Web.Features.PageTitle.PageTitleBlock
+
+<section class="component boxed-mode @Html.RenderBackgroundColor(m=>m)" @Html.RenderAnchor(m => m)>
+    @Html.RenderWatermark(m => m)
+    @Html.RenderFloatingNavigationText(m => m)
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner page-title">
+                    @if (!string.IsNullOrWhiteSpace(Model.Title))
+                    {
+                        <h1>@Html.PropertyFor(m => m.Title)</h1>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.Description))
+                    {
+                        <p @Html.EditAttributes(m=>m.Description)> @Model.Description.ToLineBreakString()</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,49 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.CustomForm
+@model Netafim.WebPlatform.Web.Features.CustomForm.Models.CustomFormContainerViewModel
+
+@using (Html.BeginComponent("Netafim.Web.CustomForm"))
+{
+if (Model.HasRichTextWrapper)
+ {
+     @_customFormView(Model.Block)
+ }
+ else
+ {
+     <section class="component boxed-mode" data-action="genericblock">
+         <div class="container">
+             <div class="row">
+                 <div class="col-sm-12">
+                     @_customFormView(Model.Block)
+                 </div>
+             </div>
+         </div>
+     </section>
+ }
+
+@helper _customFormView(CustomFormContainerBlock model)
+{
+    <div class="rich-text-form gray-bg">
+        @if (model.FormIcon != null)
+        {
+            <img class="Form__Icon" alt="@(model.Title)" src="@Url.ImageUrl(model, m => model.FormIcon)" @Html.EditAttributes(m => model.FormIcon)>
+        }
+        <div class="rich-text-form-inner netafim-form" context-aware>
+            @if (!string.IsNullOrEmpty(model.Title))
+            {
+                <h3>@Html.PropertyFor(m => model.Title)</h3>
+            }
+            @if (!string.IsNullOrEmpty(model.Description))
+            {
+                <p>@Html.PropertyFor(m => model.Description)</p>
+            }
+            @if (model.FormContainer != null)
+            {
+                @Html.RenderHiddenContainerIdentity(model)
+                @Html.PropertyFor(m => model.FormContainer)
+            }
+        </div>
+    </div>
+}
+}

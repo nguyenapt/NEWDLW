@@ -1,0 +1,11 @@
+﻿@using Netafim.WebPlatform.Web.Features.CountryLanguage
+@model string
+
+<div class="col-md-6">
+    <div class="box-inner box-local-website ">
+        <h3 class="box-title">@Html.Translate(() => Labels.CorporateSiteTitle)</h3>
+        <p>@Html.Translate(() => Labels.CorporateSiteDesc)</p>
+
+        <a class="netafim-btn" href="@Model">@Html.Translate(() => Labels.CorporateSiteLinkText)</a>
+    </div>
+</div>

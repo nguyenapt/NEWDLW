@@ -1,0 +1,51 @@
+﻿
+@using Netafim.WebPlatform.Web.Core.Extensions;
+@using Netafim.WebPlatform.Web.Features.SystemConfigurator
+@using System
+
+@model SystemConfiguratorExamplePreviewBlock
+
+
+<section class="@Html.RenderBackgroundColor(m=>m) component boxed-mode @Html.RenderBackgroundColor(m => m)">
+    @Html.RenderWatermark(m => m)
+    @Html.RenderFloatingNavigationText(m => m)
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner page-title">
+                    <h1>@Html.PropertyFor(m => m.Title)</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>@Html.PropertyFor(m => m.SubTitle)</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div>
+                    @Html.PropertyFor(m => m.Description)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="preview-box has-shadow" style="background-image:url(@Url.ImageUrl(Model, m => Model.Thumbnail))">
+                    <a href="javascript:void(0);" data-open="popup-overlay" data-popup-id="123654" class="btn-preview">@Html.Translate(() => Labels.LinkViewExample)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup-overlay configurator-preview" data-popup-id="123654">
+        <div class="popup-container">
+            <a href="javascript:void(0);" class="btn-close"></a>
+            <div class="container-fluid popup-inner no-gutter">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img alt="@Model.Title" src="@Url.ImageUrl(Model, m => Model.Image)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

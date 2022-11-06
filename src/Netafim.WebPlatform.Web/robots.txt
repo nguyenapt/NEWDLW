@@ -1,0 +1,11 @@
+﻿User-agent: * 
+Disallow: /episerver
+Disallow: /episerver/*
+Disallow: /indexingservice/*
+Disallow: /util
+Disallow: /api
+Disallow: /api/*
+Disallow: /Search/
+Disallow: /Search/*
+Disallow: /it-it
+Disallow: /pt-br

@@ -1,0 +1,1 @@
+﻿All 3rd part scripts are managed by bower, copied to the vendor folder and automatically included into the project.

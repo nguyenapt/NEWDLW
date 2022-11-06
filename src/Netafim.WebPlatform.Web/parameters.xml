@@ -1,0 +1,29 @@
+﻿<parameters>
+  <parameter name="SmtpHost" defaultValue="" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Smtp.config" match="/smtp/network/@host" />
+  </parameter>
+  <parameter name="SmtpUsername" defaultValue="" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Smtp.config" match="/smtp/network/@userName" />
+  </parameter>
+  <parameter name="SmtpPassword" defaultValue="" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Smtp.config" match="/smtp/network/@password" />
+  </parameter>
+  <parameter name="SmtpPort" defaultValue="" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Smtp.config" match="/smtp/network/@port" />
+  </parameter>
+  <parameter name="EpiFrameworkStorage" defaultValue="" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Episerver.Framework.config" match="/episerver.framework/blob/providers/add[@name='azureblobs']/@container" />
+  </parameter>
+  <parameter name="EpiFrameworkEvents" defaultValue="" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Episerver.Framework.config" match="/episerver.framework/event/providers/add[@name='azureevents']/@topic" />
+  </parameter>
+  <parameter name="EpiFrameworkLicenseFile" defaultValue="" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Episerver.Framework.config" match="/episerver.framework/licensing/@licenseFilePath" />
+  </parameter>
+  <parameter name="EpiserverHttpCacheExpiration" defaultValue="00:10:00" tags="" >
+    <parameterEntry kind="XmlFile" scope=".*\\Episerver.config" match="/episerver/applicationSettings/@httpCacheExpiration" />
+  </parameter>
+  <parameter name="ApplicationInitializationHostName">
+    <parameterEntry kind="XmlFile" scope=".*\\ApplicationInitialization.config" match="/applicationInitialization/add[@hostName]/@hostName" />
+  </parameter>
+</parameters>

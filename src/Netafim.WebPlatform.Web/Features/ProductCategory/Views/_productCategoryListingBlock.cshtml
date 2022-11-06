@@ -1,0 +1,50 @@
+﻿@using Netafim.WebPlatform.Web.Infrastructure.Epi.Shell.ViewModels
+@using Netafim.WebPlatform.Web.Core.Templates
+@using Netafim.WebPlatform.Web.Features.ProductCategory
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.Core
+
+@model CategoryListBlockViewModel
+
+@using (Html.BeginComponent("Netafim.Web.ProductCategoryListing",
+    new
+    {
+        blockId =  ((IContent)Model.CurrentBlock).ContentLink.ID,
+        searchUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("Search", "ProductCategoryListing"),
+    }))
+{
+<section class="component boxed-mode @Html.RenderBackgroundColor(m => m.CurrentBlock) " @Html.RenderAnchor(m => m.CurrentBlock) >
+    @Html.RenderWatermark(m => m.CurrentBlock)
+    @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+    <!-- Seach box -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner">
+                    <h1>@Html.PropertyFor(m => m.CurrentBlock.Title)</h1>
+                    <p>@Html.PropertyFor(m => m.CurrentBlock.SubTitle)</p>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-xs-12">
+                <div class="white-search-box has-shadow">
+                    <h3>@Html.Translate(() => Labels.QuickSearch)</h3>
+                    <div class="FormSelection">
+                        <select class="dropdown-category">
+                            <option value="0">@Html.Translate(() => Labels.QuickSearchPlaceholder)</option>
+                            @foreach (var productFamily in Model.ProductFamilies)
+                            {
+                                <option value="@productFamily.ContentLink.ID">@productFamily.Title</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="data-result">
+    </div>
+</section>
+}

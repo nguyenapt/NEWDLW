@@ -1,0 +1,51 @@
+﻿@using System.Web.Optimization
+@using EPiServer.Framework.Web.Mvc.Html
+@using EPiServer.Globalization
+
+<!doctype html>
+<html class="no-js" lang="@ContentLanguage.PreferredCulture.TwoLetterISOLanguageName">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>@PageTitle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    @Html.Action("Index", "Seo")
+    @Html.Action("OpenGraphTags", "Seo")
+
+    @Html.CanonicalLink()
+
+    @Html.Action("MetaTags", "Search")
+
+
+    <link rel="icon" href="~/Content/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
+    @Html.RequiredClientResources("Header")
+    @Html.Action("Index", "GoogleAnalytics")
+    @Html.Action("GtmScript", "GoogleAnalytics")
+    @Html.Action("Index", "ApplicationInsights")
+
+    @Html.Action("Index", "FloatingCta")
+
+    @Styles.Render("~/netafim-css")
+</head>
+<body>
+    @Html.Action("GtmNoScript", "GoogleAnalytics")
+
+    @Html.Action("Index", "CookieMessage")
+
+    <div class="wrapper">
+        @Html.Action("Header", "Layout")
+
+        @RenderBody()
+
+        @Html.Action("Footer", "Layout")
+    </div>
+    @Html.RequiredClientResources("Footer")
+    @Scripts.Render("~/jquery")
+    @Scripts.Render("~/vendor-scripts")
+    @Scripts.Render("~/custom-scripts")
+
+    @Html.Action("GoogleMapScript", "GoogleAnalytics")
+</body>
+</html>

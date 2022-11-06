@@ -1,0 +1,23 @@
+﻿@using Netafim.WebPlatform.Web.Features.Navigation.ViewModels
+@using Castle.Core.Internal
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Extensions.SelectMany
+
+@model MainNavigationItemModel
+
+<div class="sub-item-container">
+    <a class="btn-back back-to-l1" href="javascript:void(0);">@Model.Title.ToLineBreakString()</a>
+    @if (Model.HasDoormat)
+    {
+        <ul class="">
+            @foreach (var item in Model.DoormatItems)
+                {
+                <li class="l2">
+                    <a class="a2 with-image" href="@Url.ContentUrl(item.Link)" data-img="@Url.CropImageUrl(item.ImageLink, 310, 226)">@item.Title</a>
+                </li>
+            }
+            <li class="l2"><a class="a2 view-all" href="@Url.ContentUrl(Model.Link)">@Model.ViewAllText</a></li>
+
+        </ul>
+    }
+</div>

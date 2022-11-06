@@ -1,0 +1,71 @@
+﻿@using Netafim.WebPlatform.Web.Features.JobFilter
+@using EPiServer.Core;
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@model JobFilterBlockViewModel
+
+@using (Html.BeginComponent("Netafim.Web.JobFilter",
+    new
+    {
+        blockId = ((IContent)Model.CurrentBlock).ContentLink.ID,
+        searchUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("Search", "JobFilter"),
+    }))
+{
+    <section class="component boxed-mode  @Html.RenderBackgroundColor(m => m.CurrentBlock)" @Html.RenderAnchor(m => m.CurrentBlock)>
+        @Html.RenderWatermark(m => m.CurrentBlock)
+        @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="component-inner">
+                        <h2>@Html.PropertyFor(x => x.CurrentBlock.Title)</h2>
+                        <p>@Html.PropertyFor(x => x.CurrentBlock.SubTitle)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="career-filter has-shadow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3>@Html.Translate(() => Labels.Department)</h3>
+                                    <div class="FormSelection">
+                                        <select class="department">
+                                            <option value="@string.Empty">@Html.Translate(() => Labels.SelectDepartment)</option>
+                                            @if (Model.Departments != null)
+                                            {
+                                                foreach (var department in Model.Departments)
+                                                {
+                                                    <option value="@department.Key">@department.Value</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h3>@Html.Translate(() => Labels.Location)</h3>
+                                    <div class="FormSelection">
+                                        <select class="location">
+                                            <option value="@string.Empty">@Html.Translate(() => Labels.SelectLocation)</option>
+                                            @if (Model.Locations != null)
+                                            {
+                                                foreach (var location in Model.Locations)
+                                                {
+                                                    <option value="@location.Key">@location.Value</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-result">
+            </div>         
+        </div>
+    </section>
+}

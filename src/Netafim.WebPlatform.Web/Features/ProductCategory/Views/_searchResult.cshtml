@@ -1,0 +1,46 @@
+﻿@using Netafim.WebPlatform.Web.Features.ProductCategory
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model CategoryListResultViewModel
+
+<!-- Grid view -->
+<div class="container">
+    @{
+        /**/
+
+        if (Model.Result != null && Model.Result.Any())
+        {
+            var itemRows = Model.Result.Chunk<ProductCategoryPage>(3);
+            foreach (var row in itemRows)
+            {
+                <div class="row row-eq-height">
+                    @foreach (var item in row)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-item">
+                                <div class="product-item-inner">
+                                    <a href=""><img alt="" src="@Url.CropImageUrl(item.Thumnbail, 620, 620)"></a>
+                                    <div class="product-item-desc">
+                                        @Html.PropertyFor(x => item.Description)
+                                        <a href="@Url.ContentUrl(item.ContentLink)" class="general-btn">@string.Format("{0} {1}", Html.Translate(() => Labels.MoreAbout), item.Title).ToUpper()</a>
+                                    </div>
+                                </div>
+                                <a class="product-item-title" href="@Url.ContentUrl(item.ContentLink)"><h3>@item.Title</h3></a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3> There is no category.</h3>
+                </div>
+            </div>
+            
+        }
+
+    }
+</div>

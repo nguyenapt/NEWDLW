@@ -1,0 +1,57 @@
+﻿@using Netafim.WebPlatform.Web.Features.DepartmentOverview
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.Core;
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Features._Shared.ViewModels
+
+@model DepartmentOverviewContainerBlock
+
+@using (Html.BeginComponent("Netafim.Web.DepartmentOverview", new { jobFilterId = Model.FilterComponentAnchorId }))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m)" @Html.RenderAnchor(m => m)>
+        @Html.RenderWatermark(m => m)
+        @Html.RenderFloatingNavigationText(m => m)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>@Html.PropertyFor(m => m.Title)</h2>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.Departments != null && Model.Departments.FilteredItems != null)
+            {
+                foreach (var rowItems in Model.Departments.GetFilteredItemsContent<IContentData>().Chunk(2))
+                {
+                    <div class="row row-eq-height">
+
+                        @foreach (var item in rowItems.OfType<DepartmentOverviewBlock>())
+                        {
+                            @Html.PropertyFor(m => item)
+                        }
+
+                    </div>
+                }
+            }
+
+            @if (!Model.OverlayContent.IsNullOrEmpty())
+            {
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="career-cta text-center component-inner">
+                            <a class="general-blue-btn" href="javascript:void(0)" data-open='popup-overlay' @Html.RenderPopupIdAttribute("application-form")>@Html.Translate(() => Labels.SubmitApplicationLinkText)</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    if (!Model.OverlayContent.IsNullOrEmpty())
+    {
+        @Html.Partial("_overlay", new OverlayViewModel("application-form")
+       {
+           Forms = Model.OverlayContent
+       })
+    }
+}

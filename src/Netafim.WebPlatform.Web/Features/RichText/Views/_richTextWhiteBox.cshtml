@@ -1,0 +1,21 @@
+﻿@using Netafim.WebPlatform.Web.Features.RichText.Models
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.Web.Routing
+
+@model RichTextWhiteBoxBlock
+
+
+@if (Model != null)
+{
+    <div class="box-white-row">
+        <img alt="" class="box-white-icon" src="@Url.ImageUrl(Model, m => Model.Image)" @Html.EditAttributes(m => m.Image)>
+        <h4>@Html.PropertyFor(m => m.Title)</h4>
+        <p>@Html.PropertyFor(m => m.Description)</p>
+
+        @if (Model.CanDisplayCTA())
+        {
+            <a href="@Url.ContentUrl(Model.Link)" @Html.EditAttributes(m => m.Link) class="general-btn">@Html.PropertyFor(m => m.LinkText)</a>
+        }
+
+    </div>
+}

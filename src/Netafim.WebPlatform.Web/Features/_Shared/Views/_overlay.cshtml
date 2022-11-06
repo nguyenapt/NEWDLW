@@ -1,0 +1,17 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model Netafim.WebPlatform.Web.Features._Shared.ViewModels.OverlayViewModel
+
+<div class="popup-overlay" @Html.RenderPopupIdAttribute(Model.PopupId)>
+    <div class="popup-container">
+        <a href="javascript:void(0);" class="btn-close"></a>
+        <div class="container-fluid popup-inner">
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.PropertyFor(m => m.Forms)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions;
+@using Netafim.WebPlatform.Web.Features.SystemConfigurator
+@using Netafim.WebPlatform.Web.Features.SystemConfigurator.ViewModels
+@using System
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Core
+
+@model SystemConfiguratorGetStartedViewModel
+
+<section class="@Html.RenderBackgroundColor(m=>m.CurrentBlock) component boxed-mode">
+    @Html.RenderWatermark(m => m.CurrentBlock)
+    @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="component-inner">
+                    <h2>@Html.PropertyFor(m => m.CurrentBlock.Title)</h2>
+                    <p>@Html.PropertyFor(m => m.CurrentBlock.Description)</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <form class="config-form-get-started" method="post" action="@Model.ActionUrl">
+
+                @Html.Hidden("ContentId", ((IContent)Model.CurrentBlock).ContentLink.ID)
+                
+                <div class="col-xs-12 col-md-4">
+                    <div class="config-form">
+                        <label for="name">@Html.Translate(() => Labels.Name)</label>
+                        <input type="text" name="clientName" id="clientName" placeholder="@Html.Translate(() => Labels.NamePlaceHolder)">
+                        <p class="error-message" style="display:none;">@Html.Translate(() => Labels.NameValidationError)</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-5">
+                    <div class="config-form">
+                        <label for="email">@Html.Translate(() => Labels.Email)</label>
+                        <input type="email" name="clientEmail" id="clientEmail" placeholder="@Html.Translate(() => Labels.EmailPlaceHolder)">
+                        <p class="error-message" style="display:none;">@Html.Translate(() => Labels.EmailValidationError)</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <div class="config-form">
+                        <button type="submit" class="general-blue-btn">@Html.Translate(() => Labels.LinkText)</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-4">
+                <p class="notice-message">@Html.Translate(() => Labels.Tooltip)</p>
+            </div>
+        </div>
+    </div>
+</section>

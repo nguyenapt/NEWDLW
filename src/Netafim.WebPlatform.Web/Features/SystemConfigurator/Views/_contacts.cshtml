@@ -1,0 +1,67 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator
+@using Netafim.WebPlatform.Web.Features.SystemConfigurator.Domain
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Editor
+@using EPiServer.Core
+@using System
+@using EPiServer.ServiceLocation
+@using Netafim.WebPlatform.Web.Core.Templates
+@using EPiServer
+
+
+@model IEnumerable<Contact>
+
+@if (Model != null && Model.Any())
+{
+
+    <section class="component boxed-mode">
+        <div class="bg-text">@Html.Translate(() => Labels.ContactBackground)</div>
+        <div class="vertical-text">@Html.Translate(() => Labels.ContactVerticalText)</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>Netafim contacts</h2>
+                        <p>Contact a recommended Netafim contact in Lugria</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="solution-product-list">
+
+                        @{
+                            var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+
+                            foreach (var items in Model.Chunk<Contact>(2))
+                            {
+                                <div class="dealer-row">
+
+                                    @foreach (var contact in items)
+                                    {
+                                        var name = contact.FirstName + " " + contact.LastName;
+                                        <div class="solution-netafim-contact has-shadow white-bg">
+                                            <div class="netafim-contact-main-info">
+                                                <h4>@name</h4>
+                                                <p class="solution-contact-title">Agronomist</p>
+                                            </div>
+                                            <div class="netafim-contact-extra-info">
+                                                <p>@contact.Email</p>
+                                                <p>@contact.PhoneNumber</p>
+                                                <a class="contact-link" href="">@Html.Translate(() => Labels.ContactUs)</a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            }
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

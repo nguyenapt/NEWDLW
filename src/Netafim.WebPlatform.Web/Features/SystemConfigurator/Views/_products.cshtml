@@ -1,0 +1,57 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator
+@using Netafim.WebPlatform.Web.Features.SystemConfigurator.Domain
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.ServiceLocation
+@using Netafim.WebPlatform.Web.Core.Templates
+@using EPiServer
+@using EPiServer.Core
+
+@model IEnumerable<Product>
+
+<!-- List of the products -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="solution-product-list">
+
+            @{
+                var products = Model.Chunk<Product>(2);
+                var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+
+
+                foreach (var items in products)
+                {
+                    <div class="dealer-row">
+
+                        @foreach (var product in items)
+                        {
+                            var productPage = contentLoader.Get<GenericContainerPage>(product.ContentPage);
+
+                            <div class="solution-product-item has-shadow-desktop white-bg">
+                                <img alt="@product.Name" src="@Url.CropImageUrl(productPage.Thumnbail, 200, 200)">
+                                <h4>@product.Name</h4>
+                                <p class="solution-product-code">@RenderCode(product)</p>
+                                <a class="solution-product-more-info" href="javascript:void(0);">@Html.Translate(() => Labels.ProductMoreInfo)</a>
+                                <div class="solution-product-description">@productPage.Description</div>
+                                @if (productPage.CheckPublishedStatus(PagePublishedStatus.Published))
+                                {
+                                    <a href="@Url.ContentUrl(product.ContentPage)" class="solution-product-link">@Html.Translate(() => Labels.FeatureAndBenifit)</a>
+                                }
+                            </div>
+                        }
+
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+@helper RenderCode(Product product) {
+    if (product is Dripperline)
+    {
+        var flowRate = ((Dripperline) product).FlowRate;
+
+        @Html.Translate(() => Labels.FlowRate) <text> </text> @flowRate
+    }
+}

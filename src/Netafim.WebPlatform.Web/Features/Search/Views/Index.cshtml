@@ -1,0 +1,180 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Globalization
+@using EPiServer.Web.Routing
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.Search
+@model SearchViewModel
+
+@helper RenderSearchResultTitle(bool withPagination)
+{
+    if (Model.TotalMatching > 0)
+    {
+            <h3>
+                @Html.Translate(() => Labels.ResultsFound, new
+                   {
+                       firstShownResultNumber = Model.FirstShownResultNumber,
+                       lastShownResultNumber = Model.LastShownResultNumber,
+                       totalNumberOfResults = Model.TotalMatching
+                   })
+            </h3>
+
+            if (withPagination)
+            {
+                @RenderPagination()
+            }
+
+            <span class="entered-keyword">@Model.SearchText</span>
+    }
+}
+
+@helper RenderPagination()
+{
+    <div class="pagination">
+        <span>@Html.Translate(() => Labels.Page)</span>
+        <a class="paging-prev js-previousPage" href=""></a>
+
+        @for (var i = Model.LowestPageNumber; i <= Model.HighestPageNumber; i++)
+        {
+            if (i == Model.PageNumber)
+            {
+                <a class="paging-num current-page js-pageLink" href="" data-pageNumber="@i">@i</a>
+            }
+            else
+            {
+                <a class="paging-num js-pageLink" href="" data-pageNumber="@i">@i</a>
+            }
+        }
+        <a class="paging-next js-nextPage" href=""></a>
+    </div>
+}
+
+@using (Html.BeginComponent("Netafim.WebPlatform.Web.Features.Search", new
+{
+    url = Url.Action("Query", "Search"),
+    numberOfSearchResults = Model.TotalMatching,
+    culture = Model.Culture ?? ContentLanguage.PreferredCulture.Name,
+    currentSearchText = Model.SearchText,
+    currentCategory = Model.Category,
+    currentPageNumber = Model.PageNumber,
+    isThisTheLastPage = Model.IsThisTheLastPage
+}))
+{
+    if (!string.IsNullOrEmpty(Model.SearchText))
+    {
+        <!--GTM-->
+        <script type="text/javascript">
+            dataLayer.push({
+                'event': 'searchResult',
+                'searchQuery': '@Model.SearchText.Replace("'", "")',
+                'searchResults': @Model.TotalMatching
+            });
+        </script>
+    }
+
+
+    <section class="component boxed-mode gray-bg">
+        @Html.RenderWatermark(Model.Current.Watermark, false)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner page-title">
+                        <h1>@Html.PropertyFor(m => m.Current.Title)</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="component boxed-mode">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <form method="post" class="EPiServerForms ValidationSuccess">
+                        <div class="netafim-search has-shadow">
+                            <input id="js-searchTextField" type="text" name="netafim-global-search" class="global-search"
+                                   placeholder="@(Model.ValidSearch ? Html.Translate(() => Labels.SearchPlaceholder) : Html.Translate(() => Labels.ValidationMessage))">
+                            <button id="js-searchButton" class="submit-search" type="submit">@Html.Translate(() => Labels.SearchBtnText)</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9 col-lg-8">
+                    <div class="search-result-container">
+                        <div class="search-result-heading">
+                            @RenderSearchResultTitle(false)
+                            @if (Model.CategoryFacetValues != null && Model.CategoryFacetValues.Any())
+                            {
+                                <div class="dropdown-mobile-filter">
+                                    <select id="js-categoryFacetDropDown">
+                                        <option value="" @(Model.Category == null ? "selected" : null)>@Html.Translate(() => Labels.AllSections) (@Model.TotalMatchingAcrossAllCategories)</option>
+                                        @foreach (var category in Model.CategoryFacetValues)
+                                        {
+                                            <option value="@category.Key" @(Model.Category != null && Model.Category.Value == Int32.Parse(category.Key) ? "selected" : null)>@category.Label (@category.Count)</option>
+                                        }
+                                    </select>
+                                </div>
+                            }
+
+                        </div>
+
+                        @if (Model.SearchResults != null && Model.TotalMatching > 0)
+                        {
+                            <div class="search-result-content">
+                                @foreach (var searchResult in Model.SearchResults)
+                                {
+                                    <a class="search-result-item-container" href="@searchResult.Url">
+                                        @if (searchResult.Image != null)
+                                        {
+                                            <img alt="" src="@UrlResolver.Current.GetUrl(searchResult.Image)">
+                                        }
+                                        @if (!String.IsNullOrWhiteSpace(searchResult.Title))
+                                        {
+                                            <h3>@searchResult.Title</h3>
+                                        }
+                                        @if (!String.IsNullOrWhiteSpace(searchResult.Summary))
+                                        {
+                                            <div>
+                                                <p>@searchResult.Summary</p>
+                                            </div>
+                                        }
+                                        <p class="ellipsis-url" href="@searchResult.Url">
+                                            @searchResult.Url
+                                        </p>
+                                    </a>
+                                }
+                            </div>
+                        }
+
+                        <div class="search-result-heading">
+                            @RenderSearchResultTitle(true)
+                            @if (Model.TotalMatching < 1)
+                            {
+                                <h3>
+                                    @Html.Translate(() => Labels.NoResultsFound)
+                                </h3>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+                @if (Model.CategoryFacetValues != null && Model.CategoryFacetValues.Any())
+                {
+                    <div class="col-sm-3 col-lg-3 col-lg-offset-1 hidden-xs">
+                        <div class="filter-by-section">
+                            <h3>@Html.Translate(() => Labels.Filter)</h3>
+                            <ul>
+                                <li><a data-key="" class="@(Model.Category == null ? "selected-filter" : null) js-categoryFacetList" href="">@Html.Translate(() => Labels.AllSections)</a> <span>(@Model.TotalMatchingAcrossAllCategories)</span></li>
+                                @foreach (var category in Model.CategoryFacetValues)
+                                {
+                                    <li><a data-key="@category.Key" class="@(Model.Category != null && Model.Category.Value == Int32.Parse(category.Key) ? "selected-filter" : null) js-categoryFacetList" href="">@category.Label</a> <span>(@category.Count)</span></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+}

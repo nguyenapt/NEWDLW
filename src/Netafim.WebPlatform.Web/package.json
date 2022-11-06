@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "name": "netafim",
+  "dependencies": {
+    "@types/bootstrap": "3.3.33",
+    "@types/jquery": "2.0.41",
+    "@types/googlemaps": "3.26.11",
+    "@types/google.geolocation": "0.4.28"
+  },
+  "devDependencies": {
+    "bower": "1.8.0",
+    "gulp": "3.9.1",
+    "gulp-load-plugins": "1.5.0",
+    "gulp-typings": "2.0.4",
+    "gulp-main-bower-files": "1.6.1",
+    "gulp-rename": "1.2.2",
+    "gulp-bower": "0.0.13"
+  }
+}

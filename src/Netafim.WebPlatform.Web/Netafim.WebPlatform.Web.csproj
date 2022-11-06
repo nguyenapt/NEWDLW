@@ -1,0 +1,1511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ACADDD0B-948B-4037-A737-44011195D610}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Netafim.WebPlatform.Web</RootNamespace>
+    <AssemblyName>Netafim.WebPlatform.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>true</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+    <WebGreaseLibPath>..\..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <ApplicationInsightsResourceId>/subscriptions/28011263-231a-47f3-b16e-905ef080b6f0/resourcegroups/common/providers/microsoft.insights/components/ntfm-local</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/28011263-231a-47f3-b16e-905ef080b6f0/resourcegroups/common/providers/microsoft.insights/components/ntfm-local</ApplicationInsightsAnnotationResourceId>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BVNetwork.EPi404, Version=10.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BVN.404Handler.10.1.1\lib\net45\BVNetwork.EPi404.dll</HintPath>
+    </Reference>
+    <Reference Include="Bynder.Api, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dlw.Bynder.Sdk.1.1.0.1\lib\net45\Bynder.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Bynder.Models, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dlw.Bynder.Sdk.1.1.0.1\lib\net45\Bynder.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.4.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Windsor.3.4.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLocalizationProvider, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LocalizationProvider.2.9.0\lib\net45\DbLocalizationProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLocalizationProvider.Abstractions, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LocalizationProvider.Abstractions.2.9.0\lib\net45\DbLocalizationProvider.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLocalizationProvider.AdminUI.EPiServer, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DbLocalizationProvider.AdminUI.EPiServer.3.6.0\lib\net452\DbLocalizationProvider.AdminUI.EPiServer.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLocalizationProvider.EPiServer, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DbLocalizationProvider.EPiServer.3.6.0\lib\net452\DbLocalizationProvider.EPiServer.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLocalizationProvider.EPiServer.JsResourceHandler, Version=3.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DbLocalizationProvider.EPiServer.JsResourceHandler.3.6.1\lib\net452\DbLocalizationProvider.EPiServer.JsResourceHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.AddOns.Helpers, Version=0.2.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.AddOns.Helpers.0.2.0.0\lib\EPiServer.AddOns.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.ApplicationModules, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.ApplicationModules.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Azure, Version=9.3.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Azure.9.3.2\lib\net45\EPiServer.Azure.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Cms.Shell.UI, Version=10.12.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.12.0\lib\net45\EPiServer.Cms.Shell.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Configuration, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Data, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Data.Cache, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Data.Cache.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Enterprise, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.Enterprise.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Events, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.12.6.0\lib\net45\EPiServer.Find.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Blocks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Blocks.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Cms, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Cms.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Framework, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Framework.12.6.0\lib\net45\EPiServer.Find.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Optimizations, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Optimizations.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Statistics, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.UI, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Forms, Version=4.7.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Forms.4.7.0\lib\EPiServer.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Forms.Core, Version=4.7.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Forms.Core.4.7.0\lib\EPiServer.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Forms.UI, Version=4.7.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Forms.UI.4.7.0\lib\EPiServer.Forms.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Framework, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.ImageLibrary, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.ImageLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Licensing, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.LinkAnalyzer, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.LinkAnalyzer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Logging.Log4Net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Logging.Log4Net.2.1.0\lib\net45\EPiServer.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Packaging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Packaging.3.3.0\lib\net45\EPiServer.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Packaging.CmdAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Packaging.3.3.0\lib\net45\EPiServer.Packaging.CmdAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Packaging.UI, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Packaging.UI.3.3.0\lib\net45\EPiServer.Packaging.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Shell, Version=10.12.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.12.0\lib\net45\EPiServer.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Shell.UI, Version=10.12.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.12.0\lib\net45\EPiServer.Shell.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.UI, Version=10.12.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.12.0\lib\net45\EPiServer.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Web.WebControls, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.Web.WebControls.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.XForms, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Geta.SEO.Sitemaps, Version=1.6.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Geta.SEO.Sitemaps.1.6.7\lib\net45\Geta.SEO.Sitemaps.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ImageResizer.4.2.0\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.EPiServerBlobReader, Version=6.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ImageResizer.Plugins.EPiServerBlobReader.6.0.2\lib\net45\ImageResizer.Plugins.EPiServerBlobReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.TinyCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ImageResizer.Plugins.TinyCache.4.2.0\lib\net45\ImageResizer.Plugins.TinyCache.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.4.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.4.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.4.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Web.2.4.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.2.4.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Log4NetAppender, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Log4NetAppender.2.4.1\lib\net45\Microsoft.ApplicationInsights.Log4NetAppender.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.0\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OpenIdConnect.3.1.0\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.ServiceBus.3.3.2\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.XmlTransform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=7.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Storage.7.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.7.41101.299, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NuGet.Core.2.7.2\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.106.2.1\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap, Version=3.1.9.463, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap-signed.3.1.9.463\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.1.9.463, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap-signed.3.1.9.463\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap.web-signed.3.1.6.191\lib\net40\StructureMap.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\EPiServerApplication.cs" />
+    <Compile Include="App_Start\IocConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Business\Channels\DisplayResolutionBase.cs" />
+    <Compile Include="Business\Channels\DisplayResolutions.cs" />
+    <Compile Include="Business\Channels\Labels.cs" />
+    <Compile Include="Business\Channels\MobileChannel.cs" />
+    <Compile Include="Business\Channels\WebChannel.cs" />
+    <Compile Include="Core\Bynder\BlobProvider\AzureCacheBlobProvider.cs" />
+    <Compile Include="Core\Bynder\BlobProvider\BynderBlobCacheInfo.cs" />
+    <Compile Include="Core\Bynder\BlobProvider\FileCacheBlobProvider.cs" />
+    <Compile Include="Core\Bynder\BlobProvider\IBynderBlobCache.cs" />
+    <Compile Include="Core\Bynder\BlobProvider\PartialHttpStream.cs" />
+    <Compile Include="Core\Caching\CacheOptions.cs" />
+    <Compile Include="Core\Caching\IocConfig.cs" />
+    <Compile Include="Core\Caching\EpiserverCacheAdapterProvider.cs" />
+    <Compile Include="Core\Caching\ICacheProvider.cs" />
+    <Compile Include="Core\DataAnnotations\ImageMetadataAttribute.cs" />
+    <Compile Include="Core\Bynder\AssetInfo.cs" />
+    <Compile Include="Core\Bynder\BlobProvider\BynderBlob.cs" />
+    <Compile Include="Core\Bynder\BlobProvider\BynderBlobProvider.cs" />
+    <Compile Include="Core\Bynder\BynderContentSearchProvider.cs" />
+    <Compile Include="Core\Bynder\DamComponent.cs" />
+    <Compile Include="Core\Bynder\AssetData.cs" />
+    <Compile Include="Core\Bynder\BynderInitializer .cs" />
+    <Compile Include="Core\Bynder\BynderProvider.cs" />
+    <Compile Include="Core\Bynder\ConfigurationManagerBynderSettings.cs" />
+    <Compile Include="Core\Bynder\BynderRepositoryDescriptor.cs" />
+    <Compile Include="Core\Bynder\DefaultAssetMappedIdentityBuilder.cs" />
+    <Compile Include="Core\Bynder\DefaultAssetConverter.cs" />
+    <Compile Include="Core\Bynder\DefaultBynderRepository.cs" />
+    <Compile Include="Core\Bynder\DerivativeData.cs" />
+    <Compile Include="Core\Bynder\IAssetMappedIdentityBuilder.cs" />
+    <Compile Include="Core\Bynder\IAssetConverter.cs" />
+    <Compile Include="Core\Bynder\IBynderRepository.cs" />
+    <Compile Include="Core\Bynder\IBynderSettings.cs" />
+    <Compile Include="Core\Bynder\ImageAsset.cs" />
+    <Compile Include="Core\Bynder\ImageDerivative.cs" />
+    <Compile Include="Core\Bynder\VideoAsset.cs" />
+    <Compile Include="Core\EditorDescriptors\HideCategoryEditorDescriptor.cs" />
+    <Compile Include="Core\EditorDescriptors\UTCDateTimeEditorDescriptor.cs" />
+    <Compile Include="Core\Extensions\CountryExtensions.cs" />
+    <Compile Include="Core\Extensions\EmailExtensions.cs" />
+    <Compile Include="Core\Extensions\IpAddessExtensions.cs" />
+    <Compile Include="Core\Rest\IRestApiOptions.cs" />
+    <Compile Include="Core\Rest\IRestService.cs" />
+    <Compile Include="Core\Rest\RestException.cs" />
+    <Compile Include="Core\Rest\RestServiceBase.cs" />
+    <Compile Include="Core\Templates\EmailBuilder.cs" />
+    <Compile Include="Core\Exceptions\BusinessException.cs" />
+    <Compile Include="Core\Exceptions\BusinessExceptionCode.cs" />
+    <Compile Include="Core\Extensions\EnumExtensions.cs" />
+    <Compile Include="Core\Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Core\Extensions\IComponentExtensions.cs" />
+    <Compile Include="Core\Extensions\IContentExtensions.cs" />
+    <Compile Include="Core\Extensions\IContentAreaExtensions.cs" />
+    <Compile Include="Core\Extensions\ICTAComponentExtensions.cs" />
+    <Compile Include="Core\Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Core\Extensions\ScreenSize.cs" />
+    <Compile Include="Core\Extensions\UrlExtensions.cs" />
+    <Compile Include="Core\Extensions\UrlHelperExtensions.cs" />
+    <Compile Include="Core\Facet\FacetExtensions.cs" />
+    <Compile Include="Core\GoogleAnalytics\BaseGaParameters.cs" />
+    <Compile Include="Core\GoogleAnalytics\GaEventParameters.cs" />
+    <Compile Include="Core\GoogleAnalytics\GoogleAnalytics.cs" />
+    <Compile Include="Core\GoogleAnalytics\HttpRequestBaseExtensions.cs" />
+    <Compile Include="Core\GoogleAnalytics\IGoogleAnalytics.cs" />
+    <Compile Include="Core\IEnableCategorizable.cs" />
+    <Compile Include="Core\IComponent.cs" />
+    <Compile Include="Core\Provider\FeedProvider.cs" />
+    <Compile Include="Core\Rendering\IocConfig.cs" />
+    <Compile Include="Core\Rendering\UrlRendering.cs" />
+    <Compile Include="Core\Repository\ICountryRepository.cs" />
+    <Compile Include="Core\Services\IocConfig.cs" />
+    <Compile Include="Core\Services\SendGridMailService.cs" />
+    <Compile Include="Core\Services\IEmailSettings.cs" />
+    <Compile Include="Core\Shell\SharedTabs.cs" />
+    <Compile Include="Core\Templates\DigitalFarmingPage.cs" />
+    <Compile Include="Core\Templates\EndToEndProjectPage.cs" />
+    <Compile Include="Features\ApplicationInsights\ApplicationInsightsController.cs" />
+    <Compile Include="Features\ApplicationInsights\ApplicationInsightsModel.cs" />
+    <Compile Include="Features\CustomForm\CustomFormContainerBlock.cs" />
+    <Compile Include="Features\CustomForm\CustomFormContentGenerator.cs" />
+    <Compile Include="Features\CustomForm\CustomFormController.cs" />
+    <Compile Include="Features\CustomForm\IocConfig.cs" />
+    <Compile Include="Features\CustomForm\Models\CustomFormContainerViewModel.cs" />
+    <Compile Include="Core\Templates\NoTemplateContainerPage.cs" />
+    <Compile Include="Features\DealerLocator\DealerConstants.cs" />
+    <Compile Include="Features\DealerLocator\DealerContentGenerator.cs" />
+    <Compile Include="Features\DealerLocator\DealerDetailViewModel.cs" />
+    <Compile Include="Features\DealerLocator\DealerGroupViewModel.cs" />
+    <Compile Include="Features\DealerLocator\DealerLevel.cs" />
+    <Compile Include="Features\DealerLocator\DealerLocatorBlock.cs" />
+    <Compile Include="Features\DealerLocator\DealerLocatorContainerPage.cs" />
+    <Compile Include="Features\DealerLocator\DealerLocatorController.cs" />
+    <Compile Include="Features\DealerLocator\DealerLocatorPage.cs" />
+    <Compile Include="Features\DealerLocator\DealerLocatorQueryComposer.cs" />
+    <Compile Include="Features\DealerLocator\DealerLocatorQueryViewModel.cs" />
+    <Compile Include="Features\DealerLocator\DealerQueryExtensions.cs" />
+    <Compile Include="Features\DealerLocator\IDealerSettings.cs" />
+    <Compile Include="Features\DealerLocator\IocConfig.cs" />
+    <Compile Include="Features\DealerLocator\Labels.cs" />
+    <Compile Include="Features\DealerLocator\Services\DealerLocatorService.cs" />
+    <Compile Include="Features\DealerLocator\Services\IDealerLocatorService.cs" />
+    <Compile Include="Features\DepartmentOverview\DepartmentOverviewBlock.cs" />
+    <Compile Include="Features\DepartmentOverview\DepartmentOverviewContainerBlock.cs" />
+    <Compile Include="Features\DepartmentOverview\DepartmentOverviewController.cs" />
+    <Compile Include="Features\DepartmentOverview\DepartmentOverviewViewModel.cs" />
+    <Compile Include="Features\DepartmentOverview\Labels.cs" />
+    <Compile Include="Features\Error\ErrorController.cs" />
+    <Compile Include="Features\Error\Labels.cs" />
+    <Compile Include="Features\Error\NotFoundController.cs" />
+    <Compile Include="Features\Error\NotFoundPage.cs" />
+    <Compile Include="Features\Error\NotFoundViewModel.cs" />
+    <Compile Include="Features\Events\Labels.cs" />
+    <Compile Include="Features\FormContainerBlock\EPiserverFormInitializationModule.cs" />
+    <Compile Include="Features\FormContainerBlock\GeneralFormContainerBlock.cs" />
+    <Compile Include="Core\Templates\ICTAComponent.cs" />
+    <Compile Include="Core\Templates\INavigationItem.cs" />
+    <Compile Include="Core\Templates\ListingBaseBlock.cs" />
+    <Compile Include="Core\Templates\NoTemplatePage.cs" />
+    <Compile Include="Core\Templates\NoTemplatePageBase.cs" />
+    <Compile Include="Core\Templates\ItemBaseBlock.cs" />
+    <Compile Include="Core\Templates\BaseBlock.cs" />
+    <Compile Include="Core\Templates\Global.cs" />
+    <Compile Include="Core\Templates\GroupNames.cs" />
+    <Compile Include="Core\IPreviewable.cs" />
+    <Compile Include="Core\Templates\Media\GenericMedia.cs" />
+    <Compile Include="Core\Templates\Media\ImageFile.cs" />
+    <Compile Include="Core\Templates\Media\VideoFile.cs" />
+    <Compile Include="Core\Templates\PageBase.cs" />
+    <Compile Include="Core\Templates\GenericContainerPage.cs" />
+    <Compile Include="Core\Templates\PaginableResult.cs" />
+    <Compile Include="Core\Templates\RestrictRootPages.cs" />
+    <Compile Include="Core\Templates\SolutionPage.cs" />
+    <Compile Include="Core\Templates\SustainableDevelopmentPage.cs" />
+    <Compile Include="Core\Templates\UseCasePage.cs" />
+    <Compile Include="Core\Validation\Helper.cs" />
+    <Compile Include="Features\FormContainerBlock\Labels.cs" />
+    <Compile Include="Features\JobApplicationForm\JobPositionFeed.cs" />
+    <Compile Include="Features\JobFilter\StringExtensions.cs" />
+    <Compile Include="Features\Importer\ImporterController.cs" />
+    <Compile Include="Features\Importer\IocConfig.cs" />
+    <Compile Include="Features\Importer\Shell\ImporterMenuProvider.cs" />
+    <Compile Include="Features\MediaCarousel\CarouselContainerModeFactory.cs" />
+    <Compile Include="Features\MediaCarousel\ICarouselMode.cs" />
+    <Compile Include="Features\MediaCarousel\IVideoComponent.cs" />
+    <Compile Include="Features\Navigation\Labels.cs" />
+    <Compile Include="Features\MediaCarousel\MediaCarouselViewModel.cs" />
+    <Compile Include="Features\Navigation\ViewModels\SidebarNavigationItemModel.cs" />
+    <Compile Include="Features\NewsEventOverview\Labels.cs" />
+    <Compile Include="Features\NewsEventOverview\NewsListingBlock.cs" />
+    <Compile Include="Features\NewsEventOverview\NewsEventOverviewController.cs" />
+    <Compile Include="Features\NewsEventOverview\NewsListingViewModel.cs" />
+    <Compile Include="Features\NewsOverview\INewsRepository.cs" />
+    <Compile Include="Features\NewsOverview\NewsOverviewContentGenerator.cs" />
+    <Compile Include="Features\OfficeLocator\Services\OfficeCountrySelectionQuery.cs" />
+    <Compile Include="Features\ProductFamily\Constants.cs" />
+    <Compile Include="Features\NewsOverview\IocConfig.cs" />
+    <Compile Include="Features\NewsOverview\Labels.cs" />
+    <Compile Include="Features\NewsOverview\NewsListingQueryComposer.cs" />
+    <Compile Include="Features\NewsOverview\NewsOverviewQueryViewModel.cs" />
+    <Compile Include="Features\NewsOverview\NewsOverviewViewModel.cs" />
+    <Compile Include="Features\NewsOverview\NewsOverviewBlock.cs" />
+    <Compile Include="Features\NewsOverview\NewsPage.cs" />
+    <Compile Include="Features\NewsOverview\NewsOverviewController.cs" />
+    <Compile Include="Features\NewsOverview\NewsRepository.cs" />
+    <Compile Include="Features\Seo\SeoModel.cs" />
+    <Compile Include="Features\WhatsNew\FeedViewModel.cs" />
+    <Compile Include="Features\WhatsNew\HtmlHelpers.cs" />
+    <Compile Include="Features\WhatsNew\IocConfig.cs" />
+    <Compile Include="Features\WhatsNew\Labels.cs" />
+    <Compile Include="Features\WhatsNew\ModelFactories\FacebookFeedFactory.cs" />
+    <Compile Include="Features\WhatsNew\ModelFactories\TwitterFeedFactory.cs" />
+    <Compile Include="Features\WhatsNew\ModelFactories\InstagramFeedFactory.cs" />
+    <Compile Include="Features\WhatsNew\ModelFactories\YoutubeFeedFactory.cs" />
+    <Compile Include="Features\WhatsNew\ModelFactories\LinkedInFeedFactory.cs" />
+    <Compile Include="Features\WhatsNew\ModelFactories\ISocialChannelFeedFactory.cs" />
+    <Compile Include="Features\WhatsNew\NewsEventOverviewBlock.cs" />
+    <Compile Include="Features\WhatsNew\NewsEventOverviewBlockController.cs" />
+    <Compile Include="Features\WhatsNew\NewsEventOverviewBlockModel.cs" />
+    <Compile Include="Features\WhatsNew\SocialChannelFactory.cs" />
+    <Compile Include="Features\WhatsNew\SocialChannelSettingListProperty.cs" />
+    <Compile Include="Features\WhatsNew\SocialChannelSetting.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\ConfigurationManagerSocialSettings.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\TwitterApiModels.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\FacebookFeedModels.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\InstagramService.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\LinkedInModel.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\LinkedInService.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\SocialService.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\FacebookService.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\HttpUtils.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\ISocialService.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\TwitterService.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\YoutubeFeedModels.cs" />
+    <Compile Include="Features\WhatsNew\SocialServices\YoutubeService.cs" />
+    <Compile Include="Features\WhatsNew\WhatsNewBlock.cs" />
+    <Compile Include="Features\WhatsNew\SocialFeedsController.cs" />
+    <Compile Include="Features\WhatsNew\SocialFeedsBlock.cs" />
+    <Compile Include="Features\WhatsNew\SocialFeedsViewModel.cs" />
+    <Compile Include="Features\SuccessStoryOverview\SuccessStoryOverviewExtensions.cs" />
+    <Compile Include="Features\SuccessStoryOverview\CropSelectionFactory.cs" />
+    <Compile Include="Features\SuccessStoryOverview\SuccessStoryOverviewContentGenerator.cs" />
+    <Compile Include="Features\SuccessStoryOverview\SuccessStoryPageValidation.cs" />
+    <Compile Include="Features\SuccessStoryOverview\IocConfig.cs" />
+    <Compile Include="Features\SuccessStoryOverview\Labels.cs" />
+    <Compile Include="Features\SuccessStoryOverview\Repository\SuccessStoryFilterRepository.cs" />
+    <Compile Include="Features\SuccessStoryOverview\SuccessStoryFilterBlock.cs" />
+    <Compile Include="Features\SuccessStoryOverview\SuccessStoryFilterQueryComposer.cs" />
+    <Compile Include="Features\SuccessStoryOverview\ViewModels\SuccessStoryFilterViewModel.cs" />
+    <Compile Include="Features\SuccessStoryOverview\SuccessStoryOverviewController.cs" />
+    <Compile Include="Features\SuccessStoryOverview\ViewModels\SuccessStoryListingViewModel.cs" />
+    <Compile Include="Features\SuccessStoryOverview\ViewModels\SuccessStoryQueryViewModel.cs" />
+    <Compile Include="Features\SuccessStory\Product.cs" />
+    <Compile Include="Features\SuccessStory\SuccessStoryViewModel.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Content.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\DigitalFarming.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Pipe.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Valve.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Dripperline.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Connector.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Filtration.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\FiltrationType.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\WaterSource.cs" />
+    <Compile Include="Features\SystemConfigurator\ISystemConfiguratorSettings.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Mappers\CropMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Mappers\RegionMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Mappers\WaterSourceMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Mappers\FiltrationTypeMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\ContactEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\ContentEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\DealerEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\SolutionEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\ICipher.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\CaesarCipher.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\ContactMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\ContactRelationMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\DealerMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\PipeMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\SolutionMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\ValveMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\ContentRelationMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\ProductRelationMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Connector.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Contact.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\ContactRelation.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Dealer.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\DealerRelation.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Content.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\ContentRelation.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\DigitalFarming.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\DripperLine.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\IIdentifiable.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Pipe.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Product.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\ProductRelation.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Solution.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Valve.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\SystemConfiguratorImportResult.cs" />
+    <Compile Include="Features\SystemConfigurator\ViewModels\SystemConfiguratorResultViewModel.cs" />
+    <Compile Include="Features\SystemConfigurator\ViewModels\SystemConfiguratorGetStartedViewModel.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\ConnectorEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\DecisionTreeEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\DigitalFarmingEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\DripperLineEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\FiltrationTypeEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\PipeEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\ProductEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\ValveEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\ItalySystemConfiguratorFlowRateCalculator.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\ConnectorMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\DigitalFarmingMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\DripperLineMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\FiltrationMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\CropMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\WaterSourceMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\FiltrationTypeMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Mappers\RegionMapper.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Crop.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Filtration.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\FiltrationType.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\Region.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\Models\WaterSource.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\XmlSystemConfiguratorImporter\XmlSystemConfiguratorImporter.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\SystemConfiguratorFlowRateData.cs" />
+    <Compile Include="Features\SystemConfigurator\SystemConfiguratorResultController.cs" />
+    <Compile Include="Features\SystemConfigurator\SystemConfiguratorGetStartedController.cs" />
+    <Compile Include="Features\Weather\Awhere\AwhereApiOptions.cs" />
+    <Compile Include="Features\Weather\Awhere\AwhereInterceptor.cs" />
+    <Compile Include="Features\Weather\Awhere\ForcastModel.cs" />
+    <Compile Include="Features\Weather\Awhere\WeatherModel.cs" />
+    <Compile Include="Features\Weather\Awhere\AwhereService.cs" />
+    <Compile Include="Features\Weather\IocConfig.cs" />
+    <Compile Include="Features\Weather\IWeatherService.cs" />
+    <Compile Include="Features\Weather\Labels.cs" />
+    <Compile Include="Features\Weather\WeatherBlock.cs" />
+    <Compile Include="Features\Weather\WeatherController.cs" />
+    <Compile Include="Features\Weather\WeatherGenerator.cs" />
+    <Compile Include="Features\Weather\WeatherViewModel.cs" />
+    <Compile Include="Features\_Shared\Shell\ToolsMenuProvider.cs" />
+    <Compile Include="Features\SystemConfigurator\ActionQueryAdapterBuilder.cs" />
+    <Compile Include="Features\SystemConfigurator\ParametersActionQueryBuilder.cs" />
+    <Compile Include="Infrastructure\Mvc\CustomHandleErrorAttribute.cs" />
+    <Compile Include="Core\Templates\TemplateCoordinator.cs" />
+    <Compile Include="Features\Accordion\AccordionContainerBlock.cs" />
+    <Compile Include="Features\Accordion\AccordionContentGenerator.cs" />
+    <Compile Include="Features\Accordion\AccordionItemBase.cs" />
+    <Compile Include="Features\Accordion\FAQItemBlock.cs" />
+    <Compile Include="Features\Accordion\IocConfig.cs" />
+    <Compile Include="Features\Breadcrumbs\BreadcrumbsItem.cs" />
+    <Compile Include="Features\Breadcrumbs\HtmlHelperExtensions.cs" />
+    <Compile Include="Features\Breadcrumbs\BreadcrumbsController.cs" />
+    <Compile Include="Features\ContactForm\CountryFeed.cs" />
+    <Compile Include="Features\ContactForm\GoogleAnalyticsSubmissionActor.cs" />
+    <Compile Include="Features\ContactForm\IocConfig.cs" />
+    <Compile Include="Features\ContactForm\Labels.cs" />
+    <Compile Include="Features\CookieMessage\CookieMessageController.cs" />
+    <Compile Include="Features\CookieMessage\CookieMessageViewModel.cs" />
+    <Compile Include="Features\CookieMessage\ICookieMessageSettings.cs" />
+    <Compile Include="Features\CookieMessage\IocConfig.cs" />
+    <Compile Include="Features\CookieMessage\Labels.cs" />
+    <Compile Include="Features\CountryLanguage\CountryLanguageSelectionsModel.cs" />
+    <Compile Include="Features\CountryLanguage\ICountryLanguageSelectionRepo.cs" />
+    <Compile Include="Features\CountryLanguage\CountryLanguageSelectionRepo.cs" />
+    <Compile Include="Features\CountryLanguage\ICountryLanguageSelectionSettings.cs" />
+    <Compile Include="Features\CountryLanguage\LanguageBranchExtensions.cs" />
+    <Compile Include="Features\CountryLanguage\IocConfig.cs" />
+    <Compile Include="Features\CountryLanguage\CountryLanguageController.cs" />
+    <Compile Include="Features\CountryLanguage\Labels.cs" />
+    <Compile Include="Features\CountryLanguage\LanguageLinkItem.cs" />
+    <Compile Include="Features\CountryLanguage\LanguageLinkListProperty.cs" />
+    <Compile Include="Features\CountryLanguage\LanguageLinkSelectionQuery.cs" />
+    <Compile Include="Features\CountryLanguage\LocalSiteItemViewModel.cs" />
+    <Compile Include="Features\CropsOverview\CropsOverviewController.cs" />
+    <Compile Include="Features\CropsOverview\CropsOverviewContentGenerator.cs" />
+    <Compile Include="Features\Downloads\DownloadsContainerBlock.cs" />
+    <Compile Include="Features\Downloads\DownloadsBlock.cs" />
+    <Compile Include="Features\Downloads\DownloadsContainerController.cs" />
+    <Compile Include="Features\Downloads\DownloadsController.cs" />
+    <Compile Include="Features\Downloads\DownloadsGenerator.cs" />
+    <Compile Include="Features\Downloads\IocConfig.cs" />
+    <Compile Include="Features\Downloads\MediaDataExtensions.cs" />
+    <Compile Include="Features\Downloads\Models\DownloadFile.cs" />
+    <Compile Include="Features\Downloads\Models\DownloadsContainerViewModel.cs" />
+    <Compile Include="Features\Downloads\Models\DownloadsViewModel.cs" />
+    <Compile Include="Features\Events\EventsGenerator.cs" />
+    <Compile Include="Features\Events\EventListingModel.cs" />
+    <Compile Include="Features\Events\EventPage.cs" />
+    <Compile Include="Features\Events\EventListingBlock.cs" />
+    <Compile Include="Features\Events\EventPageValidation.cs" />
+    <Compile Include="Features\Events\EventsController.cs" />
+    <Compile Include="Features\Events\EventsRepository.cs" />
+    <Compile Include="Features\Events\IEventsReopsitory.cs" />
+    <Compile Include="Features\Events\IEventTimeRangeDisplay.cs" />
+    <Compile Include="Features\Events\IocConfig.cs" />
+    <Compile Include="Features\FloatingCTA\FloatingCtaContentGenerator.cs" />
+    <Compile Include="Features\FloatingCTA\FloatingCtaController.cs" />
+    <Compile Include="Features\FloatingCTA\IFloatingSharing.cs" />
+    <Compile Include="Features\FloatingCTA\IocConfig.cs" />
+    <Compile Include="Features\GeneralContactInfo\GeneralContactInfoContainerBlock.cs" />
+    <Compile Include="Features\GeneralContactInfo\GeneralContactInfoItemBlock.cs" />
+    <Compile Include="Features\GeneralContactInfo\Labels.cs" />
+    <Compile Include="Features\GenericContainer\GenericContainerController.cs" />
+    <Compile Include="Features\GenericCTA\DataBuilder.cs" />
+    <Compile Include="Features\GenericCTA\GenericCTABlock.cs" />
+    <Compile Include="Features\GenericCTA\GenericCTAController.cs" />
+    <Compile Include="Features\GenericCTA\GenericCTAGenerator.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\Constants.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\CTABlockExtensions.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\EmailUrlLinkFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\ExternalLinkUrlFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\InternalLinkUrlFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\IUrlLinkFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\LinkUrlLinkFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\MediaLinkUrlFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\NullLinkUrlFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\OverlayLinkUrlFactory.cs" />
+    <Compile Include="Features\GenericCTA\Helpers\UrlHelperExtensions.cs" />
+    <Compile Include="Features\GenericCTA\IocConfig.cs" />
+    <Compile Include="Features\GenericCTA\OverlayCTABlock.cs" />
+    <Compile Include="Features\GenericListing\Labels.cs" />
+    <Compile Include="Features\GenericListing\GenericListingGenerator.cs" />
+    <Compile Include="Features\GenericListing\GenericListingBlock.cs" />
+    <Compile Include="Features\GenericListing\IocConfig.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewModelFactories.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewBlockModel.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewDisplayingModeFactory.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewGenerator.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewBlock.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewGeneratorExtensions.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewItemBlock.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewItemWithThumbnailBlock.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewItemWithIconBlock.cs" />
+    <Compile Include="Features\GenericOverview\IocConfig.cs" />
+    <Compile Include="Features\GenericOverview\Labels.cs" />
+    <Compile Include="Features\GenericOverview\GenericOverviewController.cs" />
+    <Compile Include="Features\GenericOverview\SustainableItemBlock.cs" />
+    <Compile Include="Features\GoogleAnalytics\GoogleAnalyticsController.cs" />
+    <Compile Include="Features\JobApplicationForm\EpiFormGeneratorDataFactory.cs" />
+    <Compile Include="Features\JobApplicationForm\IocConfig.cs" />
+    <Compile Include="Features\JobApplicationForm\JobApplicationFormContentGenerator.cs" />
+    <Compile Include="Features\JobDetails\HtmlExtensions.cs" />
+    <Compile Include="Features\JobDetails\IocConfig.cs" />
+    <Compile Include="Features\JobDetails\JobDetailsContentGenerator.cs" />
+    <Compile Include="Features\JobDetails\JobDetailsPage.cs" />
+    <Compile Include="Features\JobDetails\JobDetailsController.cs" />
+    <Compile Include="Features\JobDetails\Labels.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobPosition.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobPositionSelectionQuery.cs" />
+    <Compile Include="Features\JobFilter\DictionaryExtensions.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobPositionListProperty.cs" />
+    <Compile Include="Features\JobFilter\Labels.cs" />
+    <Compile Include="Features\JobFilter\JobFilterBlockViewModel.cs" />
+    <Compile Include="Features\JobFilter\JobFilterBlockQueryViewModel.cs" />
+    <Compile Include="Features\JobFilter\JobFilterBlock.cs" />
+    <Compile Include="Features\JobFilter\IJobFilterSettings.cs" />
+    <Compile Include="Features\JobFilter\IJobRepository.cs" />
+    <Compile Include="Features\JobFilter\IocConfig.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobLocationListProperty.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobDepartmentSelectionQuery.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobLocationSelectionQuery.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobLocation.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobDepartment.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\CountrySelectionQuery.cs" />
+    <Compile Include="Features\JobFilter\JobRepository.cs" />
+    <Compile Include="Features\JobFilter\CustomProperties\JobDepartmentListProperty.cs" />
+    <Compile Include="Features\JobFilter\JobFilterController.cs" />
+    <Compile Include="Features\JobFilter\JobFilterQueryComposer.cs" />
+    <Compile Include="Features\JobFilter\JobFilterContentGenerator.cs" />
+    <Compile Include="Features\MediaCarousel\HtmlHelperExtensions.cs" />
+    <Compile Include="Features\MediaCarousel\IMediaCarousel.cs" />
+    <Compile Include="Features\MediaCarousel\UrlLinkFactory.cs" />
+    <Compile Include="Features\OnThisLevel\IocConfig.cs" />
+    <Compile Include="Features\OnThisLevel\IOnThisLevelSettings.cs" />
+    <Compile Include="Features\OnThisLevel\OnThisLevelBlock.cs" />
+    <Compile Include="Features\OnThisLevel\OnThisLevelController.cs" />
+    <Compile Include="Features\OnThisLevel\OnThisLevelGenerator.cs" />
+    <Compile Include="Features\OnThisLevel\OnThisLevelViewModel.cs" />
+    <Compile Include="Features\OnThisPage\IocConfig.cs" />
+    <Compile Include="Features\OnThisPage\OnThisPageBlock.cs" />
+    <Compile Include="Features\OnThisPage\OnThisPageController.cs" />
+    <Compile Include="Features\OnThisPage\OnThisPageGenerator.cs" />
+    <Compile Include="Features\OnThisPage\OnThisPageViewModel.cs" />
+    <Compile Include="Features\ProductCategory\CategoryListBlockViewModel.cs" />
+    <Compile Include="Features\ProductFamilyQuickLink\IocConfig.cs" />
+    <Compile Include="Features\ProductFamilyQuickLink\Labels.cs" />
+    <Compile Include="Features\ProductFamilyQuickLink\ProductFamilyQuickLinkBlock.cs" />
+    <Compile Include="Features\ProductFamilyQuickLink\ProductFamilyQuickLinkController.cs" />
+    <Compile Include="Features\ProductFamilyQuickLink\ProductFamilyQuickLinkModel.cs" />
+    <Compile Include="Features\ProductFamilyQuickLink\ProductFamilyQuickLinkContentGenerator.cs" />
+    <Compile Include="Features\ProductFamily\ProductFamilyListingQueryComposer.cs" />
+    <Compile Include="Features\ProductFamily\ProductFamilyListResultViewModel.cs" />
+    <Compile Include="Features\ProductFamily\IndexedCustomPropertyExtensions.cs" />
+    <Compile Include="Features\ProductFamily\Criteria\CriteriaContainerPage.cs" />
+    <Compile Include="Features\ProductCategory\CategoryListResultViewModel.cs" />
+    <Compile Include="Features\ProductCategory\ProductGenerationHelpers.cs" />
+    <Compile Include="Features\ProductCategory\ProductCategoryListingGenerator.cs" />
+    <Compile Include="Features\ProductCategory\IocConfig.cs" />
+    <Compile Include="Features\ProductCategory\Labels.cs" />
+    <Compile Include="Features\ProductCategory\ProductCategoryListingController.cs" />
+    <Compile Include="Features\ProductCategory\ProductCategoryListingBlock.cs" />
+    <Compile Include="Features\ProductCategory\ProductCataglogPage.cs" />
+    <Compile Include="Features\ProductCategory\ProductCategoryListingQueryComposer.cs" />
+    <Compile Include="Features\ProductCategory\ProductCategoryListingQueryViewModel.cs" />
+    <Compile Include="Features\ProductFamily\FamilyMatrixBlock.cs" />
+    <Compile Include="Features\ProductFamily\FamilyMatrixViewModel.cs" />
+    <Compile Include="Features\ProductFamily\FamilyMatrixQueryViewModel.cs" />
+    <Compile Include="Features\ProductFamily\ProductFamilyController.cs" />
+    <Compile Include="Features\ProductFamily\InitializeSearchModule.cs" />
+    <Compile Include="Features\ProductFamily\IocConfig.cs" />
+    <Compile Include="Features\ProductFamily\IProductFamilyRepository.cs" />
+    <Compile Include="Features\ProductFamily\Labels.cs" />
+    <Compile Include="Features\ProductFamily\ProductFamilyPage.cs" />
+    <Compile Include="Features\ProductCategory\ProductCategoryPage.cs" />
+    <Compile Include="Features\ProductFamily\Criteria\CriteriaPage.cs" />
+    <Compile Include="Features\ProductFamily\Criteria\IProductFamilyCriteria.cs" />
+    <Compile Include="Features\ProductFamily\ProductFamilyPageExtensions.cs" />
+    <Compile Include="Features\ProductFamily\ProductFamilyRepository.cs" />
+    <Compile Include="Features\Search\GenericSearchResult.cs" />
+    <Compile Include="Core\Templates\ICanBeSearched.cs" />
+    <Compile Include="Features\Search\InitializeSearchModule.cs" />
+    <Compile Include="Features\Search\IocConfig.cs" />
+    <Compile Include="Features\Search\Labels.cs" />
+    <Compile Include="Features\Search\SearchController.cs" />
+    <Compile Include="Features\Search\SearchGenerator.cs" />
+    <Compile Include="Features\Search\SearchPage.cs" />
+    <Compile Include="Features\Search\SearchViewModel.cs" />
+    <Compile Include="Features\Settings\Impl\PageJobSettings.cs" />
+    <Compile Include="Features\Seo\SeoController.cs" />
+    <Compile Include="Features\Settings\Impl\PageDataSeoSettings.cs" />
+    <Compile Include="Features\SuccessStory\IocConfig.cs" />
+    <Compile Include="Features\SuccessStory\SuccessStoryContentGenerator.cs" />
+    <Compile Include="Features\SuccessStory\SuccessStoryController.cs" />
+    <Compile Include="Features\SuccessStory\SuccessStoryPage.cs" />
+    <Compile Include="Features\Navigation\ContentReferenceExtensions.cs" />
+    <Compile Include="Features\Navigation\ModelFactories\DoormatEmtypModelFactory.cs" />
+    <Compile Include="Features\Navigation\ModelFactories\DoormatImageOnlyModelFactory.cs" />
+    <Compile Include="Features\Navigation\ModelFactories\DoormatMixedModelFactory.cs" />
+    <Compile Include="Features\Navigation\ModelFactories\DoormatModelFactory.cs" />
+    <Compile Include="Features\Navigation\ModelFactories\DoormatTextOnlyModelFactory.cs" />
+    <Compile Include="Features\Navigation\ModelFactories\IDoormatModelFactory.cs" />
+    <Compile Include="Core\GoogleAnalytics\IGoogleAnalyticsSettings.cs" />
+    <Compile Include="Features\Layout\LinkViewModelFactory.cs" />
+    <Compile Include="Features\Layout\FooterContentGenerator.cs" />
+    <Compile Include="Features\Layout\FooterRepository.cs" />
+    <Compile Include="Features\Layout\FooterViewModel.cs" />
+    <Compile Include="Features\Layout\IFooterRepository.cs" />
+    <Compile Include="Features\Layout\IFooterSettings.cs" />
+    <Compile Include="Features\Layout\LayoutController.cs" />
+    <Compile Include="Features\Layout\HeaderViewModel.cs" />
+    <Compile Include="Features\Layout\IHeaderSettings.cs" />
+    <Compile Include="Features\Layout\ISocialMediaSettings.cs" />
+    <Compile Include="Features\Layout\Labels.cs" />
+    <Compile Include="Features\Layout\LinkItemMapper.cs" />
+    <Compile Include="Features\MediaCarousel\HeroBannerContainerBlock.cs" />
+    <Compile Include="Features\MediaCarousel\HeroBannerContentGenerator.cs" />
+    <Compile Include="Features\Layout\IocConfig.cs" />
+    <Compile Include="Features\OfficeLocator\IGoogleSettings.cs" />
+    <Compile Include="Features\OfficeLocator\IocConfig.cs" />
+    <Compile Include="Features\OfficeLocator\IOfficeSettings.cs" />
+    <Compile Include="Features\OfficeLocator\Labels.cs" />
+    <Compile Include="Features\OfficeLocator\OfficeDetailViewModel.cs" />
+    <Compile Include="Features\OfficeLocator\OfficeLocatorBlock.cs" />
+    <Compile Include="Features\OfficeLocator\OfficeLocatorContainerPage.cs" />
+    <Compile Include="Features\OfficeLocator\OfficeLocatorController.cs" />
+    <Compile Include="Features\OfficeLocator\OfficeLocatorPage.cs" />
+    <Compile Include="Features\OfficeLocator\OfficeLocatorGenerator.cs" />
+    <Compile Include="Features\OfficeLocator\SearchCriteriaViewModel.cs" />
+    <Compile Include="Core\Services\IObjectSerialization.cs" />
+    <Compile Include="Features\OfficeLocator\Services\IOfficeService.cs" />
+    <Compile Include="Core\Services\JsonNetObjectSerialization.cs" />
+    <Compile Include="Features\OfficeLocator\Services\OfficeService.cs" />
+    <Compile Include="Features\PageTitle\PageTitleBlock.cs" />
+    <Compile Include="Features\Quote\IocConfig.cs" />
+    <Compile Include="Features\Quote\QuoteBlock.cs" />
+    <Compile Include="Features\Quote\QuoteGenerator.cs" />
+    <Compile Include="Features\Settings\Impl\PageDataSearchSettings.cs" />
+    <Compile Include="Features\SystemConfigurator\ActionContext.cs" />
+    <Compile Include="Features\SystemConfigurator\ActionQueryBuilder.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Contact.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Crop.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Dealer.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Product.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Region.cs" />
+    <Compile Include="Features\SystemConfigurator\Domain\Solution.cs" />
+    <Compile Include="Features\SystemConfigurator\IocConfig.cs" />
+    <Compile Include="Features\SystemConfigurator\Labels.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\SystemConfiguratorEntityBase.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\CropEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\FiltrationEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\ViewModels\ParameterViewModel.cs" />
+    <Compile Include="Features\SystemConfigurator\ViewModels\SystemConfiguratorParametersViewModel.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\WaterSourceEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\RegionEntity.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\Models\SystemConfiguratorDbContext.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\Impl\DefaultSystemConfiguratorRepository\DefaultSystemConfiguratorRepository.cs" />
+    <Compile Include="Features\SystemConfigurator\PipelineBaseBlock.cs" />
+    <Compile Include="Features\SystemConfigurator\PipelineBlockBaseController.cs" />
+    <Compile Include="Features\SystemConfigurator\Repositories\ISystemConfiguratorRepository.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\ISystemConfiguratorFlowRateCalculator.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\ISystemConfiguratorImporter.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\ISystemConfiguratorProductsRetriever.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\ISystemConfiguratorService.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\DefaultSystemConfiguratorService.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\ItalySystemConfiguratorProductsRetriever.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\SystemConfiguratorData.cs" />
+    <Compile Include="Features\SystemConfigurator\Services\Impl\SystemConfiguratorResult.cs" />
+    <Compile Include="Features\SystemConfigurator\SystemConfiguratorExamplePreviewBlock.cs" />
+    <Compile Include="Features\SystemConfigurator\SystemConfiguratorGetStarterBlock.cs" />
+    <Compile Include="Features\SystemConfigurator\SystemConfiguratorParametersBlock.cs" />
+    <Compile Include="Features\SystemConfigurator\SystemConfiguratorParametersController.cs" />
+    <Compile Include="Features\_Shared\ViewModels\FacetValueViewModel.cs" />
+    <Compile Include="Features\_Shared\ViewModels\IBlockViewModel.cs" />
+    <Compile Include="Features\_Shared\ViewModels\OverlayViewModel.cs" />
+    <Compile Include="Infrastructure\Epi\Editors\CountrySelectionFactory.cs" />
+    <Compile Include="Infrastructure\Epi\Find\IQueryComposer.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\CategorySelection\Category.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\CategorySelection\CategorySelectionAttribute.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\CategorySelection\CategorySelectionFactory.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\CategorySelection\CustomCategoryListEditorDescriptor.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\ListingBaseBlockController.cs" />
+    <Compile Include="Infrastructure\Initialization\TemplateInitialization.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\ViewModels\PaginableBlockViewModel.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\ViewModels\QueryViewModel.cs" />
+    <Compile Include="Infrastructure\IocConfig.cs" />
+    <Compile Include="Infrastructure\Owin\OwinRequestExtensions.cs" />
+    <Compile Include="Infrastructure\Owin\Security\Bits.cs" />
+    <Compile Include="Infrastructure\Owin\Security\ConfigurationManagerSecurityShieldSettings.cs" />
+    <Compile Include="Infrastructure\Owin\Security\IPAddressRange.cs" />
+    <Compile Include="Infrastructure\Owin\Security\ISecurityShieldHandleRedirect.cs" />
+    <Compile Include="Infrastructure\Owin\Security\ISecurityShieldSettings.cs" />
+    <Compile Include="Infrastructure\Owin\Security\SecurityShield.cs" />
+    <Compile Include="Infrastructure\Owin\Security\SecurityShieldOptions.cs" />
+    <Compile Include="Infrastructure\Settings\ConfigurationManagerAppSettings.cs" />
+    <Compile Include="Infrastructure\Settings\TinyMce\BoldTinyMceConfiguration.cs" />
+    <Compile Include="Infrastructure\Settings\TinyMce\TinyMceBaseConfiguration.cs" />
+    <Compile Include="Startup.cs" />
+    <TypeScriptCompile Include="Features\Accordion\Views\Accordion.ts" />
+    <TypeScriptCompile Include="Features\CustomForm\Views\CustomForm.ts" />
+    <TypeScriptCompile Include="Features\DealerLocator\Views\DealerLocator.ts" />
+    <TypeScriptCompile Include="Features\DepartmentOverview\Views\DepartmentOverview.ts" />
+    <TypeScriptCompile Include="Features\Downloads\Views\DownloadsBlock.ts" />
+    <TypeScriptCompile Include="Features\FormContainerBlock\Views\FormContainerBlock.ts" />
+    <TypeScriptCompile Include="Features\Navigation\Views\SidebarNavigation.ts" />
+    <TypeScriptCompile Include="Features\NewsOverview\Views\NewsOverview.ts" />
+    <TypeScriptCompile Include="Features\JobFilter\Views\JobFilter.ts" />
+    <TypeScriptCompile Include="Features\ProductCategory\Views\ProductCategoryListing.ts" />
+    <TypeScriptCompile Include="Features\ProductFamilyQuickLink\ProductFamilyQuickLink.ts" />
+    <TypeScriptCompile Include="Features\ProductFamily\Views\ProductFamilyListing.ts" />
+    <TypeScriptCompile Include="Features\Search\Views\KeywordSearch.ts" />
+    <TypeScriptCompile Include="Features\Layout\Views\Header.ts" />
+    <Compile Include="Features\Layout\ILinkItemMapper.cs" />
+    <Compile Include="Features\Layout\LinkViewModel.cs" />
+    <Compile Include="Features\Layout\HeaderContentGenerator.cs" />
+    <Compile Include="Features\Home\HomePage.cs" />
+    <Compile Include="Features\Home\HomePageContentGenerator.cs" />
+    <Compile Include="Features\Home\HomeController.cs" />
+    <Compile Include="Features\Home\IocConfig.cs" />
+    <Compile Include="Features\GenericListing\GenericListingController.cs" />
+    <Compile Include="Features\GenericListing\GenericListingViewModel.cs" />
+    <Compile Include="Features\HotspotSystem\IHotspotSystemSettings.cs" />
+    <Compile Include="Features\Navigation\ContentExtensions.cs" />
+    <Compile Include="Features\Navigation\DoormatType.cs" />
+    <Compile Include="Features\Navigation\NavigationContentGenerator.cs" />
+    <Compile Include="Features\Navigation\NavigationRepository.cs" />
+    <Compile Include="Features\Navigation\INavigationRepository.cs" />
+    <Compile Include="Features\Navigation\INavigationSettings.cs" />
+    <Compile Include="Features\Navigation\IocConfig.cs" />
+    <Compile Include="Features\Navigation\NavigationController.cs" />
+    <Compile Include="Features\Navigation\ViewModels\DoormatNavigationItemModel.cs" />
+    <Compile Include="Features\Navigation\ViewModels\MainNavigationItemModel.cs" />
+    <Compile Include="Features\Navigation\ViewModels\NavigationItemModel.cs" />
+    <Compile Include="Features\Navigation\DoormatTypeFactory.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotSystemGenerator.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotContainerPage.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotExtensions.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotLinkPage.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotPopupPage.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotLinkNodePage.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotPopupNodePage.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotTemplateBase.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotTemplateViewModel.cs" />
+    <Compile Include="Features\HotspotSystem\IHotspotTemplate.cs" />
+    <Compile Include="Features\HotspotSystem\IocConfig.cs" />
+    <Compile Include="Features\HotspotSystem\Labels.cs" />
+    <Compile Include="Features\HotspotSystem\HotspotSystemController.cs" />
+    <Compile Include="Features\Navigation\NavigationContainerPage.cs" />
+    <Compile Include="Features\Navigation\NavigationPage.cs" />
+    <Compile Include="Features\RelatedContent\IocConfig.cs" />
+    <Compile Include="Features\RelatedContent\Labels.cs" />
+    <Compile Include="Features\RelatedContent\RelatedContentBlock.cs" />
+    <Compile Include="Features\RelatedContent\RelatedContentContentGenerator.cs" />
+    <Compile Include="Features\RelatedContent\RelatedContentController.cs" />
+    <Compile Include="Features\RelatedContent\RelatedContentViewModel.cs" />
+    <Compile Include="Features\RichText\RichTextGeneratorDataFactory.cs" />
+    <Compile Include="Features\RichText\IocConfig.cs" />
+    <Compile Include="Features\RichText\Models\IListableItem.cs" />
+    <Compile Include="Features\RichText\Models\IRichTextColumnComponent.cs" />
+    <Compile Include="Features\RichText\Labels.cs" />
+    <Compile Include="Features\RichText\Models\RichTextWithImageAndTextBlock.cs" />
+    <Compile Include="Features\RichText\Models\RichTextComponent.cs" />
+    <Compile Include="Features\RichText\Models\RichTextComponentViewModel.cs" />
+    <Compile Include="Features\RichText\Models\RichTextContainerBlock.cs" />
+    <Compile Include="Features\RichText\Models\RichTextMediaBlock.cs" />
+    <Compile Include="Features\RichText\Models\RichTextParagraphBlock.cs" />
+    <Compile Include="Features\RichText\Models\RichTextTextBlock.cs" />
+    <Compile Include="Features\RichText\Models\RichTextWhiteBoxBlock.cs" />
+    <Compile Include="Features\RichText\Models\RichTextWhiteBoxListingBlock.cs" />
+    <Compile Include="Features\RichText\RichTextComponentController.cs" />
+    <Compile Include="Features\RichText\RichTextController.cs" />
+    <Compile Include="Features\RichText\Models\RichTextContainerViewModel.cs" />
+    <Compile Include="Features\RichText\RichTextGenerator.cs" />
+    <Compile Include="Features\RichText\RichTextWhiteBoxController.cs" />
+    <Compile Include="Features\Settings\SettingsController.cs" />
+    <Compile Include="Features\Settings\SettingsPage.cs" />
+    <Compile Include="Features\Settings\SettingsPageTabs.cs" />
+    <Compile Include="Features\CropsOverview\CropsPage.cs" />
+    <Compile Include="Features\MediaCarousel\HeroBannerBlock.cs" />
+    <Compile Include="Features\CropsOverview\IocConfig.cs" />
+    <Compile Include="Features\CropsOverview\Labels.cs" />
+    <Compile Include="Features\CropsOverview\CropsContainerBlock.cs" />
+    <Compile Include="Features\MediaCarousel\ImageCarouselBlock.cs" />
+    <Compile Include="Features\MediaCarousel\IocConfig.cs" />
+    <Compile Include="Features\MediaCarousel\VideoCarouselBlock.cs" />
+    <Compile Include="Features\MediaCarousel\MediaCarouselBaseBlock.cs" />
+    <Compile Include="Features\MediaCarousel\MediaCarouselContainerBlock.cs" />
+    <Compile Include="Features\MediaCarousel\MediaCarouselContentGenerator.cs" />
+    <Compile Include="Features\_Shared\ViewModels\DisabledComponentViewModel.cs" />
+    <Compile Include="FilterConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Epi\Editors\BackgroundColorFactory.cs" />
+    <Compile Include="Infrastructure\Epi\Editors\Labels.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\BlockPreview\BlockPreviewController.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\BlockPreview\BlockPreviewViewModel.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\PageControllerBase.cs" />
+    <Compile Include="Features\_Shared\ViewModels\IPageViewModel.cs" />
+    <Compile Include="Infrastructure\Initialization\EventInitialization.cs" />
+    <Compile Include="Infrastructure\Initialization\NtfmSiteContentInitialization.cs" />
+    <Compile Include="Infrastructure\Settings\ILayoutSettings.cs" />
+    <Compile Include="Features\Settings\Impl\PageDataLayoutSettings.cs" />
+    <Compile Include="Features\Settings\PageDataSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="Features\SuccessStoryOverview\Views\SuccessStoryOverview.ts" />
+    <TypeScriptCompile Include="Features\SystemConfigurator\Views\SystemConfiguratorParameters.ts" />
+    <TypeScriptCompile Include="Features\WatermarkParallax\Views\Parallax.ts" />
+    <TypeScriptCompile Include="Features\Search\Views\Search.ts" />
+    <TypeScriptCompile Include="Features\WhatsNew\Views\SocialFeeds.ts" />
+    <TypeScriptCompile Include="Features\Weather\Views\Weather.ts" />
+    <TypeScriptCompile Include="Features\_Shared\Views\CarouselArrow.ts" />
+    <TypeScriptCompile Include="Features\_Shared\Views\HashService.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="500.html" />
+    <Content Include="ClientResources\Scripts\UTCDateTimeTextBox.js" />
+    <Content Include="Content\images\icon-directions.png" />
+    <Content Include="Content\images\icon-globe.png" />
+    <Content Include="Content\images\icon-mail.png" />
+    <Content Include="Content\images\icon-pin.png" />
+    <Content Include="Content\images\icon-touch.png" />
+    <Content Include="ClientResources\Styles\editor.css" />
+    <Content Include="Content\images\warning.svg" />
+    <Content Include="Content\scripts\component.js" />
+    <Content Include="Content\scripts\dlw.common.js" />
+    <Content Include="Content\scripts\vendor\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\arrow-down.png" />
+    <Content Include="Content\images\ceo-water-mandate.png" />
+    <Content Include="Content\images\community-irrigation.png" />
+    <Content Include="Content\images\compact-lead.png" />
+    <Content Include="Content\images\facebook.svg" />
+    <Content Include="Content\images\farm1.jpg" />
+    <Content Include="Content\images\farm2.jpg" />
+    <Content Include="Content\images\farm3.jpg" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\file-download-icon.svg" />
+    <Content Include="Content\images\google-play-icon.svg" />
+    <Content Include="Content\images\home-banner.jpg" />
+    <Content Include="Content\images\home-icon.svg" />
+    <Content Include="Content\images\icon-globe.svg" />
+    <Content Include="Content\images\icon_close.svg" />
+    <Content Include="Content\images\ico_farmer.svg" />
+    <Content Include="Content\images\ico_mail.png" />
+    <Content Include="Content\images\ico_share.png" />
+    <Content Include="Content\images\intro.jpg" />
+    <Content Include="Content\images\iTunes-icon.svg" />
+    <Content Include="Content\images\lamp-icon.png" />
+    <Content Include="Content\images\lebanon-logo.png" />
+    <Content Include="Content\images\linkedin.svg" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\machine-icon.svg" />
+    <Content Include="Content\images\menu-pic-1.jpg" />
+    <Content Include="Content\images\menu-pic-2.jpg" />
+    <Content Include="Content\images\menu-pic-3.jpg" />
+    <Content Include="Content\images\netafim-logo.svg" />
+    <Content Include="Content\images\netmaize.png" />
+    <Content Include="Content\images\radar-icon.png" />
+    <Content Include="Content\images\setting-icon.svg" />
+    <Content Include="Content\images\sustainable.png" />
+    <Content Include="Content\images\testimonial_senegal.png" />
+    <Content Include="Content\images\triangle-video.svg" />
+    <Content Include="Content\images\twitter.svg" />
+    <Content Include="Content\images\united-states.png" />
+    <Content Include="Content\images\whatsapp.svg" />
+    <Content Include="Content\images\white-setting-icon.svg" />
+    <Content Include="Content\styles\fonts\dlw-font.eot" />
+    <Content Include="Content\styles\fonts\dlw-font.svg" />
+    <Content Include="Content\styles\fonts\dlw-font.ttf" />
+    <Content Include="Content\styles\fonts\dlw-font.woff" />
+    <Content Include="Content\styles\main.css" />
+    <Content Include="Content\styles\print.css" />
+    <Content Include="Features\CropsOverview\Data\Demo\farm2.jpg" />
+    <Content Include="Features\CropsOverview\Data\Demo\farm3.jpg" />
+    <Content Include="Features\CropsOverview\Data\Demo\netmaize.png" />
+    <Content Include="Features\CustomForm\Data\Demo\50x70.png" />
+    <Content Include="404.html" />
+    <Content Include="Features\GenericCTA\Data\Demo\40x40.png" />
+    <Content Include="Features\GenericCTA\Data\Demo\54x54.png" />
+    <Content Include="Features\GenericCTA\Data\Demo\farm1.jpg" />
+    <Content Include="Features\GenericCTA\Data\Demo\farm2.jpg" />
+    <Content Include="Features\GenericCTA\Data\Demo\samplevideo.mp4" />
+    <Content Include="Features\GenericCTA\Data\Demo\testimonial_senegal.png" />
+    <Content Include="Features\GenericListing\Data\Demo\white-logo.png" />
+    <Content Include="Features\GenericOverview\Data\Demo\310x250.png" />
+    <Content Include="Features\GenericOverview\Data\Demo\60x60.png" />
+    <Content Include="Features\GenericOverview\Data\Demo\620x620.png" />
+    <Content Include="Features\JobFilter\Data\Demo\icon.png" />
+    <Content Include="Features\JobFilter\Data\Demo\thumbnail.jpg" />
+    <Content Include="Features\MediaCarousel\Data\Demo\home-banner.jpg" />
+    <Content Include="Features\Home\Views\Index.cshtml" />
+    <Content Include="Features\GenericListing\Data\Demo\165x165.png" />
+    <Content Include="Features\HotspotSystem\Data\Demo\banner-factory.jpg" />
+    <Content Include="Features\HotspotSystem\Data\Demo\banner-field.jpg" />
+    <Content Include="Features\HotspotSystem\Data\Demo\icon-touch.png" />
+    <Content Include="Features\NewsOverview\Data\Demo\1440x620.png" />
+    <Content Include="Features\NewsOverview\Data\Demo\620x452.jpg" />
+    <Content Include="Features\OnThisPage\Views\_onThisPageBlock.cshtml" />
+    <Content Include="Features\ProductCategory\Data\Images\620x620.png" />
+    <Content Include="Features\Quote\Data\Demo\110x110.png" />
+    <Content Include="Features\RelatedContent\Data\Demo\farm1.jpg" />
+    <Content Include="Features\RelatedContent\Data\Demo\farm2.jpg" />
+    <Content Include="Features\MediaCarousel\Data\Demo\farm1.jpg" />
+    <Content Include="Features\MediaCarousel\Data\Demo\niteco.mp4" />
+    <Content Include="Features\MediaCarousel\Data\Demo\testimonial_senegal.png" />
+    <Content Include="Features\RichText\Data\Demo\40x40.png" />
+    <Content Include="Features\RichText\Data\Demo\54x54.png" />
+    <Content Include="Features\RichText\Data\Demo\farm1.jpg" />
+    <Content Include="Features\RichText\Data\Demo\farm2.jpg" />
+    <Content Include="Features\RichText\Data\Demo\samplevideo.mp4" />
+    <Content Include="Features\RichText\Data\Demo\testimonial_senegal.png" />
+    <Content Include="Features\SuccessStoryOverview\Data\Demo\620x370.png" />
+    <Content Include="google0c4574ec9163250d.html" />
+    <Content Include="gulpfile.js" />
+    <Content Include="modules\Geta.SEO.Sitemaps\AdminManageSitemap.aspx" />
+    <Content Include="NotFound.aspx" />
+    <Content Include="package.json" />
+    <Content Include="parameters.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="robots.txt" />
+    <Content Include="tsconfig.json" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\GeoLiteCity.dat" />
+    <Content Include="App_Config\Smtp.config">
+      <SubType>Designer</SubType>
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <Content Include="App_Config\AppSettings.config">
+      <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Config\ApplicationInitialization.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <None Include="App_Config\ApplicationInitialization.Release.config">
+      <DependentUpon>ApplicationInitialization.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="App_Config\AppSettings.Release.config">
+      <DependentUpon>AppSettings.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Include="App_Config\ConnectionStrings.config">
+      <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="App_Config\ConnectionStrings.Release.config">
+      <DependentUpon>ConnectionStrings.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Include="App_Config\CustomErrors.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <None Include="App_Config\CustomErrors.Release.config">
+      <DependentUpon>CustomErrors.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Include="App_Config\Episerver.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <Content Include="App_Config\Episerver.Framework.config">
+      <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="App_Config\Episerver.Framework.Release.config">
+      <DependentUpon>Episerver.Framework.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Include="App_Config\Episerver.Shell.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Config\HttpErrors.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <None Include="App_Config\Episerver.Release.config">
+      <DependentUpon>Episerver.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="App_Config\HttpErrors.Release.config">
+      <DependentUpon>HttpErrors.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Include="App_Config\License.dev.config" />
+    <Content Include="App_Config\License.prod.config" />
+    <Content Include="App_Config\License.qa.config" />
+    <Content Include="App_Config\License.demo.config" />
+    <Content Include="App_Config\License.uat.config" />
+    <Content Include="App_Config\RewriteMaps.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <Content Include="App_Config\RewriteRules.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <None Include="App_Config\RewriteMaps.Release.config">
+      <DependentUpon>RewriteMaps.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="App_Config\RewriteRules.Release.config">
+      <DependentUpon>RewriteRules.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="App_Config\Smtp.Release.config">
+      <DependentUpon>Smtp.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Include="Connected Services\Application Insights\ConnectedService.json" />
+    <Content Include="EPiServerLog.config" />
+    <Content Include="modules\_protected\EPiServer.Packaging.UI\web.config" />
+    <Content Include="modules\_protected\EPiServer.Packaging.UI\EPiServer.Packaging.UI.zip" />
+    <Content Include="modules\_protected\Shell\web.config" />
+    <Content Include="modules\_protected\Shell\Shell.zip" />
+    <Content Include="modules\_protected\CMS\web.config" />
+    <Content Include="modules\_protected\CMS\CMS.zip" />
+    <Content Include="modules\_protected\EPiServer.Forms.UI\EPiServer.Forms.UI.zip" />
+    <Content Include="modules\_protected\EPiServer.Forms\Views\ElementBlocks\Web.config" />
+    <Content Include="modules\_protected\EPiServer.Forms\Forms.config" />
+    <Content Include="modules\_protected\EPiServer.Forms\EPiServer.Forms.zip" />
+    <Content Include="Features\_Shared\Views\_Layout.cshtml" />
+    <Content Include="Features\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\_ViewStart.cshtml" />
+    <Content Include="Features\CookieMessage\Views\_cookieMessage.cshtml" />
+    <Content Include="modules\_protected\DbLocalizationProvider.AdminUI.EPiServer\web.config" />
+    <Content Include="modules\_protected\DbLocalizationProvider.AdminUI.EPiServer\DbLocalizationProvider.AdminUI.EPiServer.zip" />
+    <Content Include="Features\Settings\Views\Index.cshtml" />
+    <Content Include="Features\GoogleAnalytics\Views\_analyticsTags.cshtml" />
+    <Content Include="Features\RelatedContent\Views\_relatedContent.cshtml" />
+    <Content Include="Features\_Shared\Views\_blockPreview.cshtml" />
+    <Content Include="Features\_Shared\Views\_PreviewLayout.cshtml" />
+    <Content Include="Features\GenericListing\Views\_listingContent.cshtml" />
+    <Content Include="Features\Navigation\Views\_MainNavigation.cshtml" />
+    <Content Include="Features\Layout\Views\_header.cshtml" />
+    <Content Include="Features\Navigation\Views\MixedImageAndText.cshtml" />
+    <Content Include="Features\Navigation\Views\ImageColumnOnly.cshtml" />
+    <Content Include="Features\MediaCarousel\Views\_mediaCarouselContainerBlock.cshtml" />
+    <Content Include="Features\MediaCarousel\Views\_mediaCarouselContent.cshtml" />
+    <Content Include="Features\Navigation\Views\TextColumnOnly.cshtml" />
+    <Content Include="Features\HotspotSystem\Views\_hotspotPopupPage.cshtml" />
+    <Content Include="Features\HotspotSystem\Views\_hotspotLinkPage.cshtml" />
+    <Content Include="Features\MediaCarousel\Views\_heroBannerBlock.cshtml" />
+    <Content Include="Features\MediaCarousel\Views\_heroBannerContainerBlock.cshtml" />
+    <Content Include="Features\RichText\Views\_richText.cshtml" />
+    <Content Include="Features\RichText\Views\RichTextParagraphBlock.cshtml" />
+    <Content Include="Features\RichText\Views\RichTextMediaBlock.cshtml" />
+    <Content Include="Features\RichText\Views\RichTextTextBlock.cshtml" />
+    <Content Include="Features\RichText\Views\_richTextWhiteBox.cshtml" />
+    <Content Include="Features\RichText\Views\RichTextWhiteBoxListingBlock.cshtml" />
+    <Content Include="Features\RichText\Views\RichTextWithImageAndTextBlock.cshtml" />
+    <Content Include="Features\_Shared\Views\_componentDisabled.cshtml" />
+    <Content Include="Features\CountryLanguage\Views\CountryLanguageSelections.cshtml" />
+    <Content Include="Features\CountryLanguage\Views\CorporateSite.cshtml" />
+    <Content Include="Features\CountryLanguage\Views\CountrySiteByRegion.cshtml" />
+    <Content Include="Features\CropsOverview\Views\_cropsContainerBlock.cshtml" />
+    <Content Include="Features\CropsOverview\Views\Index.cshtml" />
+    <Content Include="Features\GenericContainer\Views\Index.cshtml" />
+    <Content Include="Features\CountryLanguage\Views\LocalSite.cshtml" />
+    <Content Include="Features\Layout\Views\_footer.cshtml" />
+    <Content Include="Features\Layout\Views\_socials.cshtml" />
+    <Content Include="Features\Breadcrumbs\Views\Breadcrumbs.cshtml" />
+    <Content Include="Features\GenericCTA\Views\_genericCTA.cshtml" />
+    <Content Include="Features\GenericCTA\Views\_inlineCTA.cshtml" />
+    <Content Include="Features\Downloads\Views\DownloadsBlock.cshtml" />
+    <Content Include="Features\Downloads\Views\DownloadsContainerBlock.cshtml" />
+    <Content Include="Features\GenericCTA\Data\Demo\pdftest.pdf" />
+    <Content Include="Features\GenericOverview\Views\GenericOverviewBlock.cshtml" />
+    <Content Include="Features\GenericOverview\Views\_genericOverviewItemWithIconBlock.cshtml" />
+    <Content Include="Features\GoogleAnalytics\Views\_gtmScript.cshtml" />
+    <Content Include="Features\PageTitle\Views\_pageTitleBlock.cshtml" />
+    <Content Include="Features\GoogleAnalytics\Views\_gtmNoScript.cshtml" />
+    <Content Include="Features\GeneralContactInfo\Views\_generalContactInfoContainerBlock.cshtml" />
+    <Content Include="Features\GeneralContactInfo\Views\_generalContactInfoItemBlock.cshtml" />
+    <Content Include="Features\OfficeLocator\Views\_officeLocatorBlock.cshtml" />
+    <Content Include="Features\GoogleAnalytics\Views\_googleMapScript.cshtml" />
+    <Content Include="Features\GenericOverview\Views\_genericOverviewItemWithThumbnailBlock.cshtml" />
+    <Content Include="Features\MediaCarousel\Views\_imageCarouselBlock.cshtml" />
+    <Content Include="Features\MediaCarousel\Views\_carouselControl.cshtml" />
+    <Content Include="Features\MediaCarousel\Views\_videoCarouselBlock.cshtml" />
+    <Content Include="Features\Events\Views\EventListingBlock.cshtml" />
+    <Content Include="Features\SuccessStory\Views\Index.cshtml" />
+    <Content Include="Features\Quote\Views\_quoteBlock.cshtml" />
+    <Content Include="Features\Accordion\Views\_fAQItemBlock.cshtml" />
+    <Content Include="Features\Accordion\Views\_accordionContainerBlock.cshtml" />
+    <Content Include="Features\Search\Views\_keywordSearch.cshtml" />
+    <Content Include="Features\Search\Views\Index.cshtml" />
+    <Content Include="Features\ProductCategory\Views\_productCategoryListingBlock.cshtml" />
+    <Content Include="Features\FloatingCTA\Views\_floatingSharing.cshtml" />
+    <Content Include="Features\ProductCategory\Views\_searchResult.cshtml" />
+    <Content Include="Features\ProductFamily\Views\_familyMatrixBlock.cshtml" />
+    <Content Include="Features\ProductFamily\Views\_searchResult.cshtml" />
+    <Content Include="Features\FormContainerBlock\Views\_generalFormContainerBlock.cshtml" />
+    <Content Include="module.config" />
+    <Content Include="Features\DealerLocator\Views\_dealerLocator.cshtml" />
+    <Content Include="Features\OnThisLevel\Views\_onThisLevelBlock.cshtml" />
+    <Content Include="Features\ProductFamily\Views\_criteriaPage.cshtml" />
+    <Content Include="Features\JobFilter\Views\_jobFilterBlock.cshtml" />
+    <Content Include="Features\JobFilter\Views\_searchResult.cshtml" />
+    <Content Include="Features\ProductFamilyQuickLink\Views\_productFamilyQuickLinkBlock.cshtml" />
+    <Content Include="Features\_Shared\Views\_Error.cshtml" />
+    <Content Include="Features\CustomForm\Views\CustomFormContainerBlock.cshtml" />
+    <Content Include="Features\_Shared\Views\_ErrorEdit.cshtml" />
+    <Content Include="Features\_Shared\Views\_overlay.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_systemConfiguratorGetStarterBlock.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_systemConfiguratorExamplePreviewBlock.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_parameterGroups.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_dropDownParam.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_selectionParam.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_numbericParam.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_systemConfiguratorParametersBlock.cshtml" />
+    <Content Include="Features\GenericOverview\Views\_sustainableItemBlock.cshtml" />
+    <Content Include="Features\Seo\Views\_seoInformation.cshtml" />
+    <Content Include="Features\Seo\Views\_openGraphTags.cshtml" />
+    <Content Include="Features\Search\Views\_metaTags.cshtml" />
+    <Content Include="Features\Error\Views\404.cshtml" />
+    <Content Include="modules\_protected\BVNetwork.404Handler\BVNetwork.404Handler.zip" />
+    <Content Include="Features\ApplicationInsights\Views\_applicationInsights.cshtml" />
+    <Content Include="app_offline.htm.disabled" />
+    <Content Include="Features\NewsOverview\Views\_newsOverviewBlock.cshtml" />
+    <Content Include="Features\NewsOverview\Views\_searchResult.cshtml" />
+    <Content Include="Features\DepartmentOverview\Views\_departmentOverviewContainerBlock.cshtml" />
+    <Content Include="Features\SuccessStoryOverview\Views\_successStoryFilter.cshtml" />
+    <Content Include="Features\DepartmentOverview\Views\_departmentOverviewBlock.cshtml" />
+    <Content Include="Features\JobDetails\Views\Index.cshtml" />
+    <Content Include="Features\SuccessStoryOverview\Views\_successStoryResultFilter.cshtml" />
+    <Content Include="Features\NewsEventOverview\Views\_newsListingBlock.cshtml" />
+    <Content Include="Features\WhatsNew\Views\_socialFeedsBlock.cshtml" />
+    <Content Include="Features\WhatsNew\Views\_whatsNewBlock.cshtml" />
+    <Content Include="Features\WhatsNew\Views\_feeds.cshtml" />
+    <Content Include="Features\WhatsNew\Views\_newsEventOverviewBlock.cshtml" />
+    <Content Include="Features\Importer\Views\Index.cshtml" />
+    <Content Include="Features\_Shared\Views\_ShellLayout.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_systemConfiguratorResultBlock.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_contacts.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_products.cshtml" />
+    <Content Include="Features\SystemConfigurator\Views\_dealers.cshtml" />
+    <Content Include="Features\Navigation\Views\_SidebarNavigation.cshtml" />
+    <Content Include="Features\Weather\Views\_weather.cshtml" />
+    <Content Include="Features\Weather\Views\_floatingWeather.cshtml" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="bower.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dlw.EpiBase.Content\Dlw.EpiBase.Content.csproj">
+      <Project>{b984342c-849b-49f4-81cc-390d54d07abe}</Project>
+      <Name>Dlw.EpiBase.Content</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Features\CookieMessage\Views\CookieMessage.ts" />
+    <TypeScriptCompile Include="Features\GenericListing\Views\Listing.ts" />
+    <TypeScriptCompile Include="Features\OfficeLocator\Views\OfficeLocator.ts" />
+    <TypeScriptCompile Include="Features\RichText\Views\RichTextMediaBlock.ts" />
+    <TypeScriptCompile Include="Features\MediaCarousel\Views\MediaCarousel.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+    <TypeScriptCompile Include="Features\HotspotSystem\Views\HotpostSystem.ts" />
+  </ItemGroup>
+  <ItemGroup />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1812/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.VisualStudio.SlowCheetah.3.0.61\build\Microsoft.VisualStudio.SlowCheetah.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

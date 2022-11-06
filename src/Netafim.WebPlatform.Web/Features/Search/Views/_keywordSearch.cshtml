@@ -1,0 +1,21 @@
+﻿@model string
+
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Features.Search
+
+
+@using (Html.BeginComponent("Netafim.WebPlatform.Web.Features.KeywordSearch", new
+{
+    url = Model
+}))
+{
+    <div class="nav-search-container">
+        <h3>@Html.Translate(() => Labels.KeywordSearchTitle)</h3>
+        <form>
+            <div class="search-form">
+                <input id="js-searchTextField" type="text" placeholder="@Labels.KeywordSearchPlaceholder">
+                <button id="js-quickSearchButton" type="submit" class="general-blue-btn">@Html.Translate(() => Labels.KeywordSearchButton)</button>
+            </div>
+        </form>
+    </div>
+}

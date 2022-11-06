@@ -1,0 +1,27 @@
+﻿@using Castle.Core.Internal
+@using EPiServer.Globalization
+@using Netafim.WebPlatform.Web.Features.WhatsNew
+@model IEnumerable<FeedViewModel>
+
+@if (!Model.IsNullOrEmpty())
+{
+    foreach (var feed in Model)
+    {
+        <div class="article-item @Html.RenderFeedItemClass(feed.Channel)" data-href="@feed.PostLink">
+            <div class="article-item-time">
+                <span>@feed.PostDateString</span>
+            </div>
+            <div class="article-item-content">
+                @if (!string.IsNullOrEmpty(feed.Thumbnail))
+                {
+                    <a href="@feed.PostLink">
+                        <img alt="@feed.Description" src="@feed.Thumbnail">
+                    </a>
+                }
+                <p>
+                    @feed.Description <a target="_blank" href="@feed.PostLink">@Html.Translate(() => Labels.ReadMoreAboutFeed) >></a>
+                </p>
+            </div>
+        </div>
+    }
+}

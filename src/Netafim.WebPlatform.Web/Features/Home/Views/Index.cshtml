@@ -1,0 +1,7 @@
+﻿@using Netafim.WebPlatform.Web.Core.Templates
+@model Netafim.WebPlatform.Web.Features.Home.HomePage
+
+
+@Html.PropertyFor(x => x.BannerArea, new { Tag = Global.ContentAreaTags.HomepageTemplate })
+
+@Html.PropertyFor(x => x.Content, new { Tag = Global.ContentAreaTags.HomepageTemplate }) 

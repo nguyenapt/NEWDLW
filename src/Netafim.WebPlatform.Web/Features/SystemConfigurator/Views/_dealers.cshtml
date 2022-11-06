@@ -1,0 +1,76 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator
+@using Netafim.WebPlatform.Web.Features.SystemConfigurator.Domain
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Editor
+@using EPiServer.Core
+@using System
+@using EPiServer.ServiceLocation
+@using Netafim.WebPlatform.Web.Core.Templates
+@using EPiServer
+
+@model IEnumerable<Dealer>
+
+
+<section class="component boxed-mode gray-bg" id="request-dealer">
+    <div class="bg-text">@Html.Translate(() => Labels.DealerBackground)</div>
+    <div class="vertical-text">@Html.Translate(() => Labels.DealerVerticalText)</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner">
+                    <h2>Need more info? Request an offer</h2>
+                    <p>Contact a recommended Netafim dealer in Lugria</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="solution-dealers">
+
+                    @{
+                        var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+
+
+                        foreach (var items in Model.Chunk<Dealer>(3))
+                        {
+                            <div class="dealer-row">
+
+                                @foreach (var dealer in items)
+                                {
+                                    var dealerPage = contentLoader.Get<Netafim.WebPlatform.Web.Features.DealerLocator.DealerLocatorPage>(dealer.ContentPage);
+
+                                    <div class="dealer-wrapper color-orange" data-dealer-type="Partner">
+                                        <img class="dealer-logo" alt="" src="@Url.CropImageUrl(dealerPage.Image, 80, 80)">
+                                        <h5>@dealerPage.DealerName</h5>
+                                        <div class="dealer-address">
+                                            <p>@dealerPage.Address</p>
+                                        </div>
+                                        <div class="dealer-phone">
+                                            <a href="tel:@dealerPage.Phone">@dealerPage.Phone</a>
+                                        </div>
+                                        <div class="dealer-accessibility">
+                                            <a class="dealer-icon-chat" href=""><span>@Html.Translate(() => Netafim.WebPlatform.Web.Features.DealerLocator.Labels.ContactForm)</span></a>
+                                            <a class="dealer-icon-website" href="@dealerPage.Website"><span>@Html.Translate(() => Netafim.WebPlatform.Web.Features.DealerLocator.Labels.Website)</span></a>
+                                            <a class="dealer-icon-direction" href="@dealerPage.Direction"><span>@Html.Translate(() => Netafim.WebPlatform.Web.Features.DealerLocator.Labels.Direction)</span></a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <div class="component-inner">
+                    <a href="" class="general-blue-btn">@Html.Translate(() => Labels.FindMoreDealer)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,33 @@
+﻿@using Netafim.WebPlatform.Web.Features.RichText.Models
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.Web.Routing
+@using DbLocalizationProvider
+@using Netafim.WebPlatform.Web.Features.RichText
+
+@model RichTextComponentViewModel<RichTextTextBlock>
+
+@{
+    string componentCssClass = "component-inner";
+
+    if (Model.Parent != null && Model.Parent.Block != null && Model.Parent.Block.IsFullWidth)
+    {
+        componentCssClass = Model.IsFirstComponent() ? "component-inner-left" : "component-inner-right";
+    }
+}
+
+@if (Model.Block != null)
+{
+    <div class="@componentCssClass">
+
+        <h2>@Html.PropertyFor(m => m.Block.Title)</h2>
+
+        @Html.PropertyFor(m => m.Block.Content)
+
+        @if (Model.Block.CanDisplayCTA())
+        {
+            <a href="@Url.ContentUrl(Model.Block.Link)" @Html.EditAttributes(m => m.Block.Link) class="general-btn upper">@Html.PropertyFor(m => m.Block.LinkText)</a>
+        }
+
+    </div>
+}

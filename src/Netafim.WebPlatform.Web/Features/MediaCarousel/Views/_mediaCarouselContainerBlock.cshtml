@@ -1,0 +1,36 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Core.Templates
+@using Netafim.WebPlatform.Web.Features.MediaCarousel
+@model MediaCarouselContainerBlock
+
+@if (Model.Items != null && Model.Items.FilteredItems.Any())
+{
+    using (Html.BeginComponent("Netafim.Web.MediaCarousel"))
+    {
+        var carouselModeCss = Model.IsBoxMode ? "boxed-mode" : "fullwidth-mode";
+        var containerModeCss = Model.IsBoxMode ? "container" : "container-fluid no-gutter";
+        <section class="component @carouselModeCss" @Html.RenderAnchor(m => m)>
+            <div class="@containerModeCss">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="media-carousel-wrapper">
+                            @foreach (var item in Model.Items.GetFilteredItemsContent<IMediaCarousel>())
+                            {
+                                var isVideoMode = item.Video != null ? "_videoCarouselBlock" : "_imageCarouselBlock";
+
+                                @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "MediaCarousel", isVideoMode), 
+                                new MediaCarouselViewModel(Model)
+                                {
+                                    CarouselItem = item
+                                })
+                            }
+
+                            @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "MediaCarousel", "_carouselControl"), Model)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}

@@ -1,0 +1,52 @@
+﻿@using Netafim.WebPlatform.Web.Features.Navigation.ViewModels
+
+@using Castle.Core.Internal
+@using Netafim.WebPlatform.Web.Features.Navigation
+@using Dlw.EpiBase.Content.Infrastructure.Extensions.SelectMany
+
+@model IEnumerable<MainNavigationItemModel>
+
+<ul class="nav-content-primary">
+    @foreach (var mainNavItem in Model)
+    {
+        if (mainNavItem == null) { continue; }
+
+        <li class="l1 @(mainNavItem.HasDoormat?"has-sub":string.Empty) @(mainNavItem.IsActive?"active":"")">
+
+            @if (mainNavItem.DoormatType.Equals(DoormatType.None))
+            {
+                <a class="a1" href="@Url.ContentUrl(mainNavItem.Link)"  data-title="@mainNavItem.Title.ToLineBreakString()">@mainNavItem.Title.ToLineBreakString()</a>
+            }
+            else
+            {
+                var doormatClass = string.Empty;
+                if (mainNavItem.DoormatType.Equals(DoormatType.MixedImageAndTextColumn)) { doormatClass = "doormat-three-col"; }
+                else if (mainNavItem.DoormatType.Equals(DoormatType.ImageColumnOnly)) { doormatClass = "doormat-with-thumbnail"; }
+                else if (mainNavItem.DoormatType.Equals(DoormatType.TextColumnOnly)) { doormatClass = "doormat-one-col"; }
+
+                <a class="a1 @(mainNavItem.HasDoormat?"has-arrow":"")" href="@Url.ContentUrl(mainNavItem.Link)"
+                   data-doormat="@mainNavItem.Link.ID"
+                   data-doormat-class="@doormatClass" data-title="@mainNavItem.Title.ToLineBreakString()">@mainNavItem.Title.ToLineBreakString()</a>
+
+                @renderDoormat(mainNavItem);
+            }
+
+        </li>
+    }
+</ul>
+
+@helper renderDoormat(MainNavigationItemModel mainNavItem)
+{
+if (mainNavItem.DoormatType.Equals(DoormatType.MixedImageAndTextColumn))
+{
+        @Html.Partial("MixedImageAndText", mainNavItem);
+}
+else if (mainNavItem.DoormatType.Equals(DoormatType.ImageColumnOnly))
+{
+        @Html.Partial("ImageColumnOnly", mainNavItem);
+}
+else if (mainNavItem.DoormatType.Equals(DoormatType.TextColumnOnly))
+{
+        @Html.Partial("TextColumnOnly", mainNavItem);
+}
+}

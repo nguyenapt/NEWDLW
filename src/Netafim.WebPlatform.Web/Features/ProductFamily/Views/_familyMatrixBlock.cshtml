@@ -1,0 +1,53 @@
+﻿@using Netafim.WebPlatform.Web.Features.ProductFamily
+@using EPiServer.Core;
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@model FamilyMatrixViewModel
+
+@using (Html.BeginComponent("Netafim.Web.FamilyMatrix",
+    new
+    {
+        blockId = ((IContent)Model.CurrentBlock).ContentLink.ID,
+        searchUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("Search", "ProductFamily"),
+    }))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m.CurrentBlock)" @Html.RenderAnchor(m => m.CurrentBlock)>
+        @Html.RenderWatermark(m => m.CurrentBlock)
+        @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    <div class="component-inner">
+                        <input type="hidden" id="product-category-id" value="@(Model.ProductCategory!=null? Model.ProductCategory.ContentLink.ID:0)" />
+                        <h2>@Model.CurrentBlock.Title</h2>
+                        <p>@Model.CurrentBlock.SubTitle</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row matrix-filter">
+                @if (Model.AllCriteria != null)
+                {
+                    foreach (var criteria in Model.AllCriteria)
+                    {
+                        <div class="col-sm-6 col-md-3">
+                            <h3 class="criteria-type" data-value="@criteria.Key.ContentLink.ID">@criteria.Key.Name</h3>
+                            <div class="FormSelection">
+                                <select>
+                                    <option value="@Constants.SelectAllValue">@Html.Translate(() => Labels.SelectAllCriteria)</option>
+
+                                    @foreach (var item in criteria.Value)
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+    </section>
+    <div class="data-result">
+    </div>
+}

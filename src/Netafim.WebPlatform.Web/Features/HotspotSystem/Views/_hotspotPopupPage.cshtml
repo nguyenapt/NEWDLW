@@ -1,0 +1,43 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Features.HotspotSystem
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model HotspotPopupPage
+
+@using (Html.BeginComponent("Netafim.Web.HotspotSystem"))
+{
+    <section class="component fullwidth-mode" @Html.RenderAnchor(m => m)>
+        <div class="container-fluid">
+            <div class="row">
+                @if (Model.HasImage)
+                {
+                    <div class="clickable-image">
+                        <img class="clickable-image-bg" alt="" src="@Url.ContentUrl(Model.Image)" data-width="@Model.ImageWidth" data-height="@Model.ImageHeight" @Html.EditAttributes(m => m.Image)>
+
+                        @if (Model.Title != null || Model.SubTitle != null)
+                        {
+                            <div class="clickable-image-heading">
+                                <h2>@Html.PropertyFor(m => m.Title)</h2>
+                                <h3>@Html.PropertyFor(m => m.SubTitle)</h3>
+                            </div>
+                        }
+
+                        @foreach (var node in Model.GetHotspotNodes<HotspotPopupNodePage>())
+                        {
+                            <div class="hotspot gtm-hotspot" id="@node.ToHotspotNodeId("hpPopup")" data-x="@node.CoordinatesX" data-y="@node.CoordinatesY" data-id="@node.NodeName">
+                                <img alt="hotspot icon" src="@Url.ImageUrl(Model, m => Model.HotspotIcon)" @Html.EditAttributes(m => m.HotspotIcon)>
+                                <span>@Html.PropertyFor(m => node.NodeName)</span>
+                                <div class="hotspot-desc">
+                                    <h5 @Html.EditAttributes(m => node.Title)>@node.Title</h5>
+                                    <p @Html.EditAttributes(m => node.Description)>@node.Description</p>
+                                    <a href="@Url.ContentUrl(node.Link)" @Html.EditAttributes(m => node.Link) class="general-btn">@Html.Translate(() => Labels.ReadMoreLink)</a>
+                                    <a href="javascript:void(0)" class="close-hotspot-desc btn-close"></a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

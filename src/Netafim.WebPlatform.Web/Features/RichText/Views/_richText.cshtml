@@ -1,0 +1,47 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions;
+@using Netafim.WebPlatform.Web.Features.RichText.Models
+@using System
+
+@model RichTextContainerViewModel
+
+@{
+    var componentCssClass = Model.Block.IsFullWidth ? "fullwidth-mode" : "boxed-mode";
+    var containerCssClass = Model.Block.IsFullWidth ? "container-fluid no-gutter" : "container";
+    var rowCssClass = Model.Block.IsFullWidth ? "row row-eq-height" : "row";
+
+    var bootstrapGridColumns = 12.00;
+    var components = Model.Block.Items.GetFilteredItemsContent<IRichTextColumnComponent>();
+    var spanColumn = Model.HasItems() ? (int)Math.Ceiling(bootstrapGridColumns / components.Count()) : 1;
+    var columCssFormat = Model.Block.IsFullWidth ? "col-sm-{0}" : "col-md-{0}";
+}
+
+<section class="@Html.RenderBackgroundColor(m=>m.Block) component @componentCssClass" @Html.RenderAnchor(m => m.Block)>
+    @Html.RenderWatermark(m => m.Block)
+    @Html.RenderFloatingNavigationText(m => m.Block)
+    <div class="@containerCssClass">
+        @if (Model.HasItems())
+        {
+            <div class="@rowCssClass" @Html.EditAttributes(m => m.Block.Items)>
+
+                @{
+                    var renderComponents = Model.Block.ReverseItemsOnMobile ? components.Reverse() : components;
+
+                    foreach (var item in renderComponents)
+                    {
+                        string cssFormat = columCssFormat;
+
+                        if (Model.Block.ReverseItemsOnMobile)
+                        {
+                            cssFormat += renderComponents.First() == item ? " col-sm-push-{0}" : " col-sm-pull-{0}";
+                        }
+
+                        <div class="@string.Format(cssFormat, spanColumn)" @Html.EditAttributes(m => item)>
+                            @Html.PropertyFor(m => item)
+                        </div>
+                    }
+                }
+
+            </div>
+        }
+    </div>
+</section>

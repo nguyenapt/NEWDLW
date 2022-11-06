@@ -1,0 +1,10 @@
+﻿@using Netafim.WebPlatform.Web.Features.ProductFamily.Criteria
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.ProductFamily.Criteria
+
+@model TopographyCriteriaPage
+
+<div class="figure-item figure-topography">
+    <img alt="@Model.Name" src="@Url.CropImageUrl(Model.Image, 230, 40)">
+    <p>@Model.Name </p>
+</div>

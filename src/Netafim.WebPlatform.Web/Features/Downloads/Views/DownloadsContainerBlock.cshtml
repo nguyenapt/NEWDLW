@@ -1,0 +1,43 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Infrastructure.Epi.Editors
+@model Netafim.WebPlatform.Web.Features.Downloads.Models.DownloadsContainerViewModel
+
+@{
+    var componentCssClass = Model.Block.IsFullWidth ? "fullwidth-mode" : "boxed-mode";
+    var containerCssClass = Model.Block.IsFullWidth ? "container-fluid no-gutter" : "container";
+    var rowCssClass = Model.Block.IsFullWidth ? "row row-eq-height" : "row";
+
+    var bootstrapGridColumns = 12.00;
+    var spanColumn = Model.HasItems() ? (int)Math.Ceiling(bootstrapGridColumns / Model.Block.Items.Items.Count) : 1;
+
+    var backgroundColor = Model.Block.BackgroundColor == BackgroundColor.Grey ? "gray-bg" : "white-bg";
+    var columCss = string.Format("col-md-{0}", spanColumn);
+}
+
+<section class="@backgroundColor component @componentCssClass" @Html.RenderAnchor(m => m.Block)>
+    @Html.RenderWatermark(m => m.Block)
+    @Html.RenderFloatingNavigationText(m => m.Block)
+    <div class="@containerCssClass">
+        @if (!string.IsNullOrEmpty(Model.Title))
+        {
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>@Model.Title</h2>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.HasItems())
+        {
+            @Html.PropertyFor(m => m.Block.Items, new
+       {
+           CustomTag = "div",
+           cssClass = @rowCssClass,
+           ChildrenCustomTagName = "div",
+           ChildrenCssClass = string.Format("col-md-{0}", spanColumn)
+       })
+        }
+    </div>
+</section>

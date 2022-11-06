@@ -1,0 +1,43 @@
+﻿@using Netafim.WebPlatform.Web.Features.GenericCTA.Helpers
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model Netafim.WebPlatform.Web.Features.GenericCTA.GenericCTABlock
+
+
+@{
+    var gtaDownload = Html.IsDownloadableContent() ? "gtm-downloads" : "";
+    var dataId = Html.IsDownloadableContent() ? Html.DownloadableContentName() : string.Empty;
+}
+
+<section class="component boxed-mode" @Html.RenderAnchor(m => m)>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="generic-blue-cta has-shadow @gtaDownload" data-id="@dataId">
+
+                    @if (Model.Icon != null)
+                    {
+                        <img alt="" src="@Url.ImageUrl(Model, m => Model.Icon)" @Html.EditAttributes(m => m.Icon)>
+                    }
+
+                    <div class="cta-content">
+
+                        @if (!string.IsNullOrWhiteSpace(Model.Title))
+                        {
+                            <h3>@Html.PropertyFor(m => m.Title)</h3>
+                        }
+
+                        <p>@Html.PropertyFor(m => m.Description)</p>
+
+                    </div>
+
+                    @if (Model.Link != null && !string.IsNullOrWhiteSpace(Model.LinkText))
+                    {
+                        <a href="@Url.ContentUrl(Model)"  @Model.Link.LinkTarget() @Html.EditAttributes(m => m.Link) class="general-white-btn">@Html.PropertyFor(m => m.LinkText)</a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

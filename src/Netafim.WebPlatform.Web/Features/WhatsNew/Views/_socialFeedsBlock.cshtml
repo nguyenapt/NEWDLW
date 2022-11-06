@@ -1,0 +1,36 @@
+﻿@using Netafim.WebPlatform.Web.Features.WhatsNew
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Castle.Core.Internal
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Globalization
+@using EPiServer.Core
+
+@model SocialFeedsViewModel
+
+@using (Html.BeginComponent("Netafim.Web.SocialFeeds",
+    new
+    {
+        blockId = ((IContent)Model.CurrentBlock).ContentLink.ID,
+        fetchUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("FetchFeeds", "SocialFeeds"),
+    }))
+{
+    <div class="col-sm-4">
+        <h3>@Html.PropertyFor(x => x.CurrentBlock.Title)</h3>
+        <div class="data-result">
+
+        </div>
+
+        @if (!Model.SocialChannelLinks.IsNullOrEmpty())
+        {
+            <div class="article-bottom-link">
+                <span>Join the conversation</span>
+                <div class="social-link">
+                    @foreach (var socialChannel in Model.SocialChannelLinks)
+                    {
+                        <a href="@socialChannel.Value" class="dlw-icon @Html.RenderSocialConnectorClass(socialChannel.Key)"></a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}

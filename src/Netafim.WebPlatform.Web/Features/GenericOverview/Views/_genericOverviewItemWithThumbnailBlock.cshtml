@@ -1,0 +1,40 @@
+﻿@using EPiServer.Core;
+@using Netafim.WebPlatform.Web.Core.Extensions
+@model Netafim.WebPlatform.Web.Features.GenericOverview.GenericOverviewItemWithThumbnailBlock
+
+@{
+    var hasLink = !ContentReference.IsNullOrEmpty(Model.Link);
+    var linkUrl = hasLink ? Url.ContentUrl(Model.Link) : string.Empty;
+    var hasImg = !ContentReference.IsNullOrEmpty(Model.Thumbnail);
+}
+
+<div class="component-inner">
+    <div class="image-arrow">
+        @if (hasLink && hasImg)
+        { @:<a href="@linkUrl">
+        }
+            @if (hasImg)
+            {
+                <img alt="@Model.Title" src="@Url.ImageUrl(Model, m => Model.Thumbnail)" @Html.EditAttributes(m => m.Thumbnail) />
+            }
+        @if (hasLink)
+        { @:</a>
+        }
+    </div>
+        @if (hasLink && hasImg)
+        { @:<a href="@linkUrl">
+        }
+        @if (!string.IsNullOrEmpty(Model.Title))
+        {
+            <h3>@Html.PropertyFor(x => x.Title)</h3>
+        }
+        @if (hasLink)
+        { @:</a>
+        }
+
+        @Html.PropertyFor(m => m.Description)
+        @if (Model.CanDisplayCTA())
+        {
+                <a class="general-btn stay-at-bottom" href="@Url.ContentUrl(Model.Link)" @Html.EditAttributes(m => m.Link)>@Model.LinkText</a>
+        }
+</div>

@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Language="C#" Inherits="Netafim.WebPlatform.Web.EPiServerApplication" %>

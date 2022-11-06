@@ -1,0 +1,16 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator.ViewModels
+@using System.Linq
+
+@model ParameterViewModel
+
+@if (Model != null && Model.Any())
+{
+    <div class="FormSelection">
+        <select name="@Model.Name">
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+}

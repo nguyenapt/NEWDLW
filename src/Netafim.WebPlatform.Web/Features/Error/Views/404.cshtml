@@ -1,0 +1,19 @@
+﻿@using Netafim.WebPlatform.Web.Features.Error
+@model Netafim.WebPlatform.Web.Features.Error.NotFoundViewModel
+
+<section class="component boxed-mode">
+    <div class="bg-text">@Html.Translate(() => Labels.Watermark)</div>
+    <div class="vertical-text">@Html.Translate(() => Labels.Watermark)</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="component-inner">
+                    <h1>@Html.Translate(() => Labels.Title)</h1>
+                    <p>@Html.Translate(() => Labels.Message)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.PropertyFor(x => x.NotFoundPage.Content)

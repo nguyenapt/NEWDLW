@@ -1,0 +1,83 @@
+﻿@using Netafim.WebPlatform.Web.Features.Layout;
+@using EPiServer.Core;
+@using Castle.Core.Internal;
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model HeaderViewModel
+
+<header>
+    <nav class="">
+        <a href="@Url.ContentUrl(ContentReference.StartPage)" class="logo">
+            @if (!ContentReference.IsNullOrEmpty(Model.LogoLink))
+            {
+                <img src="@Url.ContentUrl(Model.LogoLink) " class="main-logo" alt="main-logo" @Html.EditAttributes(x => x.LogoLink) />
+            }
+
+            @if (!ContentReference.IsNullOrEmpty(Model.HeroLogoLink))
+            {
+                <img src="@Url.ContentUrl(Model.HeroLogoLink) " class="white-logo" alt="hero-logo" @Html.EditAttributes(x => x.HeroLogoLink) />
+            }
+        </a>
+        <ul class="desktop-nav-secondary"></ul>
+        <ul class="desktop-nav-primary"><span class="nav-loading">@Html.Translate(() => Labels.LoadingContent)</span></ul>
+        <div class="doormat"></div>
+        <a href="javascript:void(0);" class="nav-search"><span></span><span></span></a>
+        <a href="javascript:void(0);" class="nav-menu"><span id="bar1"></span><span id="bar2"></span><span id="bar3"></span></a>
+        
+        @Html.Action("KeywordSearch", "Search")
+    
+    </nav>
+
+    <div class="nav-content">
+        <div class="nav-content-inner">
+            @*render the navigation*@
+
+            @Html.Action("Index", "Navigation")
+
+            <ul class="nav-content-secondary">
+                @if (!ContentReference.IsNullOrEmpty(Model.CarreerLink))
+                {
+                    <li class="l1">
+                        <a class="a1" href="@Url.ContentUrl(Model.CarreerLink)">@Html.Translate(() => Labels.Carreers)</a>
+                    </li>
+                }
+                
+                @if (!ContentReference.IsNullOrEmpty(Model.ContactUsLink))
+                {
+                    <li class="l1">
+                        <a class="a1" href="@Url.ContentUrl(Model.ContactUsLink)">@Html.Translate(() => Labels.ContactUs)</a>
+                    </li>
+                }
+                
+                @if (!Model.OtherIndustries.IsNullOrEmpty())
+                {
+                    <li class="l1 has-sub">
+                        <a class="a1 has-arrow" data-open="industry-selection" href="#">@Html.Translate(() => Labels.OtherIndustries)</a>
+                        <div class="sub-item-container">
+                            <a class="btn-back back-to-l1" href="javascript:void(0);">@Html.Translate(() => Labels.OtherIndustries)</a>
+                            <ul class="dropdown-on-desktop">
+                                @foreach (var industry in Model.OtherIndustries)
+                                {
+                                    <li class="l2">
+                                        <a class="a2" href="@industry.Url">@industry.Text</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </li>
+                }
+
+                <li class="l1 has-sub">
+                    <a class="a1 has-arrow" data-open="popup-overlay" @Html.RenderPopupIdAttribute("language-selection") href="javascript:void(0);"><img class="additional-icon" alt="Netafim Global" src="~/Content/images/icon-globe.svg">@Html.Translate(() => Labels.NtfGlobal)</a>
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="nav-social">
+            @Html.Partial("_socials", Model.Socials)
+        </div>
+    </div>
+</header>
+@Html.Action("Index", "CountryLanguage")
+@Html.Action("SidebarNavigation", "Navigation")

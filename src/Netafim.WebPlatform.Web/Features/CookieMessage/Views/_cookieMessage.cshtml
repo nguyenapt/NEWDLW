@@ -1,0 +1,28 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Features.CookieMessage
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model CookieMessageViewModel
+
+@using (Html.BeginComponent("Netafim.Web.CookieMessage"))
+{
+    <section class="cookie">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>
+                        @Html.Translate(() => Labels.CookieMessage)
+
+                        @if (Model.CanDisplayCTA())
+                        {
+                            <a href="@Url.ContentUrl(Model.CookieLink)">@Html.Translate(() => Labels.CookieLinkMessage)</a>
+                        }
+
+                        <br>
+                        <a class="accept-cookie" href="javascript:void(0);">@Html.Translate(() => Labels.CookieAcceptMessage)</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+}

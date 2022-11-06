@@ -1,0 +1,47 @@
+﻿@using Netafim.WebPlatform.Web.Features.NewsOverview
+@using EPiServer.Core;
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Castle.Core.Internal
+@model NewsOverviewViewModel
+
+@using (Html.BeginComponent("Netafim.Web.NewsOverview",
+    new
+    {
+        blockId = ((IContent)Model.CurrentBlock).ContentLink.ID,
+        searchUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("Search", "NewsOverview"),
+    }))
+{
+<section class="component boxed-mode @Html.RenderBackgroundColor(m => m.CurrentBlock)" @Html.RenderAnchor(m => m.CurrentBlock)>
+    @Html.RenderWatermark(m => m.CurrentBlock)
+    @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner">
+                    <div class="accordion-container">
+                        <div class="accordion-inner">
+                            @if (!Model.Years.IsNullOrEmpty())
+                            {
+                                <ul>
+                                    @foreach (var year in Model.Years)
+                                    {
+                                        <li class="accordion-item @(year == Model.LatestYearHavingNews?"accordion-active":string.Empty)" data-value="@year">
+                                            <div class="accordion-item-title">
+                                                <p>@year</p>
+                                            </div>
+                                            <div class="data-result">
+
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}

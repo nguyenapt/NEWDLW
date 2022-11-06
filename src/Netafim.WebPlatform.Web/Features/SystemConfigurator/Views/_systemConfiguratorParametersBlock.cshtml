@@ -1,0 +1,71 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions;
+@using Netafim.WebPlatform.Web.Features.SystemConfigurator
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Core
+@using Netafim.WebPlatform.Web.Core.Templates
+
+@model Netafim.WebPlatform.Web.Features.SystemConfigurator.ViewModels.SystemConfiguratorParametersViewModel
+
+@using (Html.BeginComponent("Netafim.Web.SystemConfiguratorParametersBlock", new { actionUrl = Model.ActionUrl }))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m.CurrentBlock)" data-action="systemconfigutator">
+        @Html.RenderWatermark(m => m.CurrentBlock)
+        @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="component-inner">
+                        <h2>@Html.PropertyFor(m => m.CurrentBlock.Title)</h2>
+                        @Html.PropertyFor(m => m.CurrentBlock.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <form class="system-configurator" method="post" action="@Model.ActionUrl">
+
+                    @Html.Hidden("ContentId", ((IContent)Model.CurrentBlock).ContentLink.ID)
+                    @Html.Hidden("ClientName", Model.ClientName)
+                    @Html.Hidden("ClientEmail", Model.ClientEmail)
+                    @Html.Hidden("SubmissionId", Model.SubmissionId)
+
+                    @Html.ValidationSummary()
+
+                    <div class="col-xs-12 config-form-container">
+                        @{
+                            var groups = Model.ParameterGroups.ToList();
+
+                            <div class="config-form-progress">
+
+                                @for (int i = 0; i < groups.Count; i++)
+                                {
+                                    var step = i + 1;
+                                    var extraCss = i == 0 ? "active-step" : "";
+                                    <span class="form-step-@step @extraCss">@step</span>
+                                }
+
+                            </div>
+                            <div class="config-form-wrapper">
+
+                                @{
+                                    for (var i = 0; i < groups.Count; i++)
+                                    {
+                                        var additionalData = new ViewDataDictionary();
+                                        additionalData.Add("step", i + 1);
+
+                                        @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "SystemConfigurator", "_parameterGroups"), groups[i], additionalData)
+                                    }
+                                }
+
+                            </div>
+                            <div class="config-form-step-navigation-button first-step">
+                                <button type="submit" class="general-blue-btn btn-generate">@Html.Translate(() => Labels.GenerateLink)</button>
+                                <a href="javascript:void(0);" class="general-blue-btn btn-next-step">@Html.Translate(() => Labels.NextStep)</a>
+                                <a href="javascript:void(0);" class="btn-previous-step">@Html.Translate(() => Labels.PrevStep)</a>
+                            </div>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,70 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.CropsOverview
+@model CropsContainerBlock
+
+@using (Html.BeginComponent("Netafim.Web.CarouselArrow"))
+{
+    <section class="component boxed-mode" @Html.RenderAnchor(m => m)>
+        @Html.RenderWatermark(m => m)
+        @Html.RenderFloatingNavigationText(m => m)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        @if (!string.IsNullOrWhiteSpace(Model.Title))
+                        {
+                            <h2>@Html.PropertyFor(m => m.Title)</h2>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+                        {
+                            <p>@Html.PropertyFor(m => m.Subtitle)</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row three-items-carousel-wrapper">
+                <span class="nav-arrow nav-arrow-left dlw-icon-arrow-long-left"></span> <!-- only for carousel -->
+                <div class="items-container">
+                    <div class="items-list">
+                        @foreach (var crops in Model.Items.GetFilteredItemsContent<IPreviewable>())
+                        {
+                            <div class="col-sm-4 item carousel-item" @Html.EditAttributes(m => crops.ContentLink)>
+                                <a class="carousel-item-link" href="@Url.ContentUrl(crops.ContentLink)">
+                                    @if (crops.Thumnbail != null)
+                                    {
+                                        <img alt="@crops.Name" src="@Url.CropImageUrl(crops.Thumnbail, 620, 620)" @Html.EditAttributes(m => crops.Thumnbail)>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(crops.Description.ToTextString()))
+                                    {
+                                        <div class="carousel-item-desc" @Html.EditAttributes(m => crops.Description)>
+                                            @crops.Description
+                                        </div>
+                                    }
+
+                                    <h3 @Html.EditAttributes(m => crops.Title)>@crops.Title</h3>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <span class="nav-arrow nav-arrow-right dlw-icon-arrow-long-right"></span> <!-- only for carousel -->
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div class="component-inner">
+                        @if (Model.Link != null)
+                        {
+                            <a href="@Url.ContentUrl(Model.Link)" class="general-blue-btn" @Html.EditAttributes(m => m.Link)>
+                                @Html.Translate(() => Labels.ExploreExpertise)
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

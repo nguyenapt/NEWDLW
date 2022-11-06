@@ -1,0 +1,36 @@
+﻿@using Netafim.WebPlatform.Web.Features.RichText.Models
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Web.Routing
+
+@model RichTextComponentViewModel<RichTextWithImageAndTextBlock>
+
+<div class="col-sm-7 col-md-9  nopadding-left-desktop">
+    <div class="component-inner">
+
+        @if (!string.IsNullOrWhiteSpace(Model.Block.Title))
+            {
+            <h2>@Html.PropertyFor(m => m.Block.Title)</h2>
+        }
+
+        @if (Model.Block.HasContent())
+            {
+            @Html.PropertyFor(m => m.Block.Content)
+        }
+
+        @if (Model.Block.CanDisplayCTA())
+            {
+            <a href="@Url.ContentUrl(Model.Block.Link)" class="general-btn" @Html.EditAttributes(m => m.Block.Link)>@Model.Block.LinkText</a>
+        }
+
+    </div>
+</div>
+
+@if (Model.Block.Image != null)
+{
+    <div class="col-sm-5 col-md-3 nopadding-right-desktop">
+        <div class="component-inner">
+            <img src="@Url.ImageUrl(Model.Block, m => Model.Block.Image)" alt="@Model.Block.Title" @Html.EditAttributes(m => m.Block.Image) />
+        </div>
+    </div>
+}

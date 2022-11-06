@@ -1,0 +1,29 @@
+﻿@using Netafim.WebPlatform.Web.Features.WhatsNew
+@using EPiServer.Core;
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using newsEventOverview = Netafim.WebPlatform.Web.Features.NewsEventOverview
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Castle.Core.Internal
+@using EPiServer.Globalization
+
+@model WhatsNewBlock
+
+@using (Html.BeginComponent("Netafim.Web.WhatsNew"))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m)" @Html.RenderAnchor(m => m)>
+        @Html.RenderWatermark(m => m)
+        @Html.RenderFloatingNavigationText(m => m)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>@Html.PropertyFor(x => x.Title)</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @Html.PropertyFor(x=>x.Items)
+            </div>
+        </div>
+    </section>
+}

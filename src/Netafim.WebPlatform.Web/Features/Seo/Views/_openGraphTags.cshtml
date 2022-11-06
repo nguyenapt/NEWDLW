@@ -1,0 +1,21 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Seo
+@using EPiServer.Core
+
+@model string    
+
+@helper RenderDescription(IContent content)
+{
+    var seoInformation = content as ISeoInformation;
+    if (seoInformation != null)
+    {
+        if (!string.IsNullOrWhiteSpace(seoInformation.SeoDescription))
+        {
+                @seoInformation.SeoDescription
+        }
+    }
+}
+
+<meta property="og:title" content="@PageTitle" />
+<meta property="og:description" content="@RenderDescription(Content)" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="@Html.Raw(Model)" />

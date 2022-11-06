@@ -1,0 +1,19 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions
+@model Netafim.WebPlatform.Web.Features.GeneralContactInfo.GeneralContactInfoContainerBlock
+
+<section class="component gray-bg boxed-mode" @Html.RenderAnchor(m => m)>
+    @Html.RenderWatermark(m => m)
+    @Html.RenderFloatingNavigationText(m => m)
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="component-inner">
+                    <h2>@Html.PropertyFor(m => m.Title)</h2>
+                </div>
+            </div>
+        </div>
+       
+        @Html.RenderContentAreaAsGrid(m => m.Items, 3, "col-sm-4", "row row-eq-height", Html.EditAttributes(m => m.Items))
+
+    </div>
+</section>

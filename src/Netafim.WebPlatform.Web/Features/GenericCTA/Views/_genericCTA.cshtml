@@ -1,0 +1,50 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web;
+@using Netafim.WebPlatform.Web.Features.GenericCTA;
+@using Netafim.WebPlatform.Web.Features.GenericCTA.Helpers;
+@using Netafim.WebPlatform.Web.Core.Extensions;
+@using Netafim.WebPlatform.Web.Features._Shared.ViewModels
+
+@model Netafim.WebPlatform.Web.Features.GenericCTA.GenericCTABlock
+
+@{
+    var ctaStyle = Html.IsEmailCTA() ? "general-btn" : "general-blue-btn";
+    var gtaDownload = Html.IsDownloadableContent() ? "gtm-downloads" : "generic-cta-download";
+    var dataId = Html.IsDownloadableContent() ? Html.DownloadableContentName() : string.Empty;
+    var wrapperCss = Html.IsOverlayCTA() ? "generic-cta-with-desc" : "generic-cta";
+}
+
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m=>m)" @Html.RenderAnchor(m => m)>
+    @Html.RenderWatermark(m => m)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="@wrapperCss @gtaDownload" data-id="@dataId">
+                    <img alt="" src="@Url.ImageUrl(Model, m => Model.Icon)" @Html.EditAttributes(m => m.Icon)>
+                        <div class="cta-content">
+
+                            @if (!string.IsNullOrWhiteSpace(Model.Title))
+                            {
+                                <h3>@Html.PropertyFor(m => m.Title)</h3>
+                            }
+
+                            <p @Html.EditAttributes(m => m.Description)>@Model.Description</p>
+
+                        </div>
+
+                        @if (Model.Link != null && !string.IsNullOrWhiteSpace(Model.LinkText))
+                        {
+                            <a href="@Url.ContentUrl(Model)"  @Model.Link.LinkTarget() @Html.AdditionalCtaButtonAttributes() @Html.RenderPopupIdAttribute("contact-us") @Html.EditAttributes(m => m.Link) class="@ctaStyle">@Html.PropertyFor(m => m.LinkText)</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @if (Html.IsOverlayCTA())
+    {
+        @Html.Partial("_overlay", new OverlayViewModel("contact-us")
+           {
+               Forms = ((OverlayCTABlock)Model).OverlayContent
+           })
+    }

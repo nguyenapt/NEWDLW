@@ -1,0 +1,46 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Editor
+@using Netafim.WebPlatform.Web.Core.Templates
+@using Netafim.WebPlatform.Web.Features.MediaCarousel
+@model MediaCarouselViewModel
+
+@if (PageEditing.PageIsInEditMode)
+{
+    using (Html.BeginComponent("Netafim.Web.MediaCarousel"))
+    {
+        <section class="component fullwidth-mode">
+            <div class="container-fluid no-gutter">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="media-carousel-wrapper">
+                            @_videoCarouselView(Model.CarouselItem)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+else
+{
+    @_videoCarouselView(Model.CarouselItem)
+}
+
+@helper _videoCarouselView(IVideoComponent model)
+{
+    var showTextAttr = string.Format("data-show-text-onplay={0}", model.ShowContentWhilePlaying.ToString().ToLower());
+    var autoPlayAttr = string.Format("data-video-auto-play={0}", model.OnAutoPlay.ToString().ToLower());
+    var videoAttribute = model.OnAutoPlay ? "preload=metadata loop autoplay=autoplay muted onloadedmetadata=this.muted=true" : "preload=none";
+    <div class="media-carousel-item" @showTextAttr @autoPlayAttr>
+        <div class="media-carousel-bg">
+            <div class="fluid-video">
+                <div class="video-container">
+                    <img alt="@(Model.CarouselItem.Title)" src="@Url.ImageUrlWithCarouselMode(Model.CurrentBlock, Model.CarouselItem)" @Html.EditAttributes(m => m.CarouselItem.Image)>
+                    <video src="@Url.ContentUrl(model.Video)" type="video/mp4" poster="@Url.ImageUrlWithCarouselMode(Model.CurrentBlock, Model.CarouselItem)" @videoAttribute @Html.EditAttributes(m => m.CarouselItem.Video) controls></video>
+                </div>
+                <a class="video-control-play gtm-video-play" data-id="@Model.CarouselItem.Title" href="javascript:void(0)"></a>
+            </div>
+        </div>
+        @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "MediaCarousel", "_mediaCarouselContent"), model)
+    </div>
+}

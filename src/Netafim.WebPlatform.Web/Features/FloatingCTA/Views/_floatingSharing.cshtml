@@ -1,0 +1,8 @@
+﻿@model string
+
+@if (!string.IsNullOrWhiteSpace(Model))
+{
+    <!-- Social sharing script -->
+    <script type='text/javascript' data-cfasync='false' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='@Html.Raw(Model)' async='async'></script>
+    <!-- Social sharing script -->
+}

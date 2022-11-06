@@ -1,0 +1,38 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Extensions;
+@using Netafim.WebPlatform.Web.Features.GeneralContactInfo;
+
+@model GeneralContactInfoItemBlock
+
+<div class="address-box">
+
+    @if (!string.IsNullOrWhiteSpace(Model.Title))
+    {
+        <h3>@Html.PropertyFor(m => m.Title)</h3>
+    }
+
+    @if (Model.Information != null && !string.IsNullOrWhiteSpace(Model.Information.ToTextString()))
+    {
+        <div class="address-content">
+            @Html.PropertyFor(m => m.Information)
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.Phone))
+    {
+        <p><span class="blue-text">@Html.Translate(() => Labels.Telephone)</span><a href="tel:+@Model.Phone">@Html.PropertyFor(m => m.Phone)</a></p>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.Fax))
+    {
+        <p><span class="blue-text">@Html.Translate(() => Labels.Fax)</span>@Html.PropertyFor(m => m.Fax)</p>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.MailTo) && !string.IsNullOrWhiteSpace(Model.LinkTextButton))
+    {
+        <div class="address-link">
+            <a href="mailto:@Model.MailTo" class="general-btn" @Html.EditAttributes(m => m.MailTo)>@Html.PropertyFor(m => m.LinkTextButton)</a>
+        </div>
+    }
+
+</div>
+

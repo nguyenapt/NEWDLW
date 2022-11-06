@@ -1,0 +1,73 @@
+﻿@using Netafim.WebPlatform.Web.Features.Weather
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using EPiServer.Core
+
+@model WeatherViewModel
+
+@{ 
+    var location = string.Format(Html.Translate(() => Labels.TitleFormat).ToString(), Model.Location);
+}
+
+@using (Html.BeginComponent("Netafim.Web.Weather",
+    new
+    {
+        blockId = ((IContent)Model.CurrentBlock).ContentLink.ID,
+        floatingUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("FloatingWeather", "Weather"),
+        displayFloating = Model.CurrentBlock.DisplayFloating
+    }))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m.CurrentBlock)" data-action="weather">
+        @Html.RenderWatermark(m => m.CurrentBlock)
+        @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>@location</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-eq-height">
+                @foreach (var item in Model.Weathers)
+                {
+                    var date = item.Date.Date == DateTime.Now.Date ? Html.Translate(() => Labels.Today).ToString() : item.Date.ToShortDateString();
+
+                    <div class="col-sm-3 col-same-height">
+                        <p class="text-date">@date</p>
+                        <div class="white-bg weather-item-container">
+                            <div class="weather-info">
+                                <img alt="Sunny" class="weather-icon" src="http://via.placeholder.com/60x60/007AFF/FFFFFF">
+                                <p class="text-degree">@item.LowTemperature<sup>o</sup> - @item.HighTemperature<sup>o</sup></p>
+                                <p class="text-weather-status">@item.TemperatureDescription</p>
+                            </div>
+                            <div class="weather-extra">
+
+                                @foreach (var variance in item.Variances)
+                                {
+                                    <div class="weather-element">
+                                        <span>@variance.Value</span><p>@variance.Description</p>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center toggle-extra">
+                    <a href="javascript:void(0);" class="loadmore-btn" data-text-more="@Html.Translate(() => Labels.MoreInformation)" data-text-less="@Html.Translate(() => Labels.LessInformation)">@Html.Translate(() => Labels.MoreInformation)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    if (Model.CurrentBlock.DisplayFloating)
+    {
+        <div class="floating-weather-data">
+
+        </div>
+    }
+}

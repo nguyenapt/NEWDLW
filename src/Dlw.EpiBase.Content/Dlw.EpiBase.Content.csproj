@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B984342C-849B-49F4-81CC-390D54D07ABE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dlw.EpiBase.Content</RootNamespace>
+    <AssemblyName>Dlw.EpiBase.Content</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.4.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Windsor.3.4.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.ApplicationModules, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.ApplicationModules.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Cms.Shell.UI, Version=10.6.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.6.1\lib\net45\EPiServer.Cms.Shell.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Configuration, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Data, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Data.Cache, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Data.Cache.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Enterprise, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.Enterprise.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Events, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.12.6.0\lib\net45\EPiServer.Find.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Blocks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Blocks.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Cms, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Cms.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Framework, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Framework.12.6.0\lib\net45\EPiServer.Find.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Optimizations, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Optimizations.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.Statistics, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Find.UI, Version=12.6.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Find.Cms.12.6.0\lib\net45\EPiServer.Find.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Framework, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.ImageLibrary, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.ImageLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Licensing, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.Framework.10.10.4\lib\net45\EPiServer.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.LinkAnalyzer, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.LinkAnalyzer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Shell, Version=10.6.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.6.1\lib\net45\EPiServer.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Shell.UI, Version=10.6.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.6.1\lib\net45\EPiServer.Shell.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.UI, Version=10.6.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.10.6.1\lib\net45\EPiServer.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Web.WebControls, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.Web.WebControls.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.XForms, Version=10.10.4.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPiServer.CMS.Core.10.10.4\lib\net45\EPiServer.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=3.1.9.463, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap-signed.3.1.9.463\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.1.9.463, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap-signed.3.1.9.463\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap.web-signed.3.1.6.191\lib\net40\StructureMap.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cms\DefaultExtendedUrlResolver.cs" />
+    <Compile Include="Cms\Extensions\ContentDataExtensions.cs" />
+    <Compile Include="Cms\DefaultUserContext.cs" />
+    <Compile Include="Cms\Extensions\LocalizationServiceExtensions.cs" />
+    <Compile Include="Cms\IExtendedUrlResolver.cs" />
+    <Compile Include="Cms\IShellContext.cs" />
+    <Compile Include="Cms\Search\ConfigurationManagerFindSettings.cs" />
+    <Compile Include="Cms\Search\FindBlockService.cs" />
+    <Compile Include="Cms\Search\FindPageService.cs" />
+    <Compile Include="Cms\Search\IBlockService.cs" />
+    <Compile Include="Cms\Search\IFindSettings.cs" />
+    <Compile Include="Cms\Search\IPageService.cs" />
+    <Compile Include="Cms\Search\ITypeSearchExtensions.cs" />
+    <Compile Include="Cms\ShellContext.cs" />
+    <Compile Include="Convertors\CulturesRegionCodeConvertor.cs" />
+    <Compile Include="Convertors\IRegionCodeConvertor.cs" />
+    <Compile Include="Find\FindExtensions.cs" />
+    <Compile Include="IAppSettings.cs" />
+    <Compile Include="Infrastructure\AppInsights\IgnoreNotFoundExceptionTelemetryProcessor.cs" />
+    <Compile Include="Infrastructure\AppInsights\SuppressNotFoundRequestTelemetryProcessor.cs" />
+    <Compile Include="Infrastructure\BaseConfigurationManagerSettings.cs" />
+    <Compile Include="Infrastructure\Caching\Cdn\CdnMediaHandler.cs" />
+    <Compile Include="Infrastructure\Caching\Cdn\CdnModule.cs" />
+    <Compile Include="Infrastructure\Collections\PagedResult.cs" />
+    <Compile Include="Infrastructure\Data\ContentGenerator\IocConfig.cs" />
+    <Compile Include="Infrastructure\Data\EnsureDatabase\EnsureAdminUserAndRoles.cs" />
+    <Compile Include="Infrastructure\EpiEnvironment.cs" />
+    <Compile Include="Infrastructure\Epi\BasePartialController.cs" />
+    <Compile Include="Infrastructure\Epi\ContentRenderingErrorModel.cs" />
+    <Compile Include="Infrastructure\Epi\DefaultBlockPartialController.cs" />
+    <Compile Include="Infrastructure\Epi\Shell\PropertyListBase.cs" />
+    <Compile Include="Infrastructure\Epi\ErrorHandlingContentRenderer.cs" />
+    <Compile Include="Infrastructure\Extensions\XHtmlStringExtensions.cs" />
+    <Compile Include="Infrastructure\Import\ILocalizedDataTransformer.cs" />
+    <Compile Include="Infrastructure\Import\PropertyNameSuffixLocalizedDataTransformer.cs" />
+    <Compile Include="Infrastructure\Collections\IPagedResult.cs" />
+    <Compile Include="Infrastructure\IoC\StructureMapDependencyScope.cs" />
+    <Compile Include="Infrastructure\IoC\StructureMapResolver.cs" />
+    <Compile Include="Infrastructure\Localization\CustomProviderBasedLocalizationService.cs" />
+    <Compile Include="Infrastructure\Maintenance\Constants.cs" />
+    <Compile Include="Infrastructure\Maintenance\MaintenanceController.cs" />
+    <Compile Include="Infrastructure\Maintenance\Warmup\IPreload.cs" />
+    <Compile Include="Infrastructure\Mapper\IMapper.cs" />
+    <Compile Include="Infrastructure\Mvc\AbstractWebViewPage.cs" />
+    <Compile Include="Infrastructure\Mvc\TemplateTagContext.cs" />
+    <Compile Include="Infrastructure\Mvc\TransferResult.cs" />
+    <Compile Include="Infrastructure\Net\IPEndpointParser.cs" />
+    <Compile Include="Infrastructure\Seo\AlternateLink.cs" />
+    <Compile Include="Infrastructure\Seo\ISeoInformation.cs" />
+    <Compile Include="Infrastructure\Seo\ISeoSettings.cs" />
+    <Compile Include="Infrastructure\Seo\Shell\AlternateLinkProperty.cs" />
+    <Compile Include="Infrastructure\ShutdownTracker.cs" />
+    <Compile Include="Infrastructure\TinyMce\ITinyMceSettings.cs" />
+    <Compile Include="Infrastructure\TinyMce\TinyMceSettingsAttribute.cs" />
+    <Compile Include="Infrastructure\TinyMce\TinyMceSettingBase.cs" />
+    <Compile Include="Infrastructure\TinyMce\TinyMceSettingsInitialization.cs" />
+    <Compile Include="Infrastructure\TinyMce\ToolbarItems.cs" />
+    <Compile Include="Infrastructure\Validation\ContentAreaMaxItems.cs" />
+    <Compile Include="Infrastructure\Data\BaseDefaultSiteContentInitialization.cs" />
+    <Compile Include="Infrastructure\Data\ContentGenerator\ContentContext.cs" />
+    <Compile Include="Infrastructure\Data\ContentGenerator\ContentGeneratorAttribute.cs" />
+    <Compile Include="Infrastructure\Data\ContentGenerator\ContentGeneratorResult.cs" />
+    <Compile Include="Infrastructure\Data\ContentGenerator\ContentGeneratorService.cs" />
+    <Compile Include="Infrastructure\Data\ContentGenerator\IContentGeneratorService.cs" />
+    <Compile Include="Infrastructure\Data\EnsureDatabase\ApiEnsureDatabaseAction.cs" />
+    <Compile Include="Infrastructure\Data\EnsureDatabase\BaseEnsureDatabaseAction.cs" />
+    <Compile Include="Infrastructure\Data\EnsureDatabase\EnsureDatabaseInitializableModule.cs" />
+    <Compile Include="Infrastructure\Data\EnsureDatabase\FallbackEnsureDatabaseAction.cs" />
+    <Compile Include="Infrastructure\Data\EnsureDatabase\IEnsureDatabaseAction.cs" />
+    <Compile Include="Infrastructure\Data\ContentGenerator\IContentGenerator.cs" />
+    <Compile Include="Infrastructure\EnvironmentVariablesConfigurator.cs" />
+    <Compile Include="Infrastructure\Extensions\SqlConnectionExtensions.cs" />
+    <Compile Include="Infrastructure\AppSettingsConfigurator.cs" />
+    <Compile Include="Infrastructure\Import\CaseInsensitiveDynamicObject.cs" />
+    <Compile Include="Infrastructure\Import\IImportDataParser.cs" />
+    <Compile Include="Infrastructure\Import\IImportDataRepository.cs" />
+    <Compile Include="Infrastructure\Import\IImportResultFormatter.cs" />
+    <Compile Include="Infrastructure\Import\ImportResult.cs" />
+    <Compile Include="Infrastructure\Import\IPageImporter.cs" />
+    <Compile Include="Infrastructure\Import\DynamicData.cs" />
+    <Compile Include="Infrastructure\Import\PageResult.cs" />
+    <Compile Include="Infrastructure\IoC\IocConfig.cs" />
+    <Compile Include="Infrastructure\IoC\StructureMapDependencyResolver.cs" />
+    <Compile Include="Infrastructure\Log4NetEnvironmentVariablesConfigurator.cs" />
+    <Compile Include="Infrastructure\Mvc\FeatureRazorViewEngine.cs" />
+    <Compile Include="Infrastructure\Mvc\ViewEngineConfigurator.cs" />
+    <Compile Include="Cms\IUserContext.cs" />
+    <Compile Include="Infrastructure\Web\Component.cs" />
+    <Compile Include="Infrastructure\Web\HtmlHelperExtensions.cs" />
+    <Compile Include="Infrastructure\Web\HttpRequestBaseExtensions.cs" />
+    <Compile Include="IocConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\Extensions\SelectMany\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Infrastructure\Data\EnsureDatabase\Scripts\EPiServer.Commerce.Core.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Infrastructure\Data\EnsureDatabase\Scripts\EPiServer.Cms.Core.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

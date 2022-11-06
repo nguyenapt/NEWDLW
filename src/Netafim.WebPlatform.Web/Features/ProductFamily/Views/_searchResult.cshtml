@@ -1,0 +1,74 @@
+﻿@using Netafim.WebPlatform.Web.Features.ProductFamily
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using System.Web.Mvc
+@using Netafim.WebPlatform.Web.Core.Templates
+@using Netafim.WebPlatform.Web.Features.ProductFamily.Criteria
+@using EPiServer.Core
+
+@model ProductFamilyListResultViewModel
+
+<!-- Grid view -->
+
+<section class="component boxed-mode @Html.RenderOppositeBackgroundColor(m => m.CurrentBlock)">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-10 col-lg-8">
+                <div class="matrix-result-heading">
+                    <img class="matrix-icon" alt="" src="@(Model.ProductCategory!=null? Url.CropImageUrl(Model.ProductCategory.ProductFamilyListIcon,70,70):string.Empty)">
+                    <p>@Html.Translate(() => Labels.FamilyListResultTitle)</p>
+                    @if (Model.CriteriaTypesInHeader != null)
+                    {
+                        @MvcHtmlString.Create(string.Join(",", Model.CriteriaTypesInHeader.Select(c => string.Format("<span> {0}</span>", c))));
+                    }
+                </div>
+                <div class="matrix-result-desc">
+                    <p>@Html.PropertyFor(x => x.CurrentBlock.SearchResultDescription)</p>
+                </div>
+            </div>
+        </div>
+        @if (Model.Result != null && Model.Result.Any())
+        {
+            foreach (var pf in Model.Result)
+            {
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="matrix-result-item">
+                            <div class="product-family-image" style="background-image:url(@Url.CropImageUrl(pf.Thumnbail, 620, 620))">
+                                <a class="product-family-link" href="@Url.ContentUrl(pf.ContentLink)">
+                                    <img class="product-family-image" alt="" src="@Url.CropImageUrl(pf.Thumnbail, 620, 620)">
+                                    <span>@pf.Title</span>
+                                </a>
+                            </div>
+                            <div class="product-family-content">
+                                <h3>@pf.Title</h3>
+                                <div class="product-family-desc">
+                                    <p>@pf.Description</p>
+                                </div>
+                                <div class="product-family-figure">
+
+                                    @foreach (var property in pf.GetSelectedProperties<IProductFamilyProperty>(Model.ProductCategory.CriteriaIdCollection(), Model.SelectedCriteriaIds))
+                                    {
+                                        <div class="figure-item figure-topography">
+                                            @if (!ContentReference.IsNullOrEmpty(property.Image))
+                                            {
+                                                <img alt="@property.Value" src="@Url.CropImageUrl(property.Image, 230, 40)">
+                                            }
+
+                                            <p>@property.Value </p>
+                                        </div>
+                                    }
+
+                                </div>
+                                @if (pf.EnableDetailPage)
+                                {
+                                    <a href="@Url.ContentUrl(pf.ContentLink)" class="general-btn">@string.Format("{0} {1}", Html.Translate(() => Labels.MoreOnText), pf.Title).ToUpper()</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>

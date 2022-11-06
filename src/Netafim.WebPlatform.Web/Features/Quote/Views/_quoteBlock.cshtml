@@ -1,0 +1,35 @@
+﻿@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model Netafim.WebPlatform.Web.Features.Quote.QuoteBlock
+
+@{ 
+    var extraContentCss = Model.IsSmallQuoteText ? "" : "quotation-bigger";
+}
+
+<section class="component boxed-mode @Html.RenderBackgroundColor(m => m)" @Html.RenderAnchor(m => m)>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="quotation-container @extraContentCss">
+                    <div class="quotation-icon">
+                        <img src="@Url.ImageUrl(Model, m => Model.Image)" alt="@Model.Author" @Html.EditAttributes(m => m.Image) />
+                    </div>
+                    <div class="quotation-slash"></div>
+                    <div class="quotation-content">
+                        
+                        @if(Model.HasContent())
+                        {
+                            @Html.PropertyFor(m => m.Content)
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(Model.Author))
+                        {
+                            <p class="quotation-author">@Html.PropertyFor(m => m.Author)</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,48 @@
+﻿@using Netafim.WebPlatform.Web.Features.SystemConfigurator.ViewModels
+@using Netafim.WebPlatform.Web.Core.Templates
+@using System.Linq
+
+@model ParameterGroupViewModel
+
+@{
+    var step = (int)ViewData["step"];
+    var extraCss = step % 2 == 0 ? "" : "gray-bg";
+    extraCss += step == 1 ? " show-this-step" : "";
+}
+
+<div class="config-form-step @extraCss">
+    <h2><strong>@ViewData["step"]</strong>@Model.Title</h2>
+
+    @if (Model.Parameters != null && Model.Parameters.Any())
+    {
+        foreach (var param in Model.Parameters)
+        {
+            if (param != null && param.Any())
+            {
+                <div class="config-form">
+                    <label for="">@param.Title</label><span class="extra-info-icon"><div class="extra-info-content"><p>@param.Tooltip</p></div></span>
+
+                    @switch (param.ViewMode)
+                    {
+                        case ViewMode.Dropdown:
+                            @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "SystemConfigurator", "_dropDownParam"), param);
+                            break;
+                        case ViewMode.Numberic:
+                            @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "SystemConfigurator", "_numbericParam"), param);
+                            break;
+                        case ViewMode.Selection:
+                            @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "SystemConfigurator", "_selectionParam"), param);
+                            break;
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(param.ValidationError))
+                    {
+                        <p class="error-message" style="display:none;">@param.ValidationError</p>
+                    }
+
+                </div>
+            }
+        }
+    }
+
+</div>

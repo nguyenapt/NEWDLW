@@ -1,0 +1,79 @@
+﻿@using Netafim.WebPlatform.Web.Features.Navigation.ViewModels
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Castle.Core.Internal
+@using EPiServer.Core;
+@using Dlw.EpiBase.Content.Infrastructure.Extensions.SelectMany
+
+@model MainNavigationItemModel
+@{
+    if (ContentReference.IsNullOrEmpty(Model.Link)) { return; }
+    var doormatItemLevel = 0;
+}
+
+<div class="sub-item-container">
+    <a class="btn-back back-to-l1" href="javascript:void(0);">@Model.Title.ToLineBreakString()</a>
+    @if (Model.HasDoormat)
+    {
+        <ul>
+            @for (int i = 0; i < Model.DoormatItems.Count(); i++)
+            {
+                var item = Model.DoormatItems.ElementAt(i);
+                if (i == 0 || ContentReference.IsNullOrEmpty(item.ImageLink)) { doormatItemLevel++; }
+                @renderMixedDoormatItem(item, doormatItemLevel)
+            }
+        </ul>
+    }
+</div>
+
+
+@helper renderMixedDoormatItem(DoormatNavigationItemModel navItem, int doormatItemLevel)
+    {
+        var doormatLevelCss = string.Format("col{0}", doormatItemLevel);
+        if (navItem.IsImageNode)
+        {
+            <li class="l2">
+                <a class="a2 with-image @doormatLevelCss" href="@Url.ContentUrl(navItem.Link)" data-img="@Url.CropImageUrl(navItem.ImageLink, 320, 90)">@navItem.Title</a>
+            </li>
+        }
+        else
+        {
+            <li class="l2 @(!navItem.IsLeaf?"has-sub":string.Empty)">
+                <a class="a2 @(!navItem.IsLeaf?"has-arrow":string.Empty) @doormatLevelCss"
+                   href="@Url.ContentUrl(navItem.Link)">@navItem.Title</a>
+                @if (!navItem.IsLeaf)
+                {
+                    <div class="sub-item-container">
+                        <a class="btn-back back-to-l2" href="javascript:void(0);">@navItem.Title</a>
+                        <ul>
+                            @foreach (var item in navItem.Children)
+                            {
+
+                                if (!item.IsLeaf)
+                                {
+                                    <li class="sub-section">
+                                        @if (ContentReference.IsNullOrEmpty(item.Link) || !item.HasTemplate)
+                                        {
+                                            <h4>@item.Title</h4>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.ContentUrl(item.Link)">
+                                                <h4>@item.Title</h4>
+                                            </a>
+                                        }
+                                    </li>
+                                }
+                                foreach (var leafNode in item.Leaves)
+                                {
+                                    <li class="l3">
+                                        <a class="a3" href="@Url.ContentUrl(leafNode.Link)">@leafNode.Title</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
+            </li>
+        }
+}
+

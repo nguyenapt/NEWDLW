@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dlw.EpiBase.Content", "src\Dlw.EpiBase.Content\Dlw.EpiBase.Content.csproj", "{B984342C-849B-49F4-81CC-390D54D07ABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netafim.WebPlatform.Web", "src\Netafim.WebPlatform.Web\Netafim.WebPlatform.Web.csproj", "{ACADDD0B-948B-4037-A737-44011195D610}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{20F51FEA-A3B3-401D-9CBF-01CB213C8D1A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B9B94880-05A7-4692-AD68-951D42A40073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netafim.WebPlatform.UnitTest", "test\Netafim.WebPlatform.UnitTest\Netafim.WebPlatform.UnitTest.csproj", "{28D91999-65E6-47E9-94B2-51BC1B1F9143}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B984342C-849B-49F4-81CC-390D54D07ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B984342C-849B-49F4-81CC-390D54D07ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B984342C-849B-49F4-81CC-390D54D07ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B984342C-849B-49F4-81CC-390D54D07ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACADDD0B-948B-4037-A737-44011195D610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACADDD0B-948B-4037-A737-44011195D610}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACADDD0B-948B-4037-A737-44011195D610}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACADDD0B-948B-4037-A737-44011195D610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D91999-65E6-47E9-94B2-51BC1B1F9143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D91999-65E6-47E9-94B2-51BC1B1F9143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D91999-65E6-47E9-94B2-51BC1B1F9143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D91999-65E6-47E9-94B2-51BC1B1F9143}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28D91999-65E6-47E9-94B2-51BC1B1F9143} = {B9B94880-05A7-4692-AD68-951D42A40073}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2106F27E-7514-4535-89E6-4C9684EC58CC}
+	EndGlobalSection
+EndGlobal

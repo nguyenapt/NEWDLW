@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Features/_Shared/Views/_ShellLayout.cshtml";
+}
+
+<h1>System configurator importer</h1>
+
+@using (Html.BeginForm("SystemConfigurator", "Importer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>
+        <label>File to import</label>
+        <input type="file" name="file" />
+    </p>
+
+    <p>
+        <button type="submit">Run</button>
+    </p>
+}

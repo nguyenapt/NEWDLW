@@ -1,0 +1,75 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Core
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.SuccessStoryOverview
+@model Netafim.WebPlatform.Web.Features.SuccessStoryOverview.ViewModels.SuccessStoryFilterViewModel
+
+@using (Html.BeginComponent("Netafim.Web.SuccessStoryOverview",
+    new
+    {
+        blockId = ((IContent)Model.CurrentBlock).ContentLink.ID,
+        searchUrl = EPiServer.Globalization.ContentLanguage.PreferredCulture + Url.Action("Search", "SuccessStoryOverview"),
+        repeatedCriteriaTranslated = Model.RepeatedCriteriaLocalization
+    }))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m.CurrentBlock)" @Html.RenderAnchor(m => m.CurrentBlock)>
+        @Html.RenderWatermark(m => m.CurrentBlock)
+        @Html.RenderFloatingNavigationText(m => m.CurrentBlock)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        @if (!string.IsNullOrEmpty(Model.CurrentBlock.Title))
+                        {
+                            <h2>@Html.PropertyFor(m => m.CurrentBlock.Title)</h2>
+                        }
+                        <div class="search-box has-shadow">
+                            <div class="live-search-box">
+                                <input type="text" class="dropdown-textbox" value="@Html.Translate(() => Labels.SuccessStoryOverviewCrop)">
+                                <ul class="live-search-list crop-list has-shadow">
+                                    <li class="live-search-item" data-value="0">@Html.Translate(() => Labels.SuccessStoryOverviewCrop)</li>
+                                    @foreach (var crop in Model.Crops)
+                                    {
+                                        <li class="live-search-item" data-value="@crop.Key">@crop.Value</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="live-search-box">
+                                <input type="text" class="dropdown-textbox" value="@Html.Translate(() => Labels.SuccessStoryOverviewCountry)">
+                                <ul class="live-search-list country-list has-shadow">
+                                    <li class="live-search-item" data-value="">@Html.Translate(() => Labels.SuccessStoryOverviewCountry)</li>
+                                    @foreach (var country in Model.Countries)
+                                    {
+                                        <li class="live-search-item" data-value="@country.Key">@country.Value</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="form-checkbox">
+                                <input type="checkbox" id="open-field-crop">
+                                <label for="open-field-crop">@Html.Translate(() => Labels.SuccessStoryOverviewProject)</label>
+                            </div>
+                        </div>
+                        <div class="filter-heading">
+                            <div class="view-mode">
+                                <h3 class="result-counter"><span class="result-number"></span> @Html.Translate(() => Labels.SuccessStoryOverviewResults) <span class="repeated-criteria"></span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="story-grid">
+                </div>
+            </div>
+
+            <div class="row load-more-row">
+                <div class="col-xs-12">
+                    <div class="text-center loadmore-story">
+                        <a href="javascript:void(0)" class="loadmore-btn" data-no-more="NO MORE DATA">@Html.Translate(() => Labels.SuccessStoryOverviewLoadMore)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

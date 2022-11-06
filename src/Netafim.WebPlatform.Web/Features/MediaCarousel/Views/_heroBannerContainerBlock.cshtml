@@ -1,0 +1,18 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Core.Templates
+@model Netafim.WebPlatform.Web.Features.MediaCarousel.HeroBannerContainerBlock
+
+@if (Model.Items != null && Model.Items.FilteredItems.Any())
+{
+    using (Html.BeginComponent("Netafim.Web.MediaCarousel"))
+    {
+        <section class="component hero-banner" @Html.RenderAnchor(m => m)>
+            <div class="media-carousel-wrapper">
+                @Html.PropertyFor(x => x.Items)
+
+                @Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "MediaCarousel", "_carouselControl"), Model)
+            </div>
+        </section>
+    }
+}

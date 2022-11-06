@@ -1,0 +1,9 @@
+﻿@using Netafim.WebPlatform.Web.Core.Templates
+@model Netafim.WebPlatform.Web.Features.SuccessStory.SuccessStoryViewModel
+
+@Html.PropertyFor(x => x.CurrentPage.BannerArea)
+
+@Html.Partial(string.Format(Global.Constants.AbsoluteViewPathFormat, "MediaCarousel", "_mediaCarouselContainerBlock"), Model.CarouselContainerBlock)
+
+@Html.Action("Index", "Breadcrumbs")
+@Html.PropertyFor(x => x.CurrentPage.Content)

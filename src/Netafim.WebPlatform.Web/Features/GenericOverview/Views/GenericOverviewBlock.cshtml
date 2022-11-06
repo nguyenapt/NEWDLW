@@ -1,0 +1,108 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Core
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Netafim.WebPlatform.Web.Features.GenericOverview
+@model GenericOverviewBlockModel
+
+@using (Html.BeginComponent("Netafim.Web.CarouselArrow"))
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m => m.Block)" @Html.RenderAnchor(m => m.Block)>
+        @Html.RenderWatermark(m => m.Block)
+        @Html.RenderFloatingNavigationText(m => m.Block)
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 col-md-9">
+                    <div class="component-inner">
+
+                        @if (!string.IsNullOrWhiteSpace(Model.Block.Title))
+                        {
+                            <h2>@Html.PropertyFor(m => m.Block.Title)</h2>
+                        }
+                        <p>
+                            @Html.PropertyFor(m => m.Block.Description)
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.ItemRows != null && Model.ItemRows.Any())
+            {
+                foreach (var row in Model.ItemRows)
+                {
+                    if (Model.Block.DisplayingMode == GenericOverviewDisplayingMode.Carousel)
+                    {
+                        var carouselCssMode = Model.IsListOfThumnailItems ? "three-items-carousel-wrapper" : "carousel-wrapper";
+                        @_displayAsCarouselMode(row, carouselCssMode)
+                    }
+                    else
+                    {
+                        var gridCssMode = Model.IsListOfThumnailItems ? "three-items-grid-wrapper" : "grid-wrapper";
+                        @_displayAsGridMode(row, gridCssMode)
+                    }
+                }
+            }
+
+            @if (Model.Block.CanDisplayCTA())
+            {
+                var style = Model.Block.BlueLink ? "general-blue-btn" : "general-btn";
+                <div class="row">
+                    <div class="xs-12 text-center">
+                        <a href="@Url.ContentUrl(Model.Block.Link)" @Html.EditAttributes(m => m.Block.Link) class="@style">@Html.PropertyFor(m => m.Block.LinkText)</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    @helper _displayAsCarouselMode(List<IContent> row, string carouselCssMode)
+    {
+        <div class="row @carouselCssMode">
+            <span class="nav-arrow nav-arrow-left dlw-icon-arrow-long-left"></span> <!-- only for carousel -->
+                <div class="items-container">
+                    <div class="items-list">
+                        @foreach (var item in row)
+                        {
+                            if (Model.IsListOfThumnailItems)
+                            {
+                                <div class="col-sm-4 item col-same-height">
+                                    @Html.PropertyFor(m => item)
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.PropertyFor(m => item)
+                            }
+                        }
+                    </div>
+                </div>
+            <span class="nav-arrow nav-arrow-right dlw-icon-arrow-long-right"></span> <!-- only for carousel -->
+        </div>
+    }
+
+    @helper _displayAsGridMode(List<IContent> row, string gridCssMode)
+    {
+        <div class="row @gridCssMode">
+            @if (!Model.IsListOfThumnailItems)
+            {
+                <div class="items-container">
+                    <div class="items-list">
+                        @foreach (var item in row)
+                        {
+                            @Html.PropertyFor(m => item)
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                foreach (var item in row)
+                {
+                    <div class="col-sm-4 col-same-height">
+                        @Html.PropertyFor(m => item)
+                    </div>
+                }
+            }
+        </div>
+    }
+}

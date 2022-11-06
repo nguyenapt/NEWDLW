@@ -1,0 +1,26 @@
+﻿@using Netafim.WebPlatform.Web.Features.RichText.Models
+
+@model RichTextComponentViewModel<RichTextParagraphBlock>
+
+@{
+    var paragraphComponent = Model.Block as RichTextParagraphBlock;
+}
+
+@if (paragraphComponent != null)
+{
+    <div class="component-inner">
+
+        @if (!string.IsNullOrWhiteSpace(Model.Block.Title))
+        {
+            <h3>@Html.PropertyFor(m => m.Block.Title)</h3>
+        }
+
+        @if (paragraphComponent.HasContent())
+        {
+            <div class="paragraph-column">
+                @Html.PropertyFor(m => m.Block.Content)
+            </div>
+        }
+
+    </div>
+}

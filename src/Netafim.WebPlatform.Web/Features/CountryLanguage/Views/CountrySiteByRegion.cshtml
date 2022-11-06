@@ -1,0 +1,21 @@
+﻿@using Netafim.WebPlatform.Web.Features.CountryLanguage
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model IList<LocalSiteItemViewModel>
+@if (Model == null) { return; }
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="article-title">@Html.Translate(() => Labels.LocalSitesListTitle)</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="column-container">
+            @foreach (var region in Model)
+            {
+                <li><a href="@region.Url">@region.Country</a><span> - @region.Language</span></li>
+            }
+        </ul>
+    </div>
+</div>

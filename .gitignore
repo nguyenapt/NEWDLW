@@ -1,0 +1,39 @@
+######################
+## EPiServer Files
+######################
+*.user
+
+/.vs
+/packages
+/**/node_modules
+/**/bower_components
+/**/bin
+/**/obj
+
+/**/App_Data/*.log
+/**/App_Data/logs/*.*
+/**/App_Data/blobs
+/**/App_Data/tiny_cache.cache
+
+*.DotSettings
+
+/src/Netafim.WebPlatform.Web/App_Config/AppSettings.local.config
+
+##ignore generated *.js and *.js.map
+/src/Netafim.WebPlatform.Web/**/*.js
+/src/Netafim.WebPlatform.Web/**/*.js.map
+
+##ignore bower scripts (run gulp to get them)
+## line required to enable ignore rules listed below
+/src/Netafim.WebPlatform.Web/Scripts/*
+
+##include dlw common and component file
+!/src/Netafim.WebPlatform.Web/Scripts/dlw.common.js
+!/src/Netafim.WebPlatform.Web/Scripts/component.js
+!/src/Netafim.WebPlatform.Web/ClientResources/**/*.js
+
+##include script that is not provided by npm
+src/Netafim.WebPlatform.Web/App_Data/tiny_cache.cache
+
+##ignore zip files
+/test/Netafim.WebPlatform.UnitTest/**/*.zip

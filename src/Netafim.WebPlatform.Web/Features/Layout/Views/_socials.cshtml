@@ -1,0 +1,18 @@
+﻿@using Netafim.WebPlatform.Web.Features.Layout;
+@using Netafim.WebPlatform.Web.Core.Extensions;
+
+@model ISocialMediaSettings
+
+@RenderLink(Model.FacebookLink, "facebook")
+@RenderLink(Model.TwitterLink, "twitter")
+@RenderLink(Model.YoutubeLink, "youtube")
+@RenderLink(Model.LinkedInLink, "linkedin")
+@RenderLink(Model.InstagramLink, "instagram")
+
+@helper RenderLink(string link, string postClass)
+    {
+        if (!string.IsNullOrWhiteSpace(link))
+        {
+            <a href="@link" @link.LinkTarget() class="dlw-icon-@postClass"></a>
+        }
+}

@@ -1,0 +1,73 @@
+﻿@using EPiServer.Core
+@using EPiServer.Editor
+@using Netafim.WebPlatform.Web.Features.RelatedContent
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Extensions
+
+@model RelatedContentViewModel
+
+@if (Model.Items != null && Model.Items.Any())
+{
+    <section class="component boxed-mode @Html.RenderBackgroundColor(m=>m.Block)" @Html.RenderAnchor(m => m.Block)>
+        @Html.RenderWatermark(m => m.Block)
+        @Html.RenderFloatingNavigationText(m => m.Block)
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component-inner">
+                        <h2>@Html.PropertyFor(m => m.Block.Title)</h2>
+                    </div>
+                </div>
+            </div>
+
+            @foreach (var items in Model.Items.Chunk<RelatedContentItemViewModel>(3))
+            {
+                <div class="row  row-eq-height">
+                    @foreach (var item in items)
+                    {
+                        if (!item.IsIncomplete)
+                        {
+                            <div class="col-sm-4  col-same-height">
+                                <div class="component-inner">
+
+                                    <div class="image-arrow">
+                                        <img src="@Url.CropImageUrl(item.Content.Thumnbail, 620, 452)" alt="@item.Content.Name" />
+                                        @if (item.Tags.Any())
+                                        {
+                                            <span>@string.Join(", ", item.Tags)</span>
+                                        }
+                                    </div>
+
+                                    <h3 class="article-title">@item.Content.Title</h3>
+
+                                    @if (item.Content.Description != null && !string.IsNullOrWhiteSpace(item.Content.Description.ToTextString()))
+                                    {
+                                        <p>@item.Content.Description</p>
+                                    }
+
+                                    <a class="general-btn stay-at-bottom" href="@Url.ContentUrl(item.Content.ContentLink)">
+                                        @Html.Translate(() => Labels.ReadMoreLink)
+                                    </a>
+
+                                </div>
+                            </div>
+                        }
+                        else if (PageEditing.PageIsInEditMode)
+                        {
+                            <div class="col-sm-4">
+                                <div class="component-inner">
+                                    @Html.RenderDisabledReason(item.Content, "The required preview fields are not configured")
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+
+        </div>
+    </section>
+}
+else if (PageEditing.PageIsInEditMode)
+{
+    @Html.RenderDisabledReason(Model.Block as IContent, "No related content configured");
+}

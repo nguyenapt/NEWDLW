@@ -1,0 +1,36 @@
+﻿@using Netafim.WebPlatform.Web.Features.CountryLanguage
+@using  Castle.Core.Internal;
+@using Netafim.WebPlatform.Web.Core.Extensions
+
+@model CountryLanguageSelectionsModel
+<div class="popup-overlay" @Html.RenderPopupIdAttribute("language-selection")>
+    <div class="popup-container">
+        <a href="javascript:void(0);" class="btn-close"></a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="section-title">@Html.Translate(() => Labels.CountryLanguageSelectionTitle)</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="article-title">@Html.Translate(() => Labels.CountryLanguageSelectionDescription)</h3>
+                </div>
+            </div>
+            <div class="row">
+
+                @Html.Partial("LocalSite")
+                @Html.Partial("CorporateSite", Model.CorporateSiteUrl)
+            </div>
+
+            <div>
+                @if (!Model.LocalSites.IsNullOrEmpty())
+                {
+                    @Html.Partial("CountrySiteByRegion", Model.LocalSites);
+                }
+                
+            </div>
+
+        </div>
+    </div>
+</div>

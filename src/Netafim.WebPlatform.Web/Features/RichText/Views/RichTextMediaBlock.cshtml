@@ -1,0 +1,29 @@
+﻿@using Netafim.WebPlatform.Web.Features.RichText.Models
+@using Netafim.WebPlatform.Web.Core.Extensions
+@using Dlw.EpiBase.Content.Infrastructure.Web
+@using EPiServer.Editor
+
+@model RichTextComponentViewModel<RichTextMediaBlock>
+
+@{
+    var wrapperCss = Model.Block.IsVideoBlock() ? "fluid-video" : "fluid-img";
+    var editMode = PageEditing.PageIsInEditMode ? "display: block;" : "";
+}
+
+@using (Html.BeginComponent("Netafim.Web.RichTextMediaBlock", htmlAttributes: new { @class = wrapperCss }))
+{
+    if (Model.Block.IsVideoBlock())
+    {
+        <div class="video-container" @Html.EditAttributes(m => m.Block.Video)>
+            <img alt="@Model.Block.Title" src="@Url.ImageUrl(Model.Block, m => Model.Block.Image)" />
+            <video id="dlw-video" src="@Url.ContentUrl(Model.Block.Video)" type="video/mp4" poster="@Url.ImageUrl(Model.Block, m => Model.Block.Image)" preload="none" controls></video>
+        </div>
+        <a class="video-control-play gtm-video-play" data-id="@Model.Block.Title" href="javascript:void(0)"></a>
+    }
+    else
+    {
+        <img alt="@Model.Block.Title" src="@Url.ImageUrl(Model.Block, m => Model.Block.Image)" @Html.EditAttributes(m => m.Block.Image) style="@editMode" />
+    }
+}
+
+

@@ -1,0 +1,50 @@
+﻿@using Dlw.EpiBase.Content.Infrastructure.Extensions
+@using Netafim.WebPlatform.Web.Features.MediaCarousel
+@model IMediaCarousel
+
+@if (!string.IsNullOrWhiteSpace(Model.Title))
+{
+    <h1 class="media-carousel-title" @Html.EditAttributes(m => m.Title)>@Html.PropertyFor(m => m.Title)</h1>
+}
+
+@{
+    var readMoreUrl = Html.UrlContent(m => m);
+    var hasReadMoreUrl = !string.IsNullOrEmpty(readMoreUrl) && !string.IsNullOrEmpty(Model.LinkText);
+    var hasText = !string.IsNullOrWhiteSpace(Model.Text.ToTextString());
+    var hasQuote = !string.IsNullOrWhiteSpace(Model.Quote.ToTextString());
+    var hasVideo = Model.Video != null;
+
+    var noContent = !hasText && !hasReadMoreUrl;
+
+    if (noContent && !hasVideo)
+    {
+        return;
+    }
+
+    var cssNoContent = noContent ? "no-content" : "";
+}
+<div class="media-carousel-content @cssNoContent">
+    <div class="media-carousel-content-inner">
+        @if (hasText)
+        {
+            <div class="big-text">
+                @Html.PropertyFor(m => m.Text)
+            </div>
+        }
+        @if (hasQuote)
+        {
+            <div class="carousel-extra-content">
+                @Html.PropertyFor(m => m.Quote)
+            </div>
+        }
+        @if (hasReadMoreUrl)
+        {
+            <a class="general-btn" @readMoreUrl>@Html.PropertyFor(m => m.LinkText)</a>
+        }
+    </div>
+    
+    @if (hasVideo)
+    {
+        <a class="btn-play gtm-video-play" data-id="@Model.Title" href="javascript:void(0)"></a>
+    }
+</div>
